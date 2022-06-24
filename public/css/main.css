@@ -1,0 +1,243 @@
+.contactbar{
+    background: #8dc539;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.contactbar ul {
+    list-style: none;
+    justify-items: center;
+    margin: 0;
+}
+.contactbar ul li{
+    display: inline;
+    padding: 0px 15px;
+    font-size: 1em;
+}
+.contactbar .contact-icon{
+    fill: #fff;
+    width: 18px;
+    height: 18px;
+    margin-right: 3px;
+    margin-top: -2px;
+}
+.contactbar .auth{
+    border-left: 1px solid silver;
+}
+.contactbar .auth a{
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.contactbar .auth a:hover{
+    color: #ececec;
+    fill: #ececec;
+    text-decoration: none;
+    font-weight: 600;
+}
+.navbar {
+    background: #fff;
+    color: #8dc539;
+}
+.navbar-brand .logo-icon{
+    fill: #62931a;
+    height: 60px;
+    width: 60px;
+}
+a.navbar-brand{
+    font-weight: 800;
+    font-size: 2em;
+    color: #62931a !important;
+}
+a.navbar-brand span{
+    font-weight: 100;
+    color: #9bd446;
+}
+
+
+.main-block #search-form{
+    background: rgb(154 204 80 / 19%);
+    padding: 25px;
+    border-radius: 20px;
+}
+.main-block input[type=text]{
+    border: none;
+    border-bottom: 1px solid #8dc539;
+    /*border-radius: 0;*/
+    background: #f1f9e6;
+}
+.main-block input[type=text]:focus {
+    background: #d1eeb0;
+    transition: all 0.3s ease;
+}
+.main-block select{
+    border: none;
+    border-bottom: 1px solid #8dc539;
+    /*border-radius: 0;*/
+    outline: none !important;
+    background: #f1f9e6;
+}
+.main-block select:focus {
+    outline: none !important;
+    background: #d1eeb0;
+    transition: all 0.3s ease;
+}
+
+.main-block input[type=submit]{
+    margin-top: 20px;
+    background: #8dc539;
+    color: #fff;
+    transition: all 0.3s ease;
+    width: 100%;
+    font-size: 1.2em;
+    font-weight: 400;
+}
+.main-block input[type=submit]:hover{
+    background: #a2dc53;
+    color: #fff;
+}
+.main-block .signup {
+    background: #8dc539;
+    border: 1px solid #efebeb;
+    color: #fff;
+    padding: 15px;
+    font-size: 24px;
+    width: 80%;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.main-block .signup:hover{
+    background: #a2dc53;
+}
+#map{
+    width: 100%;
+    height: 400px;
+}
+
+.main-block {
+    background: linear-gradient(278.08deg, #a8db5c .2%, #527c13 100%);
+    color: #fff;
+}
+.main-block img {
+    width: 100%;
+}
+
+.most-popular h1{
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #5f8d1b;
+}
+
+.most-popular .popular-item {
+
+}
+.most-popular .popular-item .popular-icon {
+    width: 100px;
+    height: 100px;
+    fill: #8dc539;
+    stroke-width: 3;
+    padding: 5px;
+    border-radius: 50%;
+    border: 1px solid #8dc539;
+    transition: all 0.3s ease;
+
+}
+.most-popular .popular-item .popular-icon:hover{
+    border-radius: 5px;
+    fill: #618e22;
+}
+.most-popular .popular-item span{
+    display: block;
+    color: #618e22;
+    font-size: 20px;
+}
+
+.user-card .avatar {
+    width: 50px;
+    margin-right: 15px;
+}
+
+.user-header{
+    position: absolute;
+    background: rgb(255 255 255 / 82%);
+    bottom: 5%;
+    left: 5%;
+    border-radius: 40px;
+    text-align: center;
+    padding: 26px 80px;
+    color: #282626;
+}
+.user-header .avatar{
+    width: 80px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+}
+.user-header p i{
+    font-size: 24px;
+    margin: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.user-header p i:hover{
+    color: #787575;
+}
+.nav-link {
+    cursor: pointer;
+}
+.avatar {
+    border-radius: 50%;
+}
+
+.search-card-header{
+    background: #689722;
+    padding: 5px;
+    border-radius: 5px 5px 0 0;
+    color: #fff;
+    border: 1px solid #8dc53963;
+    text-transform: uppercase;
+}
+.search-card-body {
+    padding: 5px;
+    border: 1px solid #8dc53963;
+    border-radius: 0 0 5px 5px;
+}
+.search-card-body input[type=submit]{
+    margin-top: 20px;
+    background: #8dc539;
+    color: #fff;
+    transition: all 0.3s ease;
+    width: 100%;
+    font-size: 1.2em;
+    font-weight: 400;
+}
+.search-card-body input[type=submit]:hover{
+    background: #a2dc53;
+    color: #fff;
+}
+.user-card-mini{
+    display: flex;
+    align-items: center;
+}
+.user-card-mini .user-info{
+
+}
+.user-card-mini .user-info p{
+    margin: 0;
+}
+.user-card-mini .open-profile{
+
+}
+.profile-card {
+    border: 1px solid #8dc5394a;
+    margin-top: -80px;
+    z-index: 9999;
+    position: relative;
+    background: #fff;
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+}
