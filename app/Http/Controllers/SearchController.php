@@ -40,10 +40,8 @@ class SearchController extends Controller
             $data['users'] = null;
         }
         foreach ($users as $user) {
-            $coordinates = $google->getCoordinates($user['state'] . ' ' . $user['city'] . ' ' . $user['address']);
-//            dd($user['state'] . ', ' . $user['city'] . ', ' . $user['address']);
             $data['users'][] = [
-                'geo' => $coordinates,
+                'geo' => json_decode($user->coordinates, true),
                 'contacts' => $user['email'],
                 'name' => $user['name'],
                 'category' => $user->category

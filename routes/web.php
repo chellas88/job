@@ -25,5 +25,6 @@ Route::middleware(['auth'])->group(function (){
 //    Route::get('/result', [\App\Http\Controllers\SearchController::class, 'index']);
     Route::post('/saveUser', [\App\Http\Controllers\UserController::class, 'saveUser'])->name('save-user');
     Route::post('/uploadAvatar', [\App\Http\Controllers\UserController::class, 'uploadAvatar'])->name('upload-avatar');
+    Route::post('/saveAddress', [\App\Http\Controllers\UserController::class, 'saveAddress']);
 
 });

@@ -30,11 +30,22 @@ class HomeController extends Controller
         if ($contacts->isEmpty()){
             $data['warning']['contacts'] = true;
         }
-        $google = new GoogleController();
-        $coordinates = $google->getCoordinates($user['state'] . ' ' . $user['city'] . ' ' . $user['address']);
-        $data['coordinates'] = $coordinates;
+        if ($user->coordinates == null){
+            $data['warning']['coordinates'] = true;
+        }
+        if ($user->category_id == null){
+            $data['warning']['category'] = true;
+        }
+//        $google = new GoogleController();
+//        $coordinates = $google->getCoordinates($user['state'] . ' ' . $user['city'] . ' ' . $user['address']);
+
+        $data['coordinates'] = json_decode($user->coordinates, true);
         $data['user'] = $user;
         $data['category'] = $user->category;
+
+        $select = new SelectController();
+        $data['categories'] = $select->getCategories();
+        $data['countries'] = $select->getCountries();
         return view('home' , ['data' => $data]);
     }
 }

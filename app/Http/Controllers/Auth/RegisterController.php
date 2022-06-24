@@ -55,11 +55,6 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'category' => ['required'],
-            'country' => ['required'],
-            'state' => ['required'],
-            'city' => ['required'],
-            'address' => ['required'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -72,25 +67,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $google = new GoogleController();
-        $coordinates = json_encode($google->getCoordinates($data['city']));
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'country_id' => $data['country'],
-            'category_id' => $data['category'],
-            'state' => $data['state'],
-            'city' => $data['city'],
-            'city_coordinates' => $coordinates,
-            'address' => $data['address'],
             'password' => Hash::make($data['password']),
         ]);
     }
 
-    public function showRegistrationForm()
-    {
-        $country = Country::orderBy('title', 'asc')->get();
-        $category = Category::orderBy('title', 'asc')->get();
-        return view('auth.register', compact('category', 'country'));
-    }
 }

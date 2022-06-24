@@ -24,6 +24,7 @@ class User extends Authenticatable
         'state',
         'city',
         'city_coordinates',
+        'coordinates',
         'address',
         'password',
         'category_id',

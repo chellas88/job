@@ -17,8 +17,10 @@
             </ul>
 
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ms-auto">
-                <a href="/">Tets</a>
+            <ul class="navbar-nav ms-auto main-menu">
+                <li><a class="{{ request()->is('/') ? 'active' : '' }}" href="/">Home</a></li>
+                <li><a href="/contacts">Contacts</a></li>
+                <li><a href="/about">About Us</a></li>
             </ul>
         </div>
     </div>

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class GoogleController extends Controller
 {
     public function getCoordinates($address)
     {
+        Log::debug('getlocation');
         $address = str_replace(' ', '+', $address);
         $url = "https://maps.googleapis.com/maps/api/geocode/json?address=" . $address . "&key=" . config('google.key');
         $ch = curl_init();
