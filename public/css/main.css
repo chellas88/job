@@ -184,11 +184,16 @@ a.navbar-brand span{
     background: linear-gradient(278.08deg, #a8db5c .2%, #527c13 100%);
     color: #fff;
     min-height: 300px;
+    position: relative;
 }
 .main-block img {
     width: 100%;
 }
-
+.bg-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
 .most-popular h1{
     font-size: 1.5em;
     font-weight: 600;
@@ -202,7 +207,6 @@ a.navbar-brand span{
     width: 100px;
     height: 100px;
     fill: #8dc539;
-    stroke-width: 3;
     padding: 5px;
     border-radius: 50%;
     border: 1px solid #8dc539;
@@ -211,12 +215,14 @@ a.navbar-brand span{
 }
 .most-popular .popular-item .popular-icon:hover{
     border-radius: 5px;
-    fill: #618e22;
+    fill: #fff;
+    background: #8dc539;
 }
 .most-popular .popular-item span{
     display: block;
     color: #618e22;
     font-size: 20px;
+
 }
 
 .user-card .avatar {
@@ -308,3 +314,25 @@ a.navbar-brand span{
     margin-top: -15%;
 }
 
+.auth-block .card{
+    opacity: 0.9;
+}
+
+@media screen and (max-width: 990px) {
+    .auth-block {
+        margin-top: -22%;
+    }
+}
+
+
+@media screen and (max-width: 690px) {
+    .auth-block {
+        margin-top: -30%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .auth-block {
+        margin-top: -45%;
+    }
+}

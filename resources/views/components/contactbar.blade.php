@@ -28,7 +28,7 @@
                 <svg class="contact-icon">
                     <use xlink:href="/images/sprites.svg#register-icon"></use>
                 </svg>
-                Register
+                Sign Up
             </a>
         </li>
         @endguest
