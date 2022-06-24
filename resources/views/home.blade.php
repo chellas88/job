@@ -79,7 +79,7 @@
                                         >
                                             <option value="">Select a category</option>
                                             @foreach($data['categories'] as $category)
-                                                <option value="{{$category['id']}}" {{$category['id'] == $data['user']['category_id'] ? 'selected' : ''}}>{{$category['title']}}</option>
+                                                <option value="{{$category['id']}}" {{$category['id'] == $data['user']['category_id'] ? 'selected' : ''  }}>{{$category['title']}}</option>
                                             @endforeach
                                         </select>
                                         @error('category')

@@ -2,13 +2,13 @@
     <ul>
         <li>
             <svg class="contact-icon">
-                <use xlink:href="/icons/sprites.svg#phone-icon"></use>
+                <use xlink:href="/images/sprites.svg#phone-icon"></use>
             </svg>
             39099 999 99 99
         </li>
         <li>
             <svg class="contact-icon">
-                <use xlink:href="/icons/sprites.svg#email-icon"></use>
+                <use xlink:href="/images/sprites.svg#email-icon"></use>
             </svg>
             admin@gmail.com
         </li>
@@ -18,7 +18,7 @@
         <li>
             <a href="/login">
                 <svg class="contact-icon">
-                    <use xlink:href="/icons/sprites.svg#signin-icon"></use>
+                    <use xlink:href="/images/sprites.svg#signin-icon"></use>
                 </svg>
                 Sign In
             </a>
@@ -26,7 +26,7 @@
         <li>
             <a href="/register">
                 <svg class="contact-icon">
-                    <use xlink:href="/icons/sprites.svg#register-icon"></use>
+                    <use xlink:href="/images/sprites.svg#register-icon"></use>
                 </svg>
                 Register
             </a>
@@ -40,7 +40,7 @@
                 <a href="{{ route('logout') }}"
                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <svg class="contact-icon">
-                        <use xlink:href="/icons/sprites.svg#logout-icon"></use>
+                        <use xlink:href="/images/sprites.svg#logout-icon"></use>
                     </svg>
                     Logout
                 </a>

@@ -69,7 +69,7 @@
                 <div class="col-3 my-5">
                     <div class="popular-item">
                         <svg class="popular-icon">
-                            <use xlink:href="icons/sprites.svg#developer-icon"></use>
+                            <use xlink:href="/images/sprites.svg#developer-icon"></use>
                         </svg>
                         <span>Developer</span>
                     </div>
@@ -77,7 +77,7 @@
                 <div class="col-3 my-5">
                     <div class="popular-item">
                         <svg class="popular-icon">
-                            <use xlink:href="/icons/sprites.svg#government-icon"></use>
+                            <use xlink:href="/images/sprites.svg#government-icon"></use>
                         </svg>
                         <span>Government</span>
                     </div>
@@ -85,7 +85,7 @@
                 <div class="col-3 my-5">
                     <div class="popular-item">
                         <svg class="popular-icon">
-                            <use xlink:href="/icons/sprites.svg#medical-icon"></use>
+                            <use xlink:href="/images/sprites.svg#medical-icon"></use>
                         </svg>
                         <span>Medicine</span>
                     </div>
@@ -93,7 +93,7 @@
                 <div class="col-3 my-5">
                     <div class="popular-item">
                         <svg class="popular-icon">
-                            <use xlink:href="/icons/sprites.svg#education-icon"></use>
+                            <use xlink:href="/images/sprites.svg#education-icon"></use>
                         </svg>
                         <span>Education</span>
                     </div>
@@ -102,7 +102,7 @@
                 <div class="col-3 my-5">
                     <div class="popular-item">
                         <svg class="popular-icon">
-                            <use xlink:href="/icons/sprites.svg#mechanic-icon"></use>
+                            <use xlink:href="/images/sprites.svg#mechanic-icon"></use>
                         </svg>
                         <span>Auto Mechanic</span>
                     </div>
@@ -110,7 +110,7 @@
                 <div class="col-3 my-5">
                     <div class="popular-item">
                         <svg class="popular-icon">
-                            <use xlink:href="/icons/sprites.svg#plumber-icon"></use>
+                            <use xlink:href="/images/sprites.svg#plumber-icon"></use>
                         </svg>
                         <span>Plumber</span>
                     </div>
@@ -118,7 +118,7 @@
                 <div class="col-3 my-5">
                     <div class="popular-item">
                         <svg class="popular-icon">
-                            <use xlink:href="/icons/sprites.svg#translator-icon"></use>
+                            <use xlink:href="/images/sprites.svg#translator-icon"></use>
                         </svg>
                         <span>Translator</span>
                     </div>
@@ -126,7 +126,7 @@
                 <div class="col-3 my-5">
                     <div class="popular-item">
                         <svg class="popular-icon">
-                            <use xlink:href="/icons/sprites.svg#logistic-icon"></use>
+                            <use xlink:href="/images/sprites.svg#logistic-icon"></use>
                         </svg>
                         <span>Logistic</span>
                     </div>

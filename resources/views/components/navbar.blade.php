@@ -2,7 +2,7 @@
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
             <svg class="logo-icon">
-                <use xlink:href="/icons/sprites.svg#logo"></use>
+                <use xlink:href="/images/sprites.svg#logo"></use>
             </svg>
             Find<span>Me</span>
         </a>
