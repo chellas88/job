@@ -1,10 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+
+
+    <div class="col main-block"></div>
+    <img class="w-100 bg-bottom" src="{{ asset('/images/main-block-bottom.svg') }}">
+
+    <div class="container auth-block">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
+            <div class="col-md-6">
+                <div class="card shadow">
                     <div class="card-header">{{ __('Register') }}</div>
 
                     <div class="card-body">
@@ -74,7 +79,7 @@
 
                             <div class="row mb-0">
                                 <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-secondary">
                                         {{ __('Register') }}
                                     </button>
                                 </div>

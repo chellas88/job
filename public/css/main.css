@@ -1,3 +1,53 @@
+.pagination{
+    justify-content: center;
+}
+.page-link {
+    color: #8dc539;
+}
+.page-item.active .page-link{
+    background-color: #8dc539;
+    border-color: #8dc539;
+}
+.btn-secondary {
+    background-color: #8dc539;
+    border-color: #7da93d;
+}
+.btn-secondary:hover{
+    background-color: #a5d75b;
+    border-color: #a8de58;
+}
+.btn-secondary:focus{
+    border: #a8de58;
+    box-shadow: none;
+    background: #a5d75b;
+}
+.btn-secondary:checked{
+    box-shadow: none;
+}
+.google-button {
+    background: #4285F4;
+    color: #fff;
+    text-decoration: none;
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+    padding-right: 7px;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+.google-button:hover {
+    background: #4f8ef8;
+    color: #fff;
+    text-decoration: none;
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+    padding-right: 7px;
+}
+.google-button img{
+    width: 35px;
+    margin-right: 4px;
+}
 .contactbar{
     background: #8dc539;
     color: #fff;
@@ -133,6 +183,7 @@ a.navbar-brand span{
 .main-block {
     background: linear-gradient(278.08deg, #a8db5c .2%, #527c13 100%);
     color: #fff;
+    min-height: 300px;
 }
 .main-block img {
     width: 100%;
@@ -253,3 +304,7 @@ a.navbar-brand span{
     padding: 20px;
     border-radius: 20px;
 }
+.auth-block {
+    margin-top: -15%;
+}
+

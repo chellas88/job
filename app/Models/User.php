@@ -28,7 +28,8 @@ class User extends Authenticatable
         'address',
         'password',
         'category_id',
-        'lang'
+        'lang',
+        'google_id'
     ];
 
     /**

@@ -26,8 +26,5 @@
 //
 //
 // })
-setTimeout(() => {
-    let btn = document.getElementById('btm-map')
-    console.log(btn)
-}, 2000)
+
 

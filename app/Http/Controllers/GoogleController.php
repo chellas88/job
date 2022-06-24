@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Laravel\Socialite\Facades\Socialite;
+use Exception;
 
 class GoogleController extends Controller
 {
@@ -26,5 +31,40 @@ class GoogleController extends Controller
             return $res['results'][0]['geometry']['location'];
         }
         return false;
+    }
+
+    public function googleRedirect(){
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function loginWithGoogle(){
+        try {
+            $user = Socialite::driver('google')->user();
+            $isUser = User::where('google_id', $user->id)->first();
+            if ($isUser){
+                Auth::login($isUser);
+                return redirect('/home');
+            }
+            $isEmail = User::where('email', $user->email)->first();
+            if ($isEmail){
+                User::where('email', $user->email)->update([
+                    'google_id' => $user->id
+                ]);
+                Auth::login($isEmail);
+                return redirect('/home');
+            }
+
+                $createUser = User::updateOrCreate([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'password' => Hash::make('us'),
+                    'google_id' => $user->id
+                ]);
+                Auth::login($createUser);
+                return redirect('/home');
+
+        } catch (Exception $exception){
+            dd($exception->getMessage());
+        }
     }
 }

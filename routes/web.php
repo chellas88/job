@@ -20,6 +20,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/search', [\App\Http\Controllers\SearchController::class, 'index']);
 Route::get('/user/{id}', [\App\Http\Controllers\UserController::class, 'profile']);
+Route::get('/auth/google', [\App\Http\Controllers\GoogleController::class, 'googleRedirect'])->name('auth.google');
+Route::get('/auth/google/callback', [\App\Http\Controllers\GoogleController::class, 'loginWithGoogle']);
 
 Route::middleware(['auth'])->group(function (){
 //    Route::get('/result', [\App\Http\Controllers\SearchController::class, 'index']);
