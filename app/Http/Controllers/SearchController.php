@@ -15,16 +15,16 @@ class SearchController extends Controller
     {
         $categories = Category::orderBy('title', 'asc')->get();
         $countries = Country::orderBy('title', 'asc')->get();
-        $list = $this->userList($request);
         $data = null;
         $data['categories'] = $categories;
         $data['countries'] = $countries;
-        $data['list'] = $list;
         $data['location'] = $request['city'];
         $data['current_category'] = $request['category_id'];
         $data['current_country'] = $request['country_id'];
         $google = new GoogleController();
         $myPosition = $google->getCoordinates($data['location']);
+        $list = $this->userList($request, $myPosition);
+        $data['list'] = $list;
         if (!$myPosition) {
             return back()->withInput();
         }
@@ -52,13 +52,11 @@ class SearchController extends Controller
     }
 
 
-    public function userList($request)
+    public function userList($request, $city)
     {
         $filter = [
             'country_id' => intval($request['country_id']),
         ];
-        $google = new GoogleController();
-        $city = $google->getCoordinates($request['city']);
         if ($city) {
             $filter['city_coordinates'] = json_encode($city);
         }

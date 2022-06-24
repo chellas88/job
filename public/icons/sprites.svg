@@ -150,7 +150,7 @@
 
     <symbol id="education-icon" viewBox="0 0 52 52">
         <g display="none">
-            <path display="inline" opacity="0.2" enable-background="new" d="M0,0v52h52V0H0z M49.9,49.9H2.1V2.1h47.8
+            <path display="inline" opacity="0.2" d="M0,0v52h52V0H0z M49.9,49.9H2.1V2.1h47.8
 		C49.9,2.1,49.9,49.9,49.9,49.9z"/>
         </g>
         <g display="none">

@@ -69,7 +69,7 @@
                 <div class="col-3 my-5">
                     <div class="popular-item">
                         <svg class="popular-icon">
-                            <use xlink:href="/icons/sprites.svg#developer-icon"></use>
+                            <use xlink:href="icons/sprites.svg#developer-icon"></use>
                         </svg>
                         <span>Developer</span>
                     </div>
