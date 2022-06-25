@@ -79,6 +79,27 @@
                                     <div class="user-info w-100">
                                         <p><b>{{$item['name']}}</b></p>
                                         <p>{{$item['category']['title']}}</p>
+                                        @if ($item->getRating() > 0 && $item->getRating() < 2)
+                                            <x-rating.stars_05/>
+                                        @elseif ($item->getRating() == 1)
+                                            <x-rating.stars_1/>
+                                        @elseif ($item->getRating() > 1 && $item->getRating() < 2)
+                                            <x-rating.stars_15/>
+                                        @elseif ($item->getRating() == 2)
+                                            <x-rating.stars_2/>
+                                        @elseif ($item->getRating() > 2 && $item->getRating() < 3)
+                                            <x-rating.stars_25/>
+                                        @elseif ($item->getRating() == 3)
+                                            <x-rating.stars_3/>
+                                        @elseif ($item->getRating() > 3 && $item->getRating() < 4)
+                                            <x-rating.stars_35/>
+                                        @elseif ($item->getRating() == 4)
+                                            <x-rating.stars_4/>
+                                        @elseif ($item->getRating() > 4 && $item->getRating() < 5)
+                                            <x-rating.stars_45/>
+                                        @elseif ($item->getRating() == 5)
+                                            <x-rating.stars_5/>
+                                        @endif
                                     </div>
                                     <div class="open-profile">
                                         <a href="/user/{{$item['id']}}" class="btn btn-secondary">Profile</a>

@@ -354,7 +354,15 @@ a.navbar-brand span{
     opacity: 0.92;
 }
 
+.reviews-row{
+    background-image: url("/images/bg_reviews.jpg");
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    background-size: cover;
+    background-color: linear-gradient(278.08deg, #a8db5c .2%, #527c13 100%);
 
+
+}
 .review {
     min-height: 100px;
     display: flex;
@@ -367,8 +375,11 @@ a.navbar-brand span{
     color: #3b3a3a;
     padding: 40px;
 }
+.reviews-block{
+    transition: all 0.8s ease;
+}
 .reviews-block .avatar{
-    width: 70px !important;
+    width: 90px !important;
     padding: 5px;
     background: #fff;
     position: absolute;

@@ -9,14 +9,14 @@
 
 
 .star-rating {
-    display: flex;
-    justify-content: center;
+    //display: flex;
+    //justify-content: center;
     gap: 4px;
 }
 
 .c-star {
-    width: var(--size, 25px);
-    height: var(--size, 25px);
+    width: var(--size, 20px);
+    height: var(--size, 20px);
     fill: lightgrey;
 
     &.active {
@@ -24,10 +24,3 @@
     }
 }
 
-body {
-    padding: 1rem;
-}
-
-* {
-    box-sizing: border-box;
-}

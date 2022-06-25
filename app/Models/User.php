@@ -59,4 +59,19 @@ class User extends Authenticatable
     public function category(){
         return $this->belongsTo(Category::class);
     }
+
+    public function getRating(){
+        $reviews = Review::where('user_id', $this->id)->get();
+        $rank = 0;
+        $count = 0;
+        if (!$reviews->isEmpty()) {
+            foreach ($reviews as $item) {
+                $rank += intval($item['rank']);
+                $count++;
+            }
+            return ($rank / $count);
+        }
+        else return 0;
+
+    }
 }

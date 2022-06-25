@@ -10272,24 +10272,14 @@ textarea.form-control-lg {
   }
 }
 .star-rating {
-  display: flex;
-  justify-content: center;
   gap: 4px;
 }
 
 .c-star {
-  width: var(--size, 25px);
-  height: var(--size, 25px);
+  width: var(--size, 20px);
+  height: var(--size, 20px);
   fill: lightgrey;
 }
 .c-star.active {
   fill: #fed94b;
-}
-
-body {
-  padding: 1rem;
-}
-
-* {
-  box-sizing: border-box;
 }

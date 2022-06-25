@@ -138,9 +138,9 @@
         </div>
     </section>
     {{--    REVIEWS--}}
-    <div class="container-fluid main-block reviews-block py-3">
+    <div class="container-fluid main-block reviews-block">
         <img class="w-100 bg-top" src="{{ asset('/images/main-block-top.svg') }}">
-        <div class="row py-5 justify-content-center">
+        <div class="row py-5 justify-content-center reviews-row">
             <div class="col-md-8">
                 <h3>Last Reviews</h3>
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
