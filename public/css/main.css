@@ -429,4 +429,8 @@ a.navbar-brand span{
     .auth-block {
         margin-top: -45%;
     }
+    .most-popular .popular-item .popular-icon {
+        width: 70px;
+        height: 70px;
+    }
 }
