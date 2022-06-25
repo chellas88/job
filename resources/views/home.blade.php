@@ -53,6 +53,11 @@
                     <div class="tab-content mt-3" id="lineTabContent">
                         <div class="tab-pane fade show active px-2" id="user-info" role="tabpanel"
                              aria-labelledby="user-line-tab">
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{session('success')}}
+                                </div>
+                            @endif
                             @if(isset($data['warning']['category']))
                                 <div class="alert alert-danger mb-2">
                                     <b>Warning:</b> You must set a category
@@ -74,12 +79,14 @@
                                     <h4>Main Info</h4>
                                     <div class="mb-3">
                                         <label for="category" class="form-label">Change Name:</label>
-                                        <select type="text" name="category_id" id="category" value="{{$data['user']['category']}}"
-                                               class="form-control {{ isset($data['warning']['category']) ? 'is-invalid' : ''}}"
+                                        <select type="text" name="category_id" id="category"
+                                                value="{{$data['user']['category']}}"
+                                                class="form-control {{ isset($data['warning']['category']) ? 'is-invalid' : ''}}"
                                         >
                                             <option value="">Select a category</option>
                                             @foreach($data['categories'] as $category)
-                                                <option value="{{$category['id']}}" {{$category['id'] == $data['user']['category_id'] ? 'selected' : ''  }}>{{$category['title']}}</option>
+                                                <option
+                                                    value="{{$category['id']}}" {{$category['id'] == $data['user']['category_id'] ? 'selected' : ''  }}>{{$category['title']}}</option>
                                             @endforeach
                                         </select>
                                         @error('category')

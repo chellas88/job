@@ -73,7 +73,6 @@
 }
 
 body {
-    overflow-x: hidden;
   margin: 0;
   font-family: var(--bs-body-font-family);
   font-size: var(--bs-body-font-size);
@@ -10271,4 +10270,26 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+.star-rating {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.c-star {
+  width: var(--size, 25px);
+  height: var(--size, 25px);
+  fill: lightgrey;
+}
+.c-star.active {
+  fill: #fed94b;
+}
+
+body {
+  padding: 1rem;
+}
+
+* {
+  box-sizing: border-box;
 }

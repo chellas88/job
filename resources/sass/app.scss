@@ -6,3 +6,28 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+
+.star-rating {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+}
+
+.c-star {
+    width: var(--size, 25px);
+    height: var(--size, 25px);
+    fill: lightgrey;
+
+    &.active {
+        fill: #fed94b;
+    }
+}
+
+body {
+    padding: 1rem;
+}
+
+* {
+    box-sizing: border-box;
+}

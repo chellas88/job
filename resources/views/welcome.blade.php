@@ -59,6 +59,8 @@
         </div>
         <img class="w-100 bg-bottom" src="{{ asset('/images/main-block-bottom.svg') }}">
     </section>
+
+    {{--        POPULAR--}}
     <section class="most-popular my-3">
         <div class="container py-4 text-center">
             <div class="row">
@@ -135,21 +137,87 @@
             </div>
         </div>
     </section>
-    <section class="my-3">
-        <div class="container-fluid alert-danger">
-            <div class="row">
-                <div class="col-4 text-center py-4">
-                    alksdfj
-                </div>
-                <div class="col-4 text-center py-4">
-                    alksdfj
-                </div>
-                <div class="col-4 text-center py-4">
-                    alksdfj
+    {{--    REVIEWS--}}
+    <div class="container-fluid main-block reviews-block py-3">
+        <img class="w-100 bg-top" src="{{ asset('/images/main-block-top.svg') }}">
+        <div class="row py-5 justify-content-center">
+            <div class="col-md-8">
+                <h3>Last Reviews</h3>
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        @foreach($reviews as $index => $review)
+                            <div class="carousel-item {{ $index == 0 ? 'active' : '' }} py-5">
+                                <div class="review">
+                                    <div class="review-content">
+                                        @if($review['for_user']['avatar'])
+                                            <img src="{{asset('/uploads/avatars/'.$review['for_user']['avatar'])}}" class="d-block w-100 avatar">
+                                        @else
+                                            <img src="{{asset('/uploads/avatars/avatar.svg')}}" class="d-block w-100 avatar">
+                                        @endif
+                                        <div class="review-rank text-center">
+                                            @if ($review['rank'] == 5)
+                                                <x-rating.stars_5 />
+                                            @elseif ($review['rank'] == 4)
+                                                <x-rating.stars_4 />
+                                            @elseif ($review['rank'] == 3)
+                                                <x-rating.stars_3 />
+                                            @elseif ($review['rank'] == 2)
+                                                <x-rating.stars_2 />
+                                            @elseif ($review['rank'] == 1)
+                                                <x-rating.stars_1 />
+                                            @endif
+                                        </div>
+                                        <div class="review-text text-center">
+                                            {{$review['text']}}
+                                        </div>
+                                        <div class="review-author text-end pt-3">
+                                            {{$review['name']}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        @endforeach
+                    </div>
+                    <button class="carousel-control-prev" type="button"
+                            data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button"
+                            data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
             </div>
         </div>
-    </section>
+        <img class="w-100 bg-bottom" src="{{ asset('/images/main-block-bottom.svg') }}">
+
+    </div>
+    {{--    <section class="my-3">--}}
+    {{--        <div class="container-fluid alert-danger">--}}
+    {{--            <div class="row">--}}
+    {{--                <div class="col-4 text-center py-4">--}}
+    {{--                    alksdfj--}}
+    {{--                </div>--}}
+    {{--                <div class="col-4 text-center py-4">--}}
+    {{--                    alksdfj--}}
+    {{--                </div>--}}
+    {{--                <div class="col-4 text-center py-4">--}}
+    {{--                    alksdfj--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </section>--}}
 @endsection
 
 

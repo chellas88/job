@@ -15,7 +15,20 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
-
+                            <div class="row mb-3">
+                                <label class="col-md-4 col-form-label text-md-end">Account Type</label>
+                                <div class="col-md-6">
+                                    <input type="radio" value="person" name="role" id="person" checked>
+                                    <input type="radio" value="company" name="role" id="company">
+                                    <label for="person" class="person">Person</label>
+                                    <label for="company" class="company">Company</label>
+                                    @error('role')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="row mb-3">
                                 <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 

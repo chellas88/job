@@ -48,6 +48,37 @@
     width: 35px;
     margin-right: 4px;
 }
+.person, .company {
+    background: #8dc539;
+    padding: 8px;
+    width: 120px;
+    text-align: center;
+    color: #fff;
+    margin-right: -2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.person:hover, .company:hover{
+    background: #9fd948;
+}
+.person{
+    border-radius: 5px 0 0 5px;
+}
+.company{
+    border-radius: 0 5px 5px 0;
+}
+#person:checked ~ .person {
+    background: #77af23;
+}
+
+
+#company:checked ~ .company {
+    background: #77af23;
+}
+#company, #person {
+    display: none;
+}
+
 .contactbar{
     background: #8dc539;
     color: #fff;
@@ -189,6 +220,11 @@ a.navbar-brand span{
 .main-block img {
     width: 100%;
 }
+.bg-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 .bg-bottom {
     position: absolute;
     bottom: 0;
@@ -315,7 +351,54 @@ a.navbar-brand span{
 }
 
 .auth-block .card{
-    opacity: 0.9;
+    opacity: 0.92;
+}
+
+
+.review {
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+}
+.review-content {
+    position: relative;
+    width: 80%;
+    background: #fff;
+    color: #3b3a3a;
+    padding: 40px;
+}
+.reviews-block .avatar{
+    width: 70px !important;
+    padding: 5px;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: -30px;
+}
+.review-rank img{
+    width: 100px;
+}
+.review-text{
+    font-size: 16px;
+}
+.review-author {
+    font-style: italic;
+}
+
+
+
+
+
+
+
+
+
+@media screen and (min-width: 990px) {
+    .auth-block {
+        margin-top: -10%;
+    }
 }
 
 @media screen and (max-width: 990px) {

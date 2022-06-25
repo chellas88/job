@@ -17,6 +17,8 @@ class UserController extends Controller
         $user->email = $request['email'];
         $user->category_id = $request['category_id'];
         $user->save();
+        $msg = request()->session();
+        $msg->flash('success', 'User data was changed');
         return redirect()->back();
     }
 
@@ -35,6 +37,8 @@ class UserController extends Controller
             $user->avatar = $filename;
             $user->save();
         }
+        $msg = request()->session();
+        $msg->flash('success', 'Avatar was changed');
         return redirect()->back();
     }
 
@@ -51,6 +55,8 @@ class UserController extends Controller
         $user->city_coordinates = $city_coordinates;
         $user->address = $request['address'];
         $user->save();
+        $msg = request()->session();
+        $msg->flash('success', 'Address was changed');
         return redirect()->back();
     }
 

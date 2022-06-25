@@ -19,10 +19,8 @@ class GoogleController extends Controller
         $url = "https://maps.googleapis.com/maps/api/geocode/json?address=" . $address . "&key=" . config('google.key');
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
-// SSL important
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, TRUE);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-//        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         $output = curl_exec($ch);
         curl_close($ch);

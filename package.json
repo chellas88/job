@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "aos": "^3.0.0-beta.6",
         "auto-prefixer": "^0.4.2",
         "autoprefixer": "10.4.5",
         "boxicons": "^2.1.2"
