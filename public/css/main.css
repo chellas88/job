@@ -542,6 +542,22 @@ a.navbar-brand span{
     .auth-block {
         margin-top: -30%;
     }
+    .contactbar {
+        display: table;
+    }
+    .contactbar ul {
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    .contactbar .lang {
+        position: absolute;
+        right:0;
+        top: 10px;
+    }
+    .contactbar .auth {
+        margin-bottom: 0;
+
+    }
 }
 
 @media screen and (max-width: 500px) {
