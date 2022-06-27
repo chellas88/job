@@ -10271,6 +10271,16 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+body {
+  height: 100vh;
+}
+
+#app {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .star-rating {
   gap: 4px;
 }

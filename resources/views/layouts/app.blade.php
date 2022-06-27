@@ -26,15 +26,18 @@
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+{{--    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">--}}
 </head>
 <body>
     <div id="app">
         <x-contactbar></x-contactbar>
         <x-navbar></x-navbar>
 
-        <main class="">
+        <main>
             @yield('content')
         </main>
+
+        <x-footer></x-footer>
     </div>
 </body>
 

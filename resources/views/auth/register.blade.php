@@ -3,9 +3,10 @@
 @section('content')
 
 
-    <div class="col main-block"></div>
-    <img class="w-100 bg-bottom" src="{{ asset('/images/main-block-bottom.svg') }}">
+    <div class="col main-block">
 
+        <img class="w-100 bg-bottom" src="{{ asset('/images/main-block-bottom.svg') }}">
+    </div>
     <div class="container auth-block">
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -103,4 +104,7 @@
             </div>
         </div>
     </div>
+
+
+
 @endsection

@@ -1,64 +1,118 @@
 @extends('layouts.app')
 
+@section('head')
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxEmjg-EGbt0m8Dr_cCWgO7IvcqA89fEU&callback=initMap"
+            async defer></script>
+@endsection
+
 @section('content')
     <section class="main-block">
-        <div class="container py-5">
-            <div class="row align-items-center py-lg-5">
-                <div class="col-lg-5 mb-5 mb-lg-0 crm-text">
-                    <form id="search-form" method="GET" action="/search">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="category_id">Category</label>
-                            <select type="text" class="form-control" id="category_id" name="category_id">
-                                <option value="" selected>All categories</option>
-                                @foreach($category as $item)
-                                    <option
-                                        value="{{ $item['id'] }}" {{ old('category_id') == $item['id'] ? "selected" : ''}}>{{$item['title']}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="country_id">Country</label>
-                            <select type="text" class="form-control" id="country_id" name="country_id" required>
-                                <option value="" selected disabled>Select Country</option>
-                                @foreach($country as $item)
-                                    <option
-                                        value="{{ $item['id'] }}" {{ old('country_id') == $item['id'] ? "selected" : ''}}>{{$item['title']}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="city">City</label>
-                            <input type="text" class="form-control @error('city') is-invalid @enderror"
-                                   placeholder="input city" id="city"
-                                   name="city" value="{{ old('city') }}" required>
-                            @error('city')
-                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label for="lang">Language</label>
-                            <select type="text" class="form-control" id="lang" name="lang">
-                                <option value="0">Select Language</option>
-                            </select>
-                        </div>
-
-                        <input type="submit" value="Search" class="btn">
-
-                    </form>
-                </div>
-                <div class="col-lg-7 text-center">
-                    <img class="crm-img" src="{{ asset('/images/main.png') }}">
-                    @if(!auth()->user())
-                        <a href="/register" class="text-center btn signup">Sign Up Free</a>
-                    @endif
-                </div>
+        <div id="main_map"></div>
+        <div class="search active">
+        <form id="search-form" method="GET" action="/search">
+            @csrf
+            <div class="mb-3">
+                <label for="category_id">Category</label>
+                <select type="text" class="form-control" id="category_id" name="category_id">
+                    <option value="" selected>All categories</option>
+                    @foreach($category as $item)
+                        <option
+                            value="{{ $item['id'] }}" {{ old('category_id') == $item['id'] ? "selected" : ''}}>{{$item['title']}}</option>
+                    @endforeach
+                </select>
             </div>
+            <div class="mb-3">
+                <label for="country_id">Country</label>
+                <select type="text" class="form-control" id="country_id" name="country_id" required>
+                    <option value="" selected disabled>Select Country</option>
+                    @foreach($country as $item)
+                        <option
+                            value="{{ $item['id'] }}" {{ old('country_id') == $item['id'] ? "selected" : ''}}>{{$item['title']}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="city">City</label>
+                <input type="text" class="form-control @error('city') is-invalid @enderror"
+                       placeholder="input city" id="city"
+                       name="city" value="{{ old('city') }}" required>
+                @error('city')
+                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="lang">Language</label>
+                <select type="text" class="form-control" id="lang" name="lang">
+                    <option value="0">Select Language</option>
+                </select>
+            </div>
+
+            <input type="submit" value="Search" class="btn">
+
+        </form>
+            <div class="search-show-hide" id="showHideSearch"><i class='bx bx-chevron-left' ></i></div>
         </div>
-        <img class="w-100 bg-bottom" src="{{ asset('/images/main-block-bottom.svg') }}">
     </section>
+{{--    <section class="main-block">--}}
+{{--        <div class="container py-5">--}}
+{{--            <div class="row align-items-center py-lg-5">--}}
+{{--                <div class="col-lg-5 mb-5 mb-lg-0 crm-text">--}}
+{{--                    <form id="search-form" method="GET" action="/search">--}}
+{{--                        @csrf--}}
+{{--                        <div class="mb-3">--}}
+{{--                            <label for="category_id">Category</label>--}}
+{{--                            <select type="text" class="form-control" id="category_id" name="category_id">--}}
+{{--                                <option value="" selected>All categories</option>--}}
+{{--                                @foreach($category as $item)--}}
+{{--                                    <option--}}
+{{--                                        value="{{ $item['id'] }}" {{ old('category_id') == $item['id'] ? "selected" : ''}}>{{$item['title']}}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
+{{--                        <div class="mb-3">--}}
+{{--                            <label for="country_id">Country</label>--}}
+{{--                            <select type="text" class="form-control" id="country_id" name="country_id" required>--}}
+{{--                                <option value="" selected disabled>Select Country</option>--}}
+{{--                                @foreach($country as $item)--}}
+{{--                                    <option--}}
+{{--                                        value="{{ $item['id'] }}" {{ old('country_id') == $item['id'] ? "selected" : ''}}>{{$item['title']}}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
+{{--                        <div class="mb-3">--}}
+{{--                            <label for="city">City</label>--}}
+{{--                            <input type="text" class="form-control @error('city') is-invalid @enderror"--}}
+{{--                                   placeholder="input city" id="city"--}}
+{{--                                   name="city" value="{{ old('city') }}" required>--}}
+{{--                            @error('city')--}}
+{{--                            <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                            @enderror--}}
+{{--                        </div>--}}
+{{--                        <div class="mb-3">--}}
+{{--                            <label for="lang">Language</label>--}}
+{{--                            <select type="text" class="form-control" id="lang" name="lang">--}}
+{{--                                <option value="0">Select Language</option>--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
+
+{{--                        <input type="submit" value="Search" class="btn">--}}
+
+{{--                    </form>--}}
+{{--                </div>--}}
+{{--                <div class="col-lg-7 text-center">--}}
+{{--                    <img class="crm-img" src="{{ asset('/images/main.png') }}">--}}
+{{--                    @if(!auth()->user())--}}
+{{--                        <a href="/register" class="text-center btn signup">Sign Up Free</a>--}}
+{{--                    @endif--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <img class="w-100 bg-bottom" src="{{ asset('/images/main-block-bottom.svg') }}">--}}
+{{--    </section>--}}
 
     {{--        POPULAR--}}
     <section class="most-popular my-3">
@@ -221,3 +275,26 @@
 @endsection
 
 
+<script>
+    let center_lat = 50.450001;
+    let center_lng = 30.523333;
+
+    function initMap() {
+        // The location of Uluru
+        const center = {lat: center_lat, lng: center_lng};
+        // The map, centered at Uluru
+        const map = new google.maps.Map(document.getElementById("main_map"), {
+            zoom: 15,
+            center: center,
+            fullscreenControl: false,
+            mapTypeControl: false,
+            streetViewControl: false
+
+        });
+        // The marker, positioned at Uluru
+
+
+    }
+
+    window.initMap = initMap;
+</script>

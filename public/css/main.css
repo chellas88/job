@@ -1,3 +1,10 @@
+footer {
+    margin-top: auto;
+    background: #8dc539;
+}
+.footer {
+    padding: 15px;
+}
 .pagination{
     justify-content: center;
 }
@@ -150,10 +157,35 @@ a.navbar-brand span{
 .main-menu li a:hover{
     color: #8dc539;
 }
+
+.main-block .search{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30%;
+    min-width: 350px;
+    max-width: 415px;
+    transition: all 0.4s ease;
+}
+
 .main-block #search-form{
-    background: rgb(154 204 80 / 19%);
+    background: rgba(255,255,255, 0.9);
     padding: 25px;
-    border-radius: 20px;
+    position: relative;
+    border-top: 3px solid #8dc539;
+
+}
+.main-block .search-show-hide {
+    background: #8dc539;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translateX(100%);
+    padding: 20px 10px;
+    cursor: pointer;
+}
+.main-block .search-show-hide i {
+    font-size: 28px;
 }
 .main-block input[type=text]{
     border: none;
@@ -219,6 +251,11 @@ a.navbar-brand span{
 }
 .main-block img {
     width: 100%;
+}
+.main-block #main_map {
+    position: relative;
+    width: 100%;
+    height: 600px;
 }
 .bg-top {
     position: absolute;
