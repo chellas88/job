@@ -163,7 +163,7 @@ a.navbar-brand span{
     top: 0;
     left: 0;
     width: 30%;
-    min-width: 330px;
+    min-width: 315px;
     max-width: 400px;
     transition: all 0.4s ease;
 }
