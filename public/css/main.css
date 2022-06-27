@@ -301,6 +301,9 @@ a.navbar-brand span{
 .recommended-companies ul li p{
     margin: 0;
 }
+
+
+
 .most-popular h1{
     font-size: 1.5em;
     font-weight: 600;
@@ -481,11 +484,47 @@ a.navbar-brand span{
     .auth-block {
         margin-top: -10%;
     }
+
 }
 
 @media screen and (max-width: 990px) {
     .auth-block {
         margin-top: -22%;
+    }
+    .recommended-companies {
+        transform: translateY(-20%);
+        background: #fff;
+        display: table;
+        padding: 0;
+        box-shadow: 0 5px 10px rgba(0,0,0, 0.1);
+    }
+    .recommended-companies .title {
+        background: #8dc539;
+        color: #fff;
+        font-weight: 600;
+        padding: 20px;
+    }
+    .recommended-companies ul {
+        display: block;
+        padding: 15px;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+        list-style: none;
+    }
+    .recommended-companies ul li{
+        margin: 5px;
+        display: flex;
+        justify-content: flex-start;
+        padding: 10px;
+        border-bottom: 1px solid rgba(141, 197, 57, 0.52);
+    }
+    .recommended-companies ul li .avatar{
+        width: 70px;
+        height: 70px;
+    }
+    .recommended-companies ul li p{
+        margin: 0;
     }
 }
 
