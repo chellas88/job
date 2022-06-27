@@ -13,6 +13,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/ajax.js') }}" defer></script>
     <script src="{{ asset('js/main.js') }}" defer></script>
+{{--    <script src="{{ asset('js/assets/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>--}}
 {{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--}}
 
 @yield('head')
@@ -43,3 +44,8 @@
 
 
 </html>
+
+
+{{--<script>--}}
+{{--    const sidebarBodyScroll = new PerfectScrollbar('body');--}}
+{{--</script>--}}

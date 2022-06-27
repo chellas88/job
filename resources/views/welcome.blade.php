@@ -114,6 +114,54 @@
 {{--        <img class="w-100 bg-bottom" src="{{ asset('/images/main-block-bottom.svg') }}">--}}
 {{--    </section>--}}
 
+{{--    RECOMENDED COMPANIES--}}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10 recommended-companies">
+                <div class="title">Recommended</div>
+                <ul class="m-0">
+                    @foreach($recommended as $rec)
+                        <li>
+                            <div class="px-2">
+                            @if($rec['avatar'])
+                                <img src="{{asset('/uploads/avatars/'.$rec['avatar'])}}" class="d-block avatar">
+                            @else
+                                <img src="{{asset('/uploads/avatars/avatar.svg')}}" class="d-block avatar">
+                            @endif
+                            </div>
+                            <div class="align-items-center">
+                            {{$rec['name']}}
+                            <p>{{$rec['category']['title']}}</p>
+                                @if ($rec['rating'] > 0 && $rec['rating'] < 2)
+                                    <x-rating.stars_05/>
+                                @elseif ($rec['rating'] == 1)
+                                    <x-rating.stars_1/>
+                                @elseif ($rec['rating'] > 1 && $rec['rating'] < 2)
+                                    <x-rating.stars_15/>
+                                @elseif ($rec['rating'] == 2)
+                                    <x-rating.stars_2/>
+                                @elseif ($rec['rating'] > 2 && $rec['rating'] < 3)
+                                    <x-rating.stars_25/>
+                                @elseif ($rec['rating'] == 3)
+                                    <x-rating.stars_3/>
+                                @elseif ($rec['rating'] > 3 && $rec['rating'] < 4)
+                                    <x-rating.stars_35/>
+                                @elseif ($rec['rating'] == 4)
+                                    <x-rating.stars_4/>
+                                @elseif ($rec['rating'] > 4 && $rec['rating'] < 5)
+                                    <x-rating.stars_45/>
+                                @elseif ($rec['rating'] == 5)
+                                    <x-rating.stars_5/>
+                                @endif
+                            </div>
+                        </li>
+
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    </div>
+
     {{--        POPULAR--}}
     <section class="most-popular my-3">
         <div class="container py-4 text-center">

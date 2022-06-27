@@ -28,6 +28,8 @@ class CreateUsersTable extends Migration
             $table->text('avatar')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('google_id')->nullable();
+            $table->boolean('recommended')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->string('role')->nullable();

@@ -74,4 +74,28 @@ class User extends Authenticatable
         else return 0;
 
     }
+
+    public function recommended(){
+        $users = User::where('recommended', true)->get();
+        if (!$users->isEmpty()){
+            $res = [];
+            foreach ($users as $user){
+                array_push($res, $user['id']);
+            }
+            $random = array_rand($res, 3);
+            $data = null;
+            foreach ($random as $ran){
+                $data[] = [
+                    'id' => $users[$ran]['id'],
+                    'name' => $users[$ran]['name'],
+                    'category' => $users[$ran]->category,
+                    'rating' => $users[$ran]->getRating(),
+                    'avatar' => $users[$ran]['avatar']
+                ];
+            }
+            return $data;
+        }
+        return [];
+    }
+
 }

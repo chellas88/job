@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Country;
 use App\Models\Review;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -13,6 +14,7 @@ class IndexController extends Controller
         $country = Country::orderBy('title', 'asc')->get();
         $category = Category::orderBy('title', 'asc')->get();
         $reviews_list = Review::where('isActive', true)->latest()->limit(3)->get();
+        $recommended = User::recommended();
         $reviews = null;
         foreach ($reviews_list as $item){
             $reviews[] = [
@@ -22,6 +24,6 @@ class IndexController extends Controller
                 'for_user' => $item->user()
             ];
         }
-        return view('welcome', compact('category', 'country', 'reviews'));
+        return view('welcome', compact('category', 'country', 'reviews', 'recommended'));
     }
 }

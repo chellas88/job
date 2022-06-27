@@ -164,7 +164,7 @@ a.navbar-brand span{
     left: 0;
     width: 30%;
     min-width: 315px;
-    max-width: 400px;
+    max-width: 500px;
     transition: all 0.4s ease;
 }
 
@@ -248,6 +248,7 @@ a.navbar-brand span{
     color: #fff;
     min-height: 300px;
     position: relative;
+
 }
 .main-block img {
     width: 100%;
@@ -255,7 +256,7 @@ a.navbar-brand span{
 .main-block #main_map {
     position: relative;
     width: 100%;
-    height: 600px;
+    height: calc(100vh - 141.27px);
 }
 .bg-top {
     position: absolute;
@@ -266,6 +267,39 @@ a.navbar-brand span{
     position: absolute;
     bottom: 0;
     left: 0;
+}
+.recommended-companies {
+    transform: translateY(-50%);
+    background: #fff;
+    display: flex;
+    padding: 0;
+    box-shadow: 0 5px 10px rgba(0,0,0, 0.1);
+}
+.recommended-companies .title {
+    background: #8dc539;
+    color: #fff;
+    font-weight: 600;
+    padding: 45px;
+}
+.recommended-companies ul {
+    display: flex;
+    padding: 15px;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    list-style: none;
+}
+.recommended-companies ul li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.recommended-companies ul li .avatar{
+    width: 70px;
+    height: 70px;
+}
+.recommended-companies ul li p{
+    margin: 0;
 }
 .most-popular h1{
     font-size: 1.5em;
@@ -410,7 +444,7 @@ a.navbar-brand span{
     width: 80%;
     background: #fff;
     color: #3b3a3a;
-    padding: 40px;
+    padding: 70px;
 }
 .reviews-block{
     transition: all 0.8s ease;

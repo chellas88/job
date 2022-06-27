@@ -19,7 +19,7 @@ class CreateReviewsTable extends Migration
             $table->string('name');
             $table->integer('rank');
             $table->text('text');
-            $table->string('avatar');
+            $table->boolean('isActive');
             $table->timestamps();
         });
     }
