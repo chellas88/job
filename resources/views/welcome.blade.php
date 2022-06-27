@@ -52,7 +52,7 @@
             <input type="submit" value="Search" class="btn">
 
         </form>
-            <div class="search-show-hide" id="showHideSearch"><i class='bx bx-chevron-left' ></i></div>
+            <div class="search-show-hide" id="showHideSearch"><i class='icon-chevron-left' ></i></div>
         </div>
     </section>
 {{--    <section class="main-block">--}}

@@ -1,0 +1,108 @@
+@font-face {
+    font-family: 'icons';
+    src:  url('../fonticons/icons.eot?b3v4z1');
+    src:  url('../fonticons/icons.eot?b3v4z1#iefix') format('embedded-opentype'),
+    url('../fonticons/icons.ttf?b3v4z1') format('truetype'),
+    url('../fonticons/icons.woff?b3v4z1') format('woff'),
+    url('../fonticons/icons.svg?b3v4z1#icons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+[class^="icon-"]::before, [class*=" icon-"]::before {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icons' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-calendar:before {
+    content: "\e900";
+}
+.icon-chevron-down:before {
+    content: "\e901";
+}
+.icon-chevron-left:before {
+    content: "\e902";
+}
+.icon-chevron-right:before {
+    content: "\e903";
+}
+.icon-chevron-up:before {
+    content: "\e904";
+}
+.icon-cog:before {
+    content: "\e905";
+}
+.icon-dots-horizontal:before {
+    content: "\e906";
+}
+.icon-dots-vertical:before {
+    content: "\e907";
+}
+.icon-email:before {
+    content: "\e908";
+}
+.icon-facebook:before {
+    content: "\e909";
+}
+.icon-grid:before {
+    content: "\e90a";
+}
+.icon-group:before {
+    content: "\e90b";
+}
+.icon-hide:before {
+    content: "\e90c";
+}
+.icon-lock:before {
+    content: "\e90d";
+}
+.icon-logout:before {
+    content: "\e90e";
+}
+.icon-menu:before {
+    content: "\e90f";
+}
+.icon-phone:before {
+    content: "\e910";
+}
+.icon-registration:before {
+    content: "\e911";
+}
+.icon-show:before {
+    content: "\e912";
+}
+.icon-sign_in:before {
+    content: "\e913";
+}
+.icon-telegram:before {
+    content: "\e914";
+}
+.icon-trash:before {
+    content: "\e915";
+}
+.icon-user:before {
+    content: "\e916";
+}
+.icon-viber:before {
+    content: "\e917";
+}
+.icon-vk:before {
+    content: "\e918";
+}
+.icon-wallet:before {
+    content: "\e919";
+}
+.icon-whatsapp:before {
+    content: "\e91a";
+}
