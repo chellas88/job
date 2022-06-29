@@ -39,6 +39,7 @@ Route::group([
             ], function () {
                 Route::resource('/', \App\Http\Controllers\Admin\AdminController::class);
                 Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class);
+                Route::resource('subcategory', \App\Http\Controllers\Admin\SubcategoryController::class);
             });
         });
 

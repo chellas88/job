@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Subcategory;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 
-class CategoryController extends Controller
+class SubcategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categoryList = Category::orderBy('title_'. App::getLocale())->get();
-        $categories = Category::orderBy('title_'.App::getLocale(), 'asc')->paginate(15);
-        return view('admin.category.index', compact('categories', 'categoryList'));
+        //
     }
 
     /**
@@ -39,9 +37,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create($request->except('_token'));
+        Subcategory::create($request->except('_token'));
         $msg = request()->session();
-        $msg->flash('success', 'Категория успешно создана');
+        $msg->flash('success', 'Подкатегория успешно создана');
         return redirect()->back();
     }
 
@@ -76,10 +74,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $msg = request()->session();
-        $msg->flash('success', 'Категория успешно изменена');
-        Category::where('id', $id)->update($request->except('_token', '_method'));
-        return redirect()->back();
+        //
     }
 
     /**
@@ -90,9 +85,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        Category::where('id', $id)->delete();
+        Subcategory::where('id', $id)->delete();
         $msg = request()->session();
-        $msg->flash('success', 'Категория успешно удалена');
+        $msg->flash('success', 'Подкатегория успешно создана');
         return redirect()->back();
     }
 }
