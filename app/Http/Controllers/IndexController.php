@@ -7,12 +7,13 @@ use App\Models\Country;
 use App\Models\Review;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class IndexController extends Controller
 {
     public function homePage(){
         $country = Country::orderBy('title', 'asc')->get();
-        $category = Category::orderBy('title', 'asc')->get();
+        $category = Category::orderBy('title_'.App::getLocale())->get();
         $reviews_list = Review::where('isActive', true)->latest()->limit(3)->get();
         $recommended = User::recommended();
         $reviews = null;

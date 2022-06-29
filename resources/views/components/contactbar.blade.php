@@ -10,28 +10,32 @@
         </li>
     </ul>
     <div class="lang px-2">
-        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">{{\Illuminate\Support\Facades\App::currentLocale()}}</a>
+        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{\Illuminate\Support\Facades\App::currentLocale()}}</a>
         <ul class="dropdown-menu justify-content-end">
-            <li>ua</li>
+            @foreach(config('app.locales') as $locale)
+            <li>
+                <a class="dropdown-item locale text-black" value="{{ $locale }}">{{ $locale }}</a>
+            </li>
+            @endforeach
         </ul>
     </div>
     <ul class="auth">
 
         @guest
             <li>
-                <a href="/login" class="icon icon-sign_in">
+                <a href="/{{\Illuminate\Support\Facades\App::getLocale()}}/login" class="icon icon-sign_in">
                     Sign In
                 </a>
             </li>
             <li>
-                <a href="/register" class="icon icon-registration">
+                <a href="/{{\Illuminate\Support\Facades\App::getLocale()}}/register" class="icon icon-registration">
                     Sign Up
                 </a>
             </li>
         @endguest
         @auth
             <li>
-                <span><a href="/home">{{ Auth::user()->name }}</a></span>
+                <span><a href="/{{\Illuminate\Support\Facades\App::getLocale()}}/home">{{ Auth::user()->name }}</a></span>
             </li>
             <li>
                 <a href="{{ route('logout') }}"

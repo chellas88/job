@@ -1,3 +1,9 @@
+$('.locale').on('click', function () {
+    let lang = $(this).attr('value');
+    let redirectTo = document.location.pathname.substring(3);
+    document.location.href = '/' + lang + redirectTo;
+});
+
 const showHideSearch = document.getElementById('showHideSearch')
 const searchForm = document.getElementsByClassName('search')[0]
 if (showHideSearch) {

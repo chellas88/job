@@ -13,6 +13,6 @@ class SelectController extends Controller
     }
 
     public function getCategories(){
-        return Category::orderBy('title', 'asc')->get();
+        return Category::all();
     }
 }
