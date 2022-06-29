@@ -1,5 +1,5 @@
 <div class="contactbar p-3">
-    <ul>
+    <ul class="contacts">
         <li>
             <i class="icon icon-phone"></i>
             39099 999 99 99
@@ -10,7 +10,7 @@
         </li>
     </ul>
     <div class="lang px-2">
-        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">ru</a>
+        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">{{\Illuminate\Support\Facades\App::currentLocale()}}</a>
         <ul class="dropdown-menu justify-content-end">
             <li>ua</li>
         </ul>

@@ -47,7 +47,7 @@ class SearchController extends Controller
                 'category' => $user->category
             ];
         }
-//        dd($data);
+    //    dd($data);
         return view('search', ['data' => $data]);
     }
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddressRequest;
+use App\Models\Language;
+use App\Models\LanguageUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +19,7 @@ class UserController extends Controller
         $user->email = $request['email'];
         $user->category_id = $request['category_id'];
         $user->save();
+        $langs = Language::all();
         $msg = request()->session();
         $msg->flash('success', 'User data was changed');
         return redirect()->back();
@@ -74,5 +77,9 @@ class UserController extends Controller
         $data['user'] = $user;
         $data['category'] = $user->category;
         return view('profile', ['data' => $data]);
+    }
+
+    public function removeLanguage(Request $request){
+
     }
 }

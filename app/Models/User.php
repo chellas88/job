@@ -98,4 +98,8 @@ class User extends Authenticatable
         return [];
     }
 
+    public function languages(){
+        return $this->belongsToMany(Language::class);
+    }
+
 }

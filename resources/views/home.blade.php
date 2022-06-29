@@ -45,6 +45,11 @@
                                aria-controls="address" aria-selected="false">Address</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" id="languages-line-tab" data-bs-toggle="tab" data-bs-target="#languages"
+                               role="tab"
+                               aria-controls="contacts" aria-selected="false">Languages</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" id="contacts-line-tab" data-bs-toggle="tab" data-bs-target="#contacts"
                                role="tab"
                                aria-controls="contacts" aria-selected="false">Contacts</a>
@@ -183,6 +188,27 @@
                                 </div>
 
                             </form>
+                        </div>
+                        <div class="tab-pane fade" id="languages" role="tabpanel"
+                             aria-labelledby="languages-line-tab">
+                            <div class="languages lang-list">
+                                <div id="lang-list" class="d-inline">
+                                @foreach($data['my_languages'] as $mylang)
+                                    <span id="lang_{{$mylang['id']}}">
+                                        {{$mylang['name']}}
+                                        <i class="remove_lang" lang="{{$mylang['id']}}" lang_name="{{ $mylang['name'] }}">X</i></span>
+                                @endforeach
+                                </div>
+                                    <a class="nav-link dropdown-toggle d-inline" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Add Language
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink" id="lang-menu">
+                                        @foreach($data['languages'] as $lang)
+                                            <li id="newlang_{{$lang['id']}}"><a lang="{{$lang['id']}}" lang_name="{{ $lang['name'] }}" class="dropdown-item add_lang" href="#">{{$lang['name']}}</a></li>
+
+                                        @endforeach
+                                    </ul>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="contacts" role="tabpanel"
                              aria-labelledby="contacts-line-tab">

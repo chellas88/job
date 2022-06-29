@@ -102,7 +102,7 @@
                                         @endif
                                     </div>
                                     <div class="open-profile">
-                                        <a href="/user/{{$item['id']}}" class="btn btn-secondary">Profile</a>
+                                        <a href="/profile/{{$item['id']}}" class="btn btn-secondary">Profile</a>
                                     </div>
                                 </div>
                             </div>
@@ -134,28 +134,36 @@
             streetViewControl: false
 
         });
-        // The marker, positioned at Uluru
 
-        users.forEach(user => {
-            let marker = new google.maps.Marker({
-                position: {lat: +user.geo.lat, lng: +user.geo.lng},
-                map: map,
-                title: user.name
-            });
-            let info = new google.maps.InfoWindow({
-                content: `<b>${user.name}</b>
-                <p>${user.contacts}</p>
-                <p><button id="btm-map">Go to card</button></p>
-                `
+        map.addListener('bounds_changed', () => {
+            var bounds = map.getBounds();
+            let max_lat = bounds.ub.hi
+            let min_lat = bounds.ub.lo
+            let max_lng = bounds.Ra.hi
+            let min_lng = bounds.Ra.lo
+            users.forEach(user => {
+                lat = +user.geo.lat
+                lng = +user.geo.lng
+                if (lat > min_lat && lat < max_lat && lng > min_lng && lng < max_lng){
+                    let marker = new google.maps.Marker({
+                    position: {lat: +user.geo.lat, lng: +user.geo.lng},
+                    map: map,
+                    title: user.name
+                     });
+                    let info = new google.maps.InfoWindow({
+                    content: `<b>${user.name}</b>
+                    <p>${user.contacts}</p>
+                    `
+                    })
+                    marker.addListener('click', () => {
+                    info.open(map, marker)
+                    })
+                }
             })
-            marker.addListener('click', () => {
-                info.open(map, marker)
-            })
-
         })
     }
 
-    window.initMap = initMap;
+
 </script>
 
 

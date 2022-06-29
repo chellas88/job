@@ -1,3 +1,6 @@
+body {
+    overflow-x: hidden;
+}
 footer {
     margin-top: auto;
     background: #8dc539;
@@ -93,15 +96,20 @@ footer {
     align-items: center;
     justify-content: space-between;
 }
+.contactbar .contacts {
+    display: flex;
+}
 .contactbar ul {
     list-style: none;
     justify-items: center;
     margin: 0;
+    /*display: flex;*/
 }
 .contactbar ul li{
-    display: inline-flex;
+    display: flex;
     padding: 0 15px;
     font-size: 16px;
+    align-items: center;
 }
 .contactbar ul li i{
     color: #fff;
@@ -121,12 +129,22 @@ footer {
     font-size: 16px;
 }
 .contactbar .auth{
+    display: flex;
 }
 .contactbar .auth a{
     color: #fff;
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+.contactbar .auth a::before{
+    margin-right: 5px;
+    margin-top: -2px;
+}
+.contactbar .auth i {
+    margin-right: 6px;
 }
 .contactbar .auth a:hover{
     color: #ececec;
@@ -481,13 +499,23 @@ a.navbar-brand span{
     font-style: italic;
 }
 
-
-
-
-
-
-
-
+.languages span {
+    background: #e2f9c0;
+    padding: 5px 15px;
+    margin-right: 10px;
+    border-radius: 5px;
+    display: inline-flex;
+    justify-content: space-between;
+}
+.languages span i{
+    color: #616060;
+    margin-left: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.languages span i:hover{
+    color: #8d8c8c;
+}
 
 @media screen and (min-width: 990px) {
     .auth-block {

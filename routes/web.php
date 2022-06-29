@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/search', [\App\Http\Controllers\SearchController::class, 'index']);
-Route::get('/user/{id}', [\App\Http\Controllers\UserController::class, 'profile']);
+Route::get('/profile/{id}', [\App\Http\Controllers\UserController::class, 'profile']);
 Route::get('/auth/google', [\App\Http\Controllers\GoogleController::class, 'googleRedirect'])->name('auth.google');
 Route::get('/auth/google/callback', [\App\Http\Controllers\GoogleController::class, 'loginWithGoogle']);
 
@@ -28,5 +28,8 @@ Route::middleware(['auth'])->group(function (){
     Route::post('/saveUser', [\App\Http\Controllers\UserController::class, 'saveUser'])->name('save-user');
     Route::post('/uploadAvatar', [\App\Http\Controllers\UserController::class, 'uploadAvatar'])->name('upload-avatar');
     Route::post('/saveAddress', [\App\Http\Controllers\UserController::class, 'saveAddress']);
+    Route::resource('/languser', \App\Http\Controllers\LanguageUserController::class);
+
+
 
 });
