@@ -9,7 +9,7 @@
     <section class="main-block">
         <div id="main_map"></div>
         <div class="search active">
-            <form id="search-form" method="GET" action="/search">
+            <form id="search-form" method="GET" action="{{route('search')}}">
                 @csrf
                 <div class="mb-3">
                     <label for="category_id">Category</label>
@@ -29,7 +29,7 @@
                         <option value="" selected disabled>Select Country</option>
                         @foreach($country as $item)
                             <option value="{{ $item['id'] }}" {{ old('country_id') == $item['id'] ? "selected" : ''}}>
-                                {{$item['title']}}
+                                {{$item['title_' . \Illuminate\Support\Facades\App::currentLocale()]}}
                             </option>
                         @endforeach
                     </select>
@@ -134,7 +134,7 @@
                             </div>
                             <div class="align-items-center">
                                 {{$rec['name']}}
-                                <p>{{$rec['category']['title']}}</p>
+                                <p>{{$rec['category']['title_en']}}</p>
                                 @if ($rec['rating'] > 0 && $rec['rating'] < 2)
                                     <x-rating.stars_05/>
                                 @elseif ($rec['rating'] == 1)

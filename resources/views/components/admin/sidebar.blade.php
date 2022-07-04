@@ -8,10 +8,6 @@
     </div>
     <ul class="nav_list">
         <li>
-            <i class='bx bx-search'></i>
-            <input type="text" placeholder="Search...">
-        </li>
-        <li>
             <a href="{{ route('index') }}" class="{{ request()->route()->getName() == 'index' ? 'active' : ''}}">
                 <i class='icon-grid'></i>
                 <span class="links_name">Дашборд</span>
@@ -26,30 +22,38 @@
             <span class="tooltip">Категории</span>
         </li>
         <li>
-            <a href="/admin/countries">
+            <a href="{{ route('country.index') }}" class="{{ request()->route()->getName() == 'country.index' ? 'active' : ''}}">
                 <i class='icon-flag'></i>
                 <span class="links_name">Страны</span>
             </a>
-            <span class="tooltip">Dashboard</span>
+            <span class="tooltip">Страны</span>
         </li>
         <li>
-            <a href="/dashboard">
-                <i class='bx bx-cog' ></i>
-                <span class="links_name">Settings</span>
+            <a href="{{ route('language.index') }}" class="{{ request()->route()->getName() == 'language.index' ? 'active' : ''}}">
+                <i class='icon-lang' ></i>
+                <span class="links_name">Языки</span>
             </a>
-            <span class="tooltip">Dashboard</span>
+            <span class="tooltip">Языки</span>
+        </li>
+        <li>
+            <a href="{{ route('user.index') }}" class="{{ request()->route()->getName() == 'user.index' ? 'active' : ''}}">
+                <i class='icon-user'></i>
+                <span class="links_name">Пользователи</span>
+            </a>
+            <span class="tooltip">Пользователи</span>
         </li>
     </ul>
 
     <div class="profile_content">
         <div class="profile">
             <div class="profile_details">
-                <img src="/images/avatar.svg">
                 <div class="user_name">
-                    Admin
+                    Вернуться на сайт
                 </div>
             </div>
+            <a href="/">
             <i class='bx bx-log-out' id="log_out"></i>
+            </a>
         </div>
     </div>
 </div>

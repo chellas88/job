@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Language;
-use App\Models\LanguageUser;
+use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class LanguageUserController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,8 @@ class LanguageUserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -37,11 +37,7 @@ class LanguageUserController extends Controller
      */
     public function store(Request $request)
     {
-        LanguageUser::create([
-            'language_id' => $request['id'],
-            'user_id' => Auth::user()->id
-        ]);
-        return Language::find($request['id']);
+        //
     }
 
     /**
@@ -75,7 +71,14 @@ class LanguageUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        User::where('id', $id)->update($request->except('_token', '_method'));
+
+        if ($request['_token']){
+            $msg = request()->session();
+            $msg->flash('success', 'Категория успешно изменена');
+            return redirect()->back();
+        }
+
     }
 
     /**
@@ -86,7 +89,6 @@ class LanguageUserController extends Controller
      */
     public function destroy($id)
     {
-        LanguageUser::where('language_id', $id)->where('user_id', Auth::user()->id)->delete();
-        return Language::find($id);
+        //
     }
 }

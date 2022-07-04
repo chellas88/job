@@ -91,7 +91,7 @@
                                             <option value="">Select a category</option>
                                             @foreach($data['categories'] as $category)
                                                 <option
-                                                    value="{{$category['id']}}" {{$category['id'] == $data['user']['category_id'] ? 'selected' : ''  }}>{{$category['title']}}</option>
+                                                    value="{{$category['id']}}" {{$category['id'] == $data['user']['category_id'] ? 'selected' : ''  }}>{{$category['title_' . \Illuminate\Support\Facades\App::currentLocale()]}}</option>
                                             @endforeach
                                         </select>
                                         @error('category')
@@ -145,7 +145,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-line-tab">
-                            <form method="POST" action="/saveAddress">
+                            <form method="POST" action="{{route('save-address')}}">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="country">Country</label>
@@ -153,7 +153,7 @@
                                         <option value="">Select country</option>
                                         @foreach($data['countries'] as $country)
                                             <option
-                                                value="{{$country['id']}}" {{ $country['id'] == $data['user']['country_id'] ? 'selected' : '' }}>{{$country['title']}}</option>
+                                                value="{{$country['id']}}" {{ $country['id'] == $data['user']['country_id'] ? 'selected' : '' }}>{{$country['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -195,8 +195,8 @@
                                 <div id="lang-list" class="d-inline">
                                 @foreach($data['my_languages'] as $mylang)
                                     <span id="lang_{{$mylang['id']}}">
-                                        {{$mylang['name']}}
-                                        <i class="remove_lang" lang="{{$mylang['id']}}" lang_name="{{ $mylang['name'] }}">X</i></span>
+                                        {{$mylang['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}
+                                        <i onclick="removeLang({{$mylang['id']}}, '{{\Illuminate\Support\Facades\App::currentLocale()}}')">X</i></span>
                                 @endforeach
                                 </div>
                                     <a class="nav-link dropdown-toggle d-inline" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -204,7 +204,10 @@
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink" id="lang-menu">
                                         @foreach($data['languages'] as $lang)
-                                            <li id="newlang_{{$lang['id']}}"><a lang="{{$lang['id']}}" lang_name="{{ $lang['name'] }}" class="dropdown-item add_lang" href="#">{{$lang['name']}}</a></li>
+                                            <li id="newlang_{{$lang['id']}}">
+                                                <a onclick="addLang({{$lang['id']}}, '{{\Illuminate\Support\Facades\App::currentLocale()}}')" class="dropdown-item add_lang" href="#">
+                                                    {{$lang['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}
+                                                </a></li>
 
                                         @endforeach
                                     </ul>

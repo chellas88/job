@@ -8,13 +8,14 @@ use App\Models\Country;
 use App\Models\User;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class SearchController extends Controller
 {
     public function index(SearchRequest $request)
     {
-        $categories = Category::orderBy('title', 'asc')->get();
-        $countries = Country::orderBy('title', 'asc')->get();
+        $categories = Category::orderBy('title_'.App::currentLocale(), 'asc')->get();
+        $countries = Country::orderBy('title_'.App::currentLocale(), 'asc')->get();
         $data = null;
         $data['categories'] = $categories;
         $data['countries'] = $countries;
@@ -47,7 +48,6 @@ class SearchController extends Controller
                 'category' => $user->category
             ];
         }
-    //    dd($data);
         return view('search', ['data' => $data]);
     }
 

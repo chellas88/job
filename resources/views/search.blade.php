@@ -28,7 +28,9 @@
                                     <option value="">All categories</option>
                                     @foreach($data['categories'] as $category)
                                         <option
-                                            value="{{$category['id']}}" {{ $data['current_category'] == $category['id'] ? 'selected' : '' }}>{{$category['title']}}</option>
+                                            value="{{$category['id']}}" {{ $data['current_category'] == $category['id'] ? 'selected' : '' }}>
+                                            {{$category['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -37,7 +39,9 @@
                                 <select name="country_id" id="country" class="form-control">
                                     @foreach($data['countries'] as $country)
                                         <option
-                                            value="{{$country['id']}}" {{ $data['current_country'] == $country['id'] ? 'selected' : '' }}>{{$country['title']}}</option>
+                                            value="{{$country['id']}}" {{ $data['current_country'] == $country['id'] ? 'selected' : '' }}>
+                                            {{$country['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -78,7 +82,7 @@
                                     </div>
                                     <div class="user-info w-100">
                                         <p><b>{{$item['name']}}</b></p>
-                                        <p>{{$item['category']['title']}}</p>
+                                        <p>{{$item['category']['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}</p>
                                         @if ($item->getRating() > 0 && $item->getRating() < 2)
                                             <x-rating.stars_05/>
                                         @elseif ($item->getRating() == 1)

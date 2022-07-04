@@ -22,48 +22,36 @@ if (showHideSearch) {
 }
 
 //add lang
-const addLangBtn = document.getElementsByClassName('add_lang')
-Array.from(addLangBtn).forEach(btn => {
-    btn.addEventListener('click', () => {
-        let lang_id = btn.getAttribute('lang')
-        let lang_name = btn.getAttribute('lang_name')
-        let parent = document.getElementById('newlang_' + lang_id)
-        $.ajax({
-            type: 'post',
-            url: '/languser',
-            data: {'id' : lang_id},
-            success: function (response){
-                let span = document.createElement('span')
-                span.setAttribute('id', 'lang_' + lang_id)
-                span.innerHTML = `${lang_name}<i class="remove_lang" lang="${lang_id}" lang_name="${lang_name}">X</i>`
-                document.getElementById('lang-list').appendChild(span)
-                parent.remove()
-            }
-        })
+function addLang(id, lang){
+    let parent = document.getElementById('newlang_' + id)
+    $.ajax({
+        type: 'post',
+        url: '/en/languser',
+        data: {'id' : id},
+        success: function (response){
+            let span = document.createElement('span')
+            span.setAttribute('id', 'lang_' + id)
+            span.innerHTML = `${response['title_' + lang]}<i onclick="removeLang(${id}, '${lang}')" class="remove_lang">X</i>`
+            document.getElementById('lang-list').appendChild(span)
+            parent.remove()
+        },
+        error: function (error){
+            console.log(error)
+        }
     })
-})
+}
 
-
-//remove lang
-const removeLangBtn = document.getElementsByClassName('remove_lang')
-Array.from(removeLangBtn).forEach(btn => {
-    btn.addEventListener('click', () => {
-
-        let lang_id = btn.getAttribute('lang')
-        let lang_name = btn.getAttribute('lang_name')
-        let parent = document.getElementById('lang_' + lang_id)
-        $.ajax({
-            type: 'delete',
-            url: '/languser/' + lang_id,
-            success: function (response){
-                let li = document.createElement('li')
-                li.setAttribute('id', 'newlang_' + lang_id)
-                li.innerHTML = `<a lang="${lang_id}" lang_name="${lang_name}" class="dropdown-item add_lang" href="#">${lang_name}</a>`
-                document.getElementById('lang-menu').appendChild(li)
-
-
-                parent.remove()
-            }
-        })
+function removeLang(id, lang){
+    let parent = document.getElementById('lang_' + id)
+    $.ajax({
+        type: 'delete',
+        url: '/en/languser/' + id,
+        success: function (response){
+            let li = document.createElement('li')
+            li.setAttribute('id', 'newlang_' + id)
+            li.innerHTML = `<a  onclick="addLang(${id}, '${lang}')" class="dropdown-item add_lang" href="#">${response['title_' + lang]}</a>`
+            document.getElementById('lang-menu').appendChild(li)
+            parent.remove()
+        }
     })
-})
+}

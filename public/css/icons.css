@@ -1,120 +1,123 @@
 @font-face {
-  font-family: 'icons';
-  src:  url('../fonticons/icons.eot?5633mv');
-  src:  url('../fonticons/icons.eot?5633mv#iefix') format('embedded-opentype'),
-    url('../fonticons/icons.ttf?5633mv') format('truetype'),
-    url('../fonticons/icons.woff?5633mv') format('woff'),
-    url('../fonticons/icons.svg?5633mv#icons') format('svg');
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
+    font-family: 'icons';
+    src:  url('../fonticons/icons.eot?838m1y');
+    src:  url('../fonticons/icons.eot?838m1y#iefix') format('embedded-opentype'),
+    url('../fonticons/icons.ttf?838m1y') format('truetype'),
+    url('../fonticons/icons.woff?838m1y') format('woff'),
+    url('../fonticons/icons.svg?838m1y#icons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
 }
 
 [class^="icon-"]::before, [class*=" icon-"]::before {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icons' !important;
-  speak: never;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icons' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
 
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-flag:before {
+    content: "\e90c";
+}
+.icon-lang:before {
+    content: "\e91f";
+}
 .icon-calendar:before {
-  content: "\e900";
+    content: "\e900";
 }
 .icon-category:before {
-  content: "\e901";
+    content: "\e901";
 }
 .icon-chevron-down:before {
-  content: "\e902";
+    content: "\e902";
 }
 .icon-chevron-left:before {
-  content: "\e903";
+    content: "\e903";
 }
 .icon-chevron-right:before {
-  content: "\e904";
+    content: "\e904";
 }
 .icon-chevron-up:before {
-  content: "\e905";
+    content: "\e905";
 }
 .icon-cog:before {
-  content: "\e906";
+    content: "\e906";
 }
 .icon-dots-horizontal:before {
-  content: "\e907";
+    content: "\e907";
 }
 .icon-dots-vertical:before {
-  content: "\e908";
+    content: "\e908";
 }
 .icon-edit:before {
-  content: "\e909";
+    content: "\e909";
 }
 .icon-email:before {
-  content: "\e90a";
+    content: "\e90a";
 }
 .icon-facebook:before {
-  content: "\e90b";
-}
-.icon-flag:before {
-  content: "\e90c";
+    content: "\e90b";
 }
 .icon-grid:before {
-  content: "\e90d";
+    content: "\e90d";
 }
 .icon-group:before {
-  content: "\e90e";
+    content: "\e90e";
 }
 .icon-hide:before {
-  content: "\e90f";
+    content: "\e90f";
 }
 .icon-lock:before {
-  content: "\e910";
+    content: "\e910";
 }
 .icon-logout:before {
-  content: "\e911";
+    content: "\e911";
 }
 .icon-menu:before {
-  content: "\e912";
+    content: "\e912";
 }
 .icon-phone:before {
-  content: "\e913";
+    content: "\e913";
 }
 .icon-registration:before {
-  content: "\e914";
+    content: "\e914";
 }
 .icon-show:before {
-  content: "\e915";
+    content: "\e915";
 }
 .icon-sign_in:before {
-  content: "\e916";
+    content: "\e916";
 }
 .icon-star:before {
-  content: "\e917";
+    content: "\e917";
 }
 .icon-telegram:before {
-  content: "\e918";
+    content: "\e918";
 }
 .icon-trash:before {
-  content: "\e919";
+    content: "\e919";
 }
 .icon-user:before {
-  content: "\e91a";
+    content: "\e91a";
 }
 .icon-viber:before {
-  content: "\e91b";
+    content: "\e91b";
 }
 .icon-vk:before {
-  content: "\e91c";
+    content: "\e91c";
 }
 .icon-wallet:before {
-  content: "\e91d";
+    content: "\e91d";
 }
 .icon-whatsapp:before {
-  content: "\e91e";
+    content: "\e91e";
 }

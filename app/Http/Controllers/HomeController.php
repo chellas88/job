@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Language;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -48,7 +49,7 @@ class HomeController extends Controller
         $data['categories'] = $select->getCategories();
         $data['countries'] = $select->getCountries();
         $data['languages'] = [];
-        $languages = Language::orderBy('name', 'asc')->get();
+        $languages = Language::orderBy('title_'. App::currentLocale(), 'asc')->get();
         foreach ($languages as $lang){
             $is = false;
             foreach ($data['my_languages'] as $mylang){

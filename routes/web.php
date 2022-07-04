@@ -21,7 +21,7 @@ Route::group([
         Auth::routes();
 
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-        Route::get('/search', [\App\Http\Controllers\SearchController::class, 'index']);
+        Route::get('/search', [\App\Http\Controllers\SearchController::class, 'index'])->name('search');
         Route::get('/profile/{id}', [\App\Http\Controllers\UserController::class, 'profile']);
         Route::get('/auth/google', [\App\Http\Controllers\GoogleController::class, 'googleRedirect'])->name('auth.google');
         Route::get('/auth/google/callback', [\App\Http\Controllers\GoogleController::class, 'loginWithGoogle']);
@@ -29,7 +29,7 @@ Route::group([
         Route::middleware(['auth'])->group(function () {
             Route::post('/saveUser', [\App\Http\Controllers\UserController::class, 'saveUser'])->name('save-user');
             Route::post('/uploadAvatar', [\App\Http\Controllers\UserController::class, 'uploadAvatar'])->name('upload-avatar');
-            Route::post('/saveAddress', [\App\Http\Controllers\UserController::class, 'saveAddress']);
+            Route::post('/saveAddress', [\App\Http\Controllers\UserController::class, 'saveAddress'])->name('save-address');
             Route::resource('/languser', \App\Http\Controllers\LanguageUserController::class);
 
 
@@ -40,6 +40,9 @@ Route::group([
                 Route::resource('/', \App\Http\Controllers\Admin\AdminController::class);
                 Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class);
                 Route::resource('subcategory', \App\Http\Controllers\Admin\SubcategoryController::class);
+                Route::resource('country', \App\Http\Controllers\Admin\CountryController::class);
+                Route::resource('language', \App\Http\Controllers\Admin\LanguageController::class);
+                Route::resource('user', \App\Http\Controllers\Admin\UsersController::class);
             });
         });
 

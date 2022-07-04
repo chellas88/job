@@ -6,3 +6,19 @@ showMenuBtn.addEventListener('click', () =>{
 })
 
 
+function recommended(id){
+    let check;
+    if (document.getElementById('recommended_' + id).checked){
+        check = 1
+    }
+    else check = 0
+    $.ajax({
+        type: 'PUT',
+        url: '/en/admin/user/' + id,
+        data: {'recommended' : check},
+        success: function (res){
+            console.log(res)
+        }
+    })
+
+}

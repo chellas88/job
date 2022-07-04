@@ -109,19 +109,7 @@
     font-size: 18px;
     color: #fff;
 }
-.sidebar ul li .bx-search{
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 99;
-    color: #b9b6b6;
-    align-items: center;
-    transition: all 0.5s ease;
-}
-.sidebar ul li .bx-search:hover{
-    background: #fff;
-    color: #1d1b31;
-}
+
 .sidebar ul li a{
     color: #b9b6b6;
     display: flex;
@@ -185,6 +173,7 @@
 .profile_content .profile .profile_details{
     display: flex;
     align-items: center;
+    height: 100%;
     opacity: 0;
     pointer-events: none;
     white-space: nowrap;

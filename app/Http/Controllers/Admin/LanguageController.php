@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Language;
-use App\Models\LanguageUser;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\App;
 
-class LanguageUserController extends Controller
+class LanguageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,8 @@ class LanguageUserController extends Controller
      */
     public function index()
     {
-        //
+        $languages = Language::orderBy('title_'. App::currentLocale())->get();
+        return view('admin.language.index', compact('languages'));
     }
 
     /**
@@ -37,11 +38,10 @@ class LanguageUserController extends Controller
      */
     public function store(Request $request)
     {
-        LanguageUser::create([
-            'language_id' => $request['id'],
-            'user_id' => Auth::user()->id
-        ]);
-        return Language::find($request['id']);
+        Language::create($request->except('_token'));
+        $msg = request()->session();
+        $msg->flash('success', 'Язык был успешно добавлен');
+        return redirect()->back();
     }
 
     /**
@@ -86,7 +86,6 @@ class LanguageUserController extends Controller
      */
     public function destroy($id)
     {
-        LanguageUser::where('language_id', $id)->where('user_id', Auth::user()->id)->delete();
-        return Language::find($id);
+        //
     }
 }

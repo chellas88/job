@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Language;
-use App\Models\LanguageUser;
+use App\Http\Controllers\Controller;
+use App\Models\Country;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\App;
 
-class LanguageUserController extends Controller
+class CountryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,8 @@ class LanguageUserController extends Controller
      */
     public function index()
     {
-        //
+        $countries = Country::orderBy('title_' . App::currentLocale(), 'asc')->get();
+        return view('admin.country.index', compact('countries'));
     }
 
     /**
@@ -37,11 +38,10 @@ class LanguageUserController extends Controller
      */
     public function store(Request $request)
     {
-        LanguageUser::create([
-            'language_id' => $request['id'],
-            'user_id' => Auth::user()->id
-        ]);
-        return Language::find($request['id']);
+        Country::create($request->except('_token'));
+        $msg = request()->session();
+        $msg->flash('success', 'Страна была успешно добавлена');
+        return redirect()->back();
     }
 
     /**
@@ -86,7 +86,6 @@ class LanguageUserController extends Controller
      */
     public function destroy($id)
     {
-        LanguageUser::where('language_id', $id)->where('user_id', Auth::user()->id)->delete();
-        return Language::find($id);
+        //
     }
 }

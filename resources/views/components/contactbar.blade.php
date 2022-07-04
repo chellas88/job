@@ -24,12 +24,12 @@
         @guest
             <li>
                 <a href="/{{\Illuminate\Support\Facades\App::getLocale()}}/login" class="icon icon-sign_in">
-                    Sign In
+                    {{ __('navs.sign_in') }}
                 </a>
             </li>
             <li>
                 <a href="/{{\Illuminate\Support\Facades\App::getLocale()}}/register" class="icon icon-registration">
-                    Sign Up
+                    {{ __('navs.sign_up') }}
                 </a>
             </li>
         @endguest
@@ -40,7 +40,7 @@
             <li>
                 <a href="{{ route('logout') }}"
                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="icon icon-logout"></i>Logout
+                    <i class="icon icon-logout"></i>{{ __('navs.logout') }}
                 </a>
             </li>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
