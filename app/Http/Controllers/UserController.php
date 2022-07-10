@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddressRequest;
+use App\Models\Contact;
 use App\Models\Language;
 use App\Models\LanguageUser;
 use App\Models\User;
@@ -81,5 +82,18 @@ class UserController extends Controller
 
     public function removeLanguage(Request $request){
 
+    }
+
+    public function saveContacts(Request $request){
+        $user = Auth::user()->id;
+        $contacts = Contact::where('user_id', $user)->get();
+        if ($contacts->isEmpty()){
+            $request['user_id'] = $user;
+            Contact::create($request->except('_token'));
+        }
+        else {
+            Contact::where('user_id', $user)->update($request->except('_token'));
+        }
+        return redirect()->back();
     }
 }

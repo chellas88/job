@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
     use HasFactory;
+    protected $fillable = ['phone', 'viber', 'telegram', 'whatsapp', 'facebook', 'instagram', 'user_id'];
 }

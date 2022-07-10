@@ -30,6 +30,7 @@ Route::group([
             Route::post('/saveUser', [\App\Http\Controllers\UserController::class, 'saveUser'])->name('save-user');
             Route::post('/uploadAvatar', [\App\Http\Controllers\UserController::class, 'uploadAvatar'])->name('upload-avatar');
             Route::post('/saveAddress', [\App\Http\Controllers\UserController::class, 'saveAddress'])->name('save-address');
+            Route::post('/saveContacts', [\App\Http\Controllers\UserController::class, 'saveContacts'])->name('save-contacts');
             Route::resource('/languser', \App\Http\Controllers\LanguageUserController::class);
 
 

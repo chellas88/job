@@ -220,49 +220,60 @@
                         <div class="tab-pane fade" id="contacts" role="tabpanel"
                              aria-labelledby="contacts-line-tab">
                             <p>{{ __('main.contacts_text') }}</p>
-                            <form method="post">
+                            <form method="POST" action="{{route('save-contacts')}}">
                                 @csrf
                                 <div class="row">
                                     <div class="mb-3 col-4">
                                         <label for="phone">{{ __('main.phone') }}</label>
                                         <input type="text" id="phone" name="phone" class="form-control"
-
-                                               value="{{ $data['user']['phone'] }}"
+                                               @if ($data['user']->contacts)
+                                               value="{{ $data['user']->contacts['phone'] }}"
+                                            @endif
                                         >
                                     </div>
                                     <div class="mb-3 col-4">
                                         <label for="viber">{{ __('main.viber') }}</label>
                                         <input type="text" id="viber" name="viber" class="form-control"
 
-                                               value="{{ $data['user']['viber'] }}"
+                                               @if ($data['user']->contacts)
+                                               value="{{ $data['user']->contacts['viber'] }}"
+                                            @endif
                                         >
                                     </div>
                                     <div class="mb-3 col-4">
                                         <label for="telegram">{{ __('main.telegram') }}</label>
                                         <input type="text" id="telegram" name="telegram" class="form-control"
 
-                                               value="{{ $data['user']['telegram'] }}"
+                                               @if ($data['user']->contacts)
+                                               value="{{ $data['user']->contacts['telegram'] }}"
+                                            @endif
                                         >
                                     </div>
                                     <div class="mb-3 col-4">
                                         <label for="whatsapp">{{ __('main.whatsapp') }}</label>
                                         <input type="text" id="whatsapp" name="whatsapp" class="form-control"
 
-                                               value="{{ $data['user']['whatsapp'] }}"
+                                               @if ($data['user']->contacts)
+                                               value="{{ $data['user']->contacts['whatsapp'] }}"
+                                            @endif
                                         >
                                     </div>
                                     <div class="mb-3 col-4">
                                         <label for="facebook">{{ __('main.facebook') }}</label>
                                         <input type="text" id="facebook" name="facebook" class="form-control"
 
-                                               value="{{ $data['user']['facebook'] }}"
+                                               @if ($data['user']->contacts)
+                                               value="{{ $data['user']->contacts['facebook'] }}"
+                                            @endif
                                         >
                                     </div>
                                     <div class="mb-3 col-4">
                                         <label for="instagram">{{ __('main.instagram') }}</label>
                                         <input type="text" id="instagram" name="instagram" class="form-control"
 
-                                               value="{{ $data['user']['instagram'] }}"
+                                               @if ($data['user']->contacts)
+                                               value="{{ $data['user']->contacts['instagram'] }}"
+                                            @endif
                                         >
                                     </div>
                                 </div>

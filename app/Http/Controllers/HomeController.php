@@ -29,9 +29,10 @@ class HomeController extends Controller
         $user = Auth::user();
         $data = null;
         $contacts = $user->contacts;
-        if ($contacts->isEmpty()){
+        if (!$contacts){
             $data['warning']['contacts'] = true;
         }
+
         if ($user->coordinates == null){
             $data['warning']['coordinates'] = true;
         }
