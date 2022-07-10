@@ -33,6 +33,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->string('role')->nullable();
+            $table->boolean('policy')->nullable();
         });
     }
 

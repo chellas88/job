@@ -95,6 +95,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-size: 14px;
 }
 .contactbar .contacts {
     display: flex;
@@ -126,7 +127,7 @@ footer {
     border: 1px solid #ffffffb0;
     padding: 5px 10px;
     border-radius: 3px;
-    font-size: 16px;
+    font-size: 14px;
 }
 .contactbar .auth{
     display: flex;
@@ -158,8 +159,8 @@ footer {
 }
 .navbar-brand .logo-icon{
     fill: #62931a;
-    height: 60px;
-    width: 60px;
+    height: 40px;
+    width: 40px;
 }
 a.navbar-brand{
     font-weight: 800;

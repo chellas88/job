@@ -105,8 +105,9 @@
                                             <x-rating.stars_5/>
                                         @endif
                                     </div>
-                                    <div class="open-profile">
-                                        <a href="/profile/{{$item['id']}}" class="btn btn-secondary">Profile</a>
+                                    <div class="open-profile text-end">
+                                        <a href="#" class="mb-1">{{ __('main.add_review') }}</a>
+                                        <a href="/profile/{{$item['id']}}" class="btn btn-secondary">{{ __('main.profile') }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -141,10 +142,11 @@
 
         map.addListener('bounds_changed', () => {
             var bounds = map.getBounds();
-            let max_lat = bounds.ub.hi
-            let min_lat = bounds.ub.lo
+            let max_lat = bounds.wb.hi
+            let min_lat = bounds.wb.lo
             let max_lng = bounds.Ra.hi
             let min_lng = bounds.Ra.lo
+            console.log(users.length)
             users.forEach(user => {
                 lat = +user.geo.lat
                 lng = +user.geo.lng

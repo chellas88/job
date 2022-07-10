@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Country;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class UsersController extends Controller
 {
@@ -16,7 +19,9 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('admin.users.index', compact('users'));
+        $countries = Country::orderBy('title_'.App::currentLocale(), 'asc')->get();
+        $categories = Category::orderBy('title_'.App::currentLocale(), 'asc')->get();
+        return view('admin.users.index', compact('users', 'countries', 'categories'));
     }
 
     /**

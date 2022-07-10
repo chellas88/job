@@ -91,6 +91,11 @@
                                 </div>
                             </div>
 
+                            <div class="text-center mb-3">
+                                <input type="checkbox" name="policy" required id="policy">
+                                <label for="policy">Соглашаюсь с правилами</label>
+                            </div>
+
                             <div class="row mb-0">
                                 <div class="col-md-12 text-center">
                                     <button type="submit" class="btn btn-secondary">

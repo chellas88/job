@@ -30,7 +30,8 @@ class User extends Authenticatable
         'category_id',
         'lang',
         'google_id',
-        'role'
+        'role',
+        'policy'
     ];
 
     /**

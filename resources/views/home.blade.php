@@ -37,22 +37,22 @@
                         <li class="nav-item">
                             <a class="nav-link active" id="user-line-tab" data-bs-toggle="tab"
                                data-bs-target="#user-info"
-                               role="tab" aria-controls="user-info" aria-selected="true">Main</a>
+                               role="tab" aria-controls="user-info" aria-selected="true">{{ __('main.main_info') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="address-line-tab" data-bs-toggle="tab" data-bs-target="#address"
                                role="tab"
-                               aria-controls="address" aria-selected="false">Address</a>
+                               aria-controls="address" aria-selected="false">{{ __('main.address') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="languages-line-tab" data-bs-toggle="tab" data-bs-target="#languages"
                                role="tab"
-                               aria-controls="contacts" aria-selected="false">Languages</a>
+                               aria-controls="contacts" aria-selected="false">{{ __('main.languages') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="contacts-line-tab" data-bs-toggle="tab" data-bs-target="#contacts"
                                role="tab"
-                               aria-controls="contacts" aria-selected="false">Contacts</a>
+                               aria-controls="contacts" aria-selected="false">{{ __('main.contacts') }}</a>
                         </li>
                     </ul>
                     <div class="tab-content mt-3" id="lineTabContent">
@@ -81,14 +81,14 @@
                             <div class="mb-4">
                                 <form method="POST" action="{{route('save-user')}}">
                                     @csrf
-                                    <h4>Main Info</h4>
+                                    <h4>{{ __('main.main_info') }}</h4>
                                     <div class="mb-3">
-                                        <label for="category" class="form-label">Change Name:</label>
+                                        <label for="category" class="form-label">{{ __('main.category') }}</label>
                                         <select type="text" name="category_id" id="category"
                                                 value="{{$data['user']['category']}}"
                                                 class="form-control {{ isset($data['warning']['category']) ? 'is-invalid' : ''}}"
                                         >
-                                            <option value="">Select a category</option>
+                                            <option value="" disabled>{{ __('main.select_category') }}</option>
                                             @foreach($data['categories'] as $category)
                                                 <option
                                                     value="{{$category['id']}}" {{$category['id'] == $data['user']['category_id'] ? 'selected' : ''  }}>{{$category['title_' . \Illuminate\Support\Facades\App::currentLocale()]}}</option>
@@ -101,7 +101,7 @@
                                         @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label for="name" class="form-label">Change Name:</label>
+                                        <label for="name" class="form-label">{{ __('main.name') }}</label>
                                         <input type="text" name="name" id="name" value="{{$data['user']['name']}}"
                                                class="form-control @error('name') is-invalid @enderror"
                                         >
@@ -112,7 +112,7 @@
                                         @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label for="email" class="form-label">Change Email:</label>
+                                        <label for="email" class="form-label">{{ __('main.email') }}</label>
                                         <input type="email" name="email" id="email"
                                                value="{{$data['user']['email']}}"
                                                class="form-control @error('email') is-invalid @enderror"
@@ -123,23 +123,23 @@
                                     </span>
                                         @enderror
                                     </div>
-                                    <input type="submit" value="Save" class="btn btn-secondary">
+                                    <input type="submit" value="{{ __('main.save') }}" class="btn btn-secondary">
                                 </form>
                             </div>
                             <div class="mb-4">
-                                <h4>Avatar</h4>
+                                <h4>{{ __('main.avatar') }}</h4>
                                 <div class="mb-3">
                                     <form method="POST" action="{{ route('upload-avatar') }}"
                                           enctype="multipart/form-data">
                                         @csrf
-                                        <label for="avatar" class="form-label">Change Avatar:</label>
+                                        <label for="avatar" class="form-label">{{ __('main.change_avatar') }}</label>
                                         <input class="form-control mb-3" type="file" id="avatar" name="avatar">
                                         @error('avatar')
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                         </span>
                                         @enderror
-                                        <input type="submit" value="Upload" class="btn btn-secondary">
+                                        <input type="submit" value="{{ __('main.upload') }}" class="btn btn-secondary">
                                     </form>
                                 </div>
                             </div>
@@ -148,9 +148,9 @@
                             <form method="POST" action="{{route('save-address')}}">
                                 @csrf
                                 <div class="mb-3">
-                                    <label for="country">Country</label>
+                                    <label for="country">{{ __('main.country') }}</label>
                                     <select id="country" name="country_id" class="form-control" required>
-                                        <option value="">Select country</option>
+                                        <option value="" disabled>{{ __('main.select_country') }}</option>
                                         @foreach($data['countries'] as $country)
                                             <option
                                                 value="{{$country['id']}}" {{ $country['id'] == $data['user']['country_id'] ? 'selected' : '' }}>{{$country['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}</option>
@@ -158,17 +158,17 @@
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="state">State</label>
+                                    <label for="state">{{ __('main.state') }}</label>
                                     <input type="text" id="state" name="state" class="form-control"
-                                           placeholder="Input your state"
+                                           placeholder="{{ __('main.input_state') }}"
                                            value="{{ $data['user']['state'] }}"
                                     >
                                 </div>
                                 <div class="mb-3">
-                                    <label for="city">City</label>
+                                    <label for="city">{{ __('main.city') }}</label>
                                     <input type="text" id="city" name="city"
                                            class="form-control @error('city') is-invalid @enderror"
-                                           placeholder="Input your city"
+                                           placeholder="{{ __('main.input_city') }}"
                                            value="{{ $data['user']['city'] }}"
                                     >
                                     @error('city')
@@ -178,13 +178,13 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label for="address">Address</label>
+                                    <label for="address">{{ __('main.address') }}</label>
                                     <input type="text" id="address" name="address" class="form-control"
-                                           placeholder="Input your address"
+                                           placeholder="{{ __('main.input_address') }}"
                                            value="{{$data['user']['address']}}">
                                 </div>
                                 <div class="mb-3">
-                                    <input type="submit" value="Save" class="btn btn-secondary">
+                                    <input type="submit" value="{{ __('main.save') }}" class="btn btn-secondary">
                                 </div>
 
                             </form>
@@ -192,30 +192,83 @@
                         <div class="tab-pane fade" id="languages" role="tabpanel"
                              aria-labelledby="languages-line-tab">
                             <div class="languages lang-list">
+                                <p>{{ __('main.langlist_text') }}</p>
                                 <div id="lang-list" class="d-inline">
-                                @foreach($data['my_languages'] as $mylang)
-                                    <span id="lang_{{$mylang['id']}}">
+                                    @foreach($data['my_languages'] as $mylang)
+                                        <span id="lang_{{$mylang['id']}}">
                                         {{$mylang['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}
                                         <i onclick="removeLang({{$mylang['id']}}, '{{\Illuminate\Support\Facades\App::currentLocale()}}')">X</i></span>
-                                @endforeach
+                                    @endforeach
                                 </div>
-                                    <a class="nav-link dropdown-toggle d-inline" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Add Language
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink" id="lang-menu">
-                                        @foreach($data['languages'] as $lang)
-                                            <li id="newlang_{{$lang['id']}}">
-                                                <a onclick="addLang({{$lang['id']}}, '{{\Illuminate\Support\Facades\App::currentLocale()}}')" class="dropdown-item add_lang" href="#">
-                                                    {{$lang['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}
-                                                </a></li>
+                                <a class="nav-link dropdown-toggle d-inline" href="#" id="navbarDarkDropdownMenuLink"
+                                   role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ __('main.add_language') }}
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark"
+                                    aria-labelledby="navbarDarkDropdownMenuLink" id="lang-menu">
+                                    @foreach($data['languages'] as $lang)
+                                        <li id="newlang_{{$lang['id']}}">
+                                            <a onclick="addLang({{$lang['id']}}, '{{\Illuminate\Support\Facades\App::currentLocale()}}')"
+                                               class="dropdown-item add_lang" href="#">
+                                                {{$lang['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}
+                                            </a></li>
 
-                                        @endforeach
-                                    </ul>
+                                    @endforeach
+                                </ul>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="contacts" role="tabpanel"
                              aria-labelledby="contacts-line-tab">
-                            Contacts
+                            <p>{{ __('main.contacts_text') }}</p>
+                            <form method="post">
+                                @csrf
+                                <div class="row">
+                                    <div class="mb-3 col-4">
+                                        <label for="phone">{{ __('main.phone') }}</label>
+                                        <input type="text" id="phone" name="phone" class="form-control"
+
+                                               value="{{ $data['user']['phone'] }}"
+                                        >
+                                    </div>
+                                    <div class="mb-3 col-4">
+                                        <label for="viber">{{ __('main.viber') }}</label>
+                                        <input type="text" id="viber" name="viber" class="form-control"
+
+                                               value="{{ $data['user']['viber'] }}"
+                                        >
+                                    </div>
+                                    <div class="mb-3 col-4">
+                                        <label for="telegram">{{ __('main.telegram') }}</label>
+                                        <input type="text" id="telegram" name="telegram" class="form-control"
+
+                                               value="{{ $data['user']['telegram'] }}"
+                                        >
+                                    </div>
+                                    <div class="mb-3 col-4">
+                                        <label for="whatsapp">{{ __('main.whatsapp') }}</label>
+                                        <input type="text" id="whatsapp" name="whatsapp" class="form-control"
+
+                                               value="{{ $data['user']['whatsapp'] }}"
+                                        >
+                                    </div>
+                                    <div class="mb-3 col-4">
+                                        <label for="facebook">{{ __('main.facebook') }}</label>
+                                        <input type="text" id="facebook" name="facebook" class="form-control"
+
+                                               value="{{ $data['user']['facebook'] }}"
+                                        >
+                                    </div>
+                                    <div class="mb-3 col-4">
+                                        <label for="instagram">{{ __('main.instagram') }}</label>
+                                        <input type="text" id="instagram" name="instagram" class="form-control"
+
+                                               value="{{ $data['user']['instagram'] }}"
+                                        >
+                                    </div>
+                                </div>
+                                <input class="btn btn-secondary" type="submit" value="{{ __('main.save') }}">
+                            </form>
+
                         </div>
 
                     </div>
@@ -257,3 +310,38 @@
         window.initMap = initMap;
     </script>
 @endif
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const mainBtn = document.getElementById('user-line-tab')
+        const contactsBtn = document.getElementById('contacts-line-tab')
+        const addrBtn = document.getElementById('address-line-tab')
+        const langBtn = document.getElementById('languages-line-tab')
+
+        mainBtn.addEventListener('click', () => {
+            window.location.hash = '#main'
+        })
+        addrBtn.addEventListener('click', () => {
+            window.location.hash = '#addr'
+        })
+        langBtn.addEventListener('click', () => {
+            window.location.hash = '#lang'
+        })
+        contactsBtn.addEventListener('click', () => {
+            window.location.hash = '#contacts'
+        })
+
+        let hash = window.location.hash.replace('#', '')
+
+        if (hash === 'contacts') {
+            contactsBtn.click()
+        } else if (hash === 'main') {
+            mainBtn.click()
+        } else if (hash === 'addr') {
+            addrBtn.click()
+        } else if (hash === 'lang') {
+            langBtn.click()
+        }
+    })
+</script>

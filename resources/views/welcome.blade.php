@@ -12,9 +12,9 @@
             <form id="search-form" method="GET" action="{{route('search')}}">
                 @csrf
                 <div class="mb-3">
-                    <label for="category_id">Category</label>
+{{--                    <label for="category_id">{{ __('main.categories') }}</label>--}}
                     <select type="text" class="form-control" id="category_id" name="category_id">
-                        <option value="" selected>All categories</option>
+                        <option value="" selected>{{ __('main.all_category') }}</option>
                         @if(!$category->isEmpty())
                             @foreach($category as $item)
                                 <option
@@ -24,9 +24,9 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="country_id">Country</label>
+{{--                    <label for="country_id">Country</label>--}}
                     <select type="text" class="form-control" id="country_id" name="country_id" required>
-                        <option value="" selected disabled>Select Country</option>
+                        <option value="" selected disabled>{{ __('main.select_country') }}</option>
                         @foreach($country as $item)
                             <option value="{{ $item['id'] }}" {{ old('country_id') == $item['id'] ? "selected" : ''}}>
                                 {{$item['title_' . \Illuminate\Support\Facades\App::currentLocale()]}}
@@ -35,9 +35,9 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="city">City</label>
+{{--                    <label for="city">{{ __('main.city') }}</label>--}}
                     <input type="text" class="form-control @error('city') is-invalid @enderror"
-                           placeholder="input city" id="city"
+                           placeholder="{{ __('main.city') }}" id="city"
                            name="city" value="{{ old('city') }}" required>
                     @error('city')
                     <span class="invalid-feedback" role="alert">
@@ -46,82 +46,25 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="lang">Language</label>
+{{--                    <label for="lang">Language</label>--}}
                     <select type="text" class="form-control" id="lang" name="lang">
-                        <option value="0">Select Language</option>
+                        <option value="0">{{ __('main.select_language') }}</option>
                     </select>
                 </div>
 
-                <input type="submit" value="Search" class="btn">
+                <input type="submit" value="{{ __('main.search') }}" class="btn">
 
             </form>
             <div class="search-show-hide" id="showHideSearch"><i class='icon-chevron-left'></i></div>
         </div>
     </section>
-    {{--    <section class="main-block">--}}
-    {{--        <div class="container py-5">--}}
-    {{--            <div class="row align-items-center py-lg-5">--}}
-    {{--                <div class="col-lg-5 mb-5 mb-lg-0 crm-text">--}}
-    {{--                    <form id="search-form" method="GET" action="/search">--}}
-    {{--                        @csrf--}}
-    {{--                        <div class="mb-3">--}}
-    {{--                            <label for="category_id">Category</label>--}}
-    {{--                            <select type="text" class="form-control" id="category_id" name="category_id">--}}
-    {{--                                <option value="" selected>All categories</option>--}}
-    {{--                                @foreach($category as $item)--}}
-    {{--                                    <option--}}
-    {{--                                        value="{{ $item['id'] }}" {{ old('category_id') == $item['id'] ? "selected" : ''}}>{{$item['title']}}</option>--}}
-    {{--                                @endforeach--}}
-    {{--                            </select>--}}
-    {{--                        </div>--}}
-    {{--                        <div class="mb-3">--}}
-    {{--                            <label for="country_id">Country</label>--}}
-    {{--                            <select type="text" class="form-control" id="country_id" name="country_id" required>--}}
-    {{--                                <option value="" selected disabled>Select Country</option>--}}
-    {{--                                @foreach($country as $item)--}}
-    {{--                                    <option--}}
-    {{--                                        value="{{ $item['id'] }}" {{ old('country_id') == $item['id'] ? "selected" : ''}}>{{$item['title']}}</option>--}}
-    {{--                                @endforeach--}}
-    {{--                            </select>--}}
-    {{--                        </div>--}}
-    {{--                        <div class="mb-3">--}}
-    {{--                            <label for="city">City</label>--}}
-    {{--                            <input type="text" class="form-control @error('city') is-invalid @enderror"--}}
-    {{--                                   placeholder="input city" id="city"--}}
-    {{--                                   name="city" value="{{ old('city') }}" required>--}}
-    {{--                            @error('city')--}}
-    {{--                            <span class="invalid-feedback" role="alert">--}}
-    {{--                                        <strong>{{ $message }}</strong>--}}
-    {{--                                    </span>--}}
-    {{--                            @enderror--}}
-    {{--                        </div>--}}
-    {{--                        <div class="mb-3">--}}
-    {{--                            <label for="lang">Language</label>--}}
-    {{--                            <select type="text" class="form-control" id="lang" name="lang">--}}
-    {{--                                <option value="0">Select Language</option>--}}
-    {{--                            </select>--}}
-    {{--                        </div>--}}
 
-    {{--                        <input type="submit" value="Search" class="btn">--}}
-
-    {{--                    </form>--}}
-    {{--                </div>--}}
-    {{--                <div class="col-lg-7 text-center">--}}
-    {{--                    <img class="crm-img" src="{{ asset('/images/main.png') }}">--}}
-    {{--                    @if(!auth()->user())--}}
-    {{--                        <a href="/register" class="text-center btn signup">Sign Up Free</a>--}}
-    {{--                    @endif--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--        <img class="w-100 bg-bottom" src="{{ asset('/images/main-block-bottom.svg') }}">--}}
-    {{--    </section>--}}
 
     {{--    RECOMENDED COMPANIES--}}
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10 recommended-companies">
-                <div class="title">Recommended</div>
+                <div class="title">{{ __('main.recommended') }}</div>
                 <ul class="m-0">
                     @foreach($recommended as $rec)
                         <li>
@@ -134,7 +77,7 @@
                             </div>
                             <div class="align-items-center">
                                 {{$rec['name']}}
-                                <p>{{$rec['category']['title_en']}}</p>
+                                <p>{{$rec['category']['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}</p>
                                 @if ($rec['rating'] > 0 && $rec['rating'] < 2)
                                     <x-rating.stars_05/>
                                 @elseif ($rec['rating'] == 1)

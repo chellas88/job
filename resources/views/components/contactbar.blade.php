@@ -1,4 +1,4 @@
-<div class="contactbar p-3">
+<div class="contactbar p-2">
     <ul class="contacts">
         <li>
             <i class="icon icon-phone"></i>
