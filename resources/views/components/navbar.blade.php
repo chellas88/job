@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
+        <a class="navbar-brand" href="{{ url('/'.\Illuminate\Support\Facades\App::currentLocale()) }}">
             <svg class="logo-icon">
                 <use xlink:href="/images/sprites.svg#logo"></use>
             </svg>

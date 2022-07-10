@@ -15,9 +15,35 @@
         <div class="row justify-content-center">
             <div class="col-md-11">
                 <div class="profile-card shadow-lg">
-                    <h4>{{$data['user']['name']}}</h4>
-                    <p><span>{{$data['category']['title']}}</span></p>
-                    <p>{{$data['user']['email']}}</p>
+                    <div class="profile-avatar">
+                        @if(!$data['user']['avatar'])
+                            <img class="avatar" src="/uploads/avatars/avatar.svg">
+                        @else
+                            <img class="avatar" src="/uploads/avatars/{{$data['user']['avatar']}}">
+                        @endif
+                    </div>
+                    <div class="profile-social">
+                        <i class='bx bxs-phone-call'></i>
+                        <i class='bx bxs-envelope' ></i>
+                        <i class='bx bxl-whatsapp'></i>
+                        <i class='bx bxl-telegram'></i>
+                        <i class='bx bxl-facebook-circle'></i>
+                        <i class='bx bxl-instagram-alt' ></i>
+                    </div>
+                    <div class="profile-content">
+                        <h4>{{$data['user']['name']}}</h4>
+                        <p><span>{{$data['category']['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}</span></p>
+                        <p> <b>{{ __('main.services') }}: </b>
+                            @foreach($data['services'] as $service)
+                                {{$service['title_'.\Illuminate\Support\Facades\App::currentLocale()]}},
+                            @endforeach
+                        </p>
+                        <p> <b>{{ __('main.speaking') }}: </b>
+                            @foreach($data['languages'] as $lang)
+                                {{$lang['title_'.\Illuminate\Support\Facades\App::currentLocale()]}},
+                            @endforeach
+                        </p>
+                    </div>
                 </div>
 
 

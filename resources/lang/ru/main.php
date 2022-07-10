@@ -52,4 +52,5 @@ return [
     'instagram' => 'Instagram',
     'services' => 'Услуги',
     'add_service' => 'Добавить услугу',
+    'speaking' => 'Разговорные языки',
 ];

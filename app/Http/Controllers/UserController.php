@@ -78,6 +78,8 @@ class UserController extends Controller
         $data['user'] = $user;
         $data['category'] = $user->category;
         $data['contacts'] = $user->contacts;
+        $data['services'] = $user->services;
+        $data['languages'] = $user->languages;
         return view('profile', ['data' => $data]);
     }
 
