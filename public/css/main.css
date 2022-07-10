@@ -516,7 +516,30 @@ a.navbar-brand span{
 }
 .languages span i:hover{
     color: #8d8c8c;
+
 }
+
+#service-list span {
+    background: #e2f9c0;
+    padding: 5px 15px;
+    margin-right: 10px;
+    border-radius: 5px;
+    display: inline-flex;
+    justify-content: space-between;
+}
+#service-list span i{
+    color: #616060;
+    margin-left: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+#service-list span i:hover{
+    color: #8d8c8c;
+}
+
+
+
+
 
 @media screen and (min-width: 990px) {
     .auth-block {

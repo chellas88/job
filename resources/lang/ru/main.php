@@ -49,5 +49,7 @@ return [
     'telegram' => 'Telegram',
     'whatsapp' => 'Whatsapp',
     'facebook' => 'Facebook',
-    'instagram' => 'Instagram'
+    'instagram' => 'Instagram',
+    'services' => 'Услуги',
+    'add_service' => 'Добавить услугу',
 ];

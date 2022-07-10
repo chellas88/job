@@ -14,6 +14,8 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         'en/languser',
         'en/languser/*',
-        'en/admin/user/*'
+        'en/admin/user/*',
+        'en/service',
+        'en/service/*',
     ];
 }

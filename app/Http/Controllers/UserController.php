@@ -68,15 +68,16 @@ class UserController extends Controller
     {
         $user = $id;
         $data = null;
-        $contacts = $user->contacts;
-        if ($contacts->isEmpty()) {
-            $data['warning']['contacts'] = true;
-        }
+//        $contacts = $user->contacts;
+//        if (!$contacts) {
+//            $data['warning']['contacts'] = true;
+//        }
         $google = new GoogleController();
         $coordinates = $google->getCoordinates($user['state'] . ' ' . $user['city'] . ' ' . $user['address']);
         $data['coordinates'] = $coordinates;
         $data['user'] = $user;
         $data['category'] = $user->category;
+        $data['contacts'] = $user->contacts;
         return view('profile', ['data' => $data]);
     }
 

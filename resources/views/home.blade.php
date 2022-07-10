@@ -100,6 +100,31 @@
                                         </span>
                                         @enderror
                                     </div>
+                                    <div class="m-3 border-info">
+                                        <h5>{{ __('main.services') }}</h5>
+                                        <div id="service-list" class="d-inline">
+                                            @foreach($data['my_services'] as $myserv)
+                                                <span id="serv_{{$myserv['id']}}">
+                                        {{$myserv['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}
+                                        <i onclick="removeService({{$myserv['id']}}, '{{\Illuminate\Support\Facades\App::currentLocale()}}')">X</i></span>
+                                            @endforeach
+                                        </div>
+                                        <a class="nav-link dropdown-toggle d-inline" href="#" id="navbarDarkDropdownMenuService"
+                                           role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            {{ __('main.add_service') }}
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-dark"
+                                            aria-labelledby="navbarDarkDropdownMenuService" id="service-menu">
+                                            @foreach($data['services'] as $service)
+                                                <li id="newservice_{{$service['id']}}">
+                                                    <a onclick="addService({{$service['id']}}, '{{\Illuminate\Support\Facades\App::currentLocale()}}')"
+                                                       class="dropdown-item" href="#">
+                                                        {{$service['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
                                     <div class="mb-3">
                                         <label for="name" class="form-label">{{ __('main.name') }}</label>
                                         <input type="text" name="name" id="name" value="{{$data['user']['name']}}"

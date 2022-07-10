@@ -2,16 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 Route::group([
     'prefix' => \App\Http\Middleware\Localization::getLocale()
 ],
@@ -32,7 +23,7 @@ Route::group([
             Route::post('/saveAddress', [\App\Http\Controllers\UserController::class, 'saveAddress'])->name('save-address');
             Route::post('/saveContacts', [\App\Http\Controllers\UserController::class, 'saveContacts'])->name('save-contacts');
             Route::resource('/languser', \App\Http\Controllers\LanguageUserController::class);
-
+            Route::resource('/service', \App\Http\Controllers\ServiceController::class);
 
             Route::group([
                 'middleware' => ['auth', 'admin'],

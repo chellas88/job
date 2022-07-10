@@ -12,6 +12,6 @@ class Language extends Model
 
 
     public function users(){
-        return $this->belongsToMany(Language::class);
+        return $this->belongsToMany(User::class);
     }
 }

@@ -61,6 +61,10 @@ class User extends Authenticatable
         return $this->belongsTo(Category::class);
     }
 
+    public function services(){
+        return $this->belongsToMany(Subcategory::class, 'subcategory_users');
+    }
+
     public function getRating(){
         $reviews = Review::where('user_id', $this->id)->get();
         $rank = 0;

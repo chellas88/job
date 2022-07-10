@@ -55,3 +55,36 @@ function removeLang(id, lang){
         }
     })
 }
+
+function addService(id, lang){
+    event.preventDefault()
+    let parent = document.getElementById('newservice_' + id)
+    $.ajax({
+        type: 'post',
+        url: '/en/service',
+        data: {'id': id},
+        success: function(res){
+            let span = document.createElement('span')
+            span.setAttribute('id', 'serv_' + id)
+            span.innerHTML = `${res['title_' + lang]}<i onclick="removeService(${id}, '${lang}')">X</i>`
+            document.getElementById('service-list').appendChild(span)
+            parent.remove()
+        }
+    })
+}
+
+function removeService(id, lang){
+    event.preventDefault()
+    let parent = document.getElementById('serv_' + id)
+    $.ajax({
+        type: 'delete',
+        url: '/en/service/' + id,
+        success: function (response){
+            let li = document.createElement('li')
+            li.setAttribute('id', 'newservice_' + id)
+            li.innerHTML = `<a  onclick="addService(${id}, '${lang}')" class="dropdown-item" href="#">${response['title_' + lang]}</a>`
+            document.getElementById('service-menu').appendChild(li)
+            parent.remove()
+        }
+    })
+}
