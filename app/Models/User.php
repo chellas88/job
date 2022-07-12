@@ -107,4 +107,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Language::class);
     }
 
+    public function country(){
+        return $this->belongsTo(Country::class);
+    }
+
 }

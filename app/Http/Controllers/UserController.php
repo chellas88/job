@@ -6,7 +6,9 @@ use App\Http\Requests\AddressRequest;
 use App\Models\Contact;
 use App\Models\Language;
 use App\Models\LanguageUser;
+use App\Models\NewUserLink;
 use App\Models\User;
+use http\Client\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManagerStatic;
@@ -96,6 +98,24 @@ class UserController extends Controller
         }
         else {
             Contact::where('user_id', $user)->update($request->except('_token'));
+        }
+        return redirect()->back();
+    }
+
+    public function privacy($link){
+        $nav = NewUserLink::where('link', $link)->first();
+        if (!$nav){
+            return redirect('/');
+        }
+        $user = $nav->user;
+        return view('accept_privacy', compact('user'));
+    }
+
+    public function accept(Request $request){
+        if ($request['user']){
+            User::where('id', $request['user'])->update(['policy' => true]);
+            NewUserLink::where('user_id', $request['user'])->delete();
+            return redirect()->route('home');
         }
         return redirect()->back();
     }

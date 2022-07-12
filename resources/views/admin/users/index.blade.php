@@ -87,7 +87,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <select name="country" class="form-control" required>
+                            <select name="country_id" class="form-control" required>
                                 <option value="" selected disabled>Выберите страну</option>
                                 @foreach($countries as $country)
                                     <option
@@ -97,7 +97,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <select name="category" class="form-control" required>
+                            <select name="category_id" class="form-control" required>
                                 <option value="" selected disabled>Выберите категорию</option>
                                 @foreach($categories as $category)
                                     <option

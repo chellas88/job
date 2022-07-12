@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Country;
+use App\Models\NewUserLink;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -42,7 +44,13 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request['password'] = Hash::make('test');
+        $user = User::create($request->except('_token'));
+        NewUserLink::create([
+            'user_id' => $user['id'],
+            'link' => str_shuffle('bu47ih289h22d29')
+        ]);
+        return redirect()->route('user.edit', $user['id']);
     }
 
     /**
@@ -64,7 +72,9 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+
+        return view('admin.users.edit');
     }
 
     /**
