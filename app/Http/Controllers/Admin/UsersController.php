@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Country;
+use App\Models\Language;
 use App\Models\NewUserLink;
+use App\Models\Subcategory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -33,7 +35,12 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        $professions = Category::where('user_type', 'person')->get();
+        $services = Category::where('user_type', 'company')->get();
+        $countries = Country::orderBy('title_'.App::currentLocale(), 'asc')->get();
+        $subcategories = Subcategory::orderBy('title_'.App::currentLocale(), 'asc')->get();
+        $langs = Language::orderBy('title_'.App::currentLocale(), 'asc')->get();
+        return view('admin.users.create', compact('professions', 'services', 'countries', 'subcategories', 'langs'));
     }
 
     /**

@@ -10,9 +10,9 @@
                 <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#newAdminModal">
                     Добавить администратора
                 </button>
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newUserModal">
+                <a href="{{ route('user.create') }}" class="btn btn-primary" >
                     Добавить пользователя
-                </button>
+                </a>
             </div>
             <div class="col-12">
                 <table class="table table-striped">
@@ -60,27 +60,29 @@
 
 
     <!-- Modal New  -->
-    <div class="modal fade" id="newUserModal" tabindex="-1" aria-labelledby="newModalLabel"
+    <div class="modal fade" id="newUserModal" tabindex="-1" aria-labelledby="newModalLabel" data-bs-backdrop="static"
          aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
-                <form method="post" action="{{ route('user.store') }}">
+                <form method="post" action="{{ route('user.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="newModalLabel">Добавить пользователя</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body row">
                         <div class="mb-3">
+                            <label for="role" class="mb-2">Тип аккаунта</label>
                             <select name="role" class="form-control">
                                 <option value="person">Физ. лицо</option>
                                 <option value="company">Компания</option>
                             </select>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 col-6">
                             <label for="username">Имя пользователя</label>
                             <input type="text" id="username" name="name" class="form-control" required>
                         </div>
+
                         <div class="mb-3">
                             <label for="email">Email</label>
                             <input type="email" id="email" name="email" class="form-control" required>
