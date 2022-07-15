@@ -38,13 +38,11 @@ export default {
         langs: {
             type: Array
         },
-        old: {
-            type: Object
-        }
+        old: {}
     },
     data() {
         return {
-            role: 'company'
+            role: ''
         }
     },
     methods: {

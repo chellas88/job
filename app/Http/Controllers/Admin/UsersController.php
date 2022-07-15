@@ -58,11 +58,12 @@ class UsersController extends Controller
      */
     public function store(UserRequest $request)
     {
+        $password = str_shuffle('i@!o28n954n727b8b;&%v7vjvnr');
         $user_data = $request->except('_token', 'avatar', 'lang_1', 'lang_2', 'lang_3');
         $google = new GoogleController();
         $user_data['coordinates'] = json_encode($google->getCoordinates($request['state'] . ' ' . $request['city'] . ' ' . $request['address']));
         $user_data['city_coordinates'] = json_encode($google->getCoordinates($request['city']));
-        $user_data['password'] = Hash::make('test');
+        $user_data['password'] = Hash::make($password);
         $user = User::create($user_data);
 
         if ($request->hasFile('avatar')){
@@ -127,7 +128,8 @@ class UsersController extends Controller
         ]);
         NewUserLink::create([
             'user_id' => $user['id'],
-            'link' => str_shuffle('ioj34v28n954n727b8bv27vjvnr')
+            'link' => str_shuffle('ioj34v28n954n727b8bv27vjvnr'),
+            'password' => $password
         ]);
         $msg = request()->session();
         $msg->flash('success', 'Пользователь создан успешно');

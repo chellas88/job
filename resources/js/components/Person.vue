@@ -158,9 +158,7 @@ export default {
         countries: {
             type: Array
         },
-        old: {
-            type: Object
-        }
+        old: {}
     },
     data() {
         return {

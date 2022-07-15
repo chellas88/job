@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class NewUserLink extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'link'];
+    protected $fillable = ['user_id', 'link', 'password'];
 
     public function user (){
         return $this->belongsTo(User::class);

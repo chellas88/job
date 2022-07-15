@@ -17,6 +17,7 @@ class CreateNewUserLinksTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('link');
+            $table->string('password');
             $table->timestamps();
         });
     }
