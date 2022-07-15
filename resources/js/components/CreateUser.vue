@@ -12,8 +12,8 @@
             </div>
             <hr>
             <div class="account-info" v-if="role">
-                <person v-if="role == 'person'" :countries="countries"></person>
-                <company v-if="role == 'company'"></company>
+                <person v-if="role == 'person'" :countries="countries" :old="old"></person>
+                <company v-if="role == 'company'" :countries="countries" :old="old"></company>
             </div>
         </div>
     </div>
@@ -37,11 +37,14 @@ export default {
         },
         langs: {
             type: Array
+        },
+        old: {
+            type: Object
         }
     },
     data() {
         return {
-            role: 'person'
+            role: 'company'
         }
     },
     methods: {

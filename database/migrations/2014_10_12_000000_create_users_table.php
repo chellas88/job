@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->integer('category_id')->nullable();
             $table->integer('country_id')->nullable();
             $table->string('name');
+            $table->string('surname')->nullable();
             $table->string('email')->unique();
             $table->string('state')->nullable();
             $table->text('address')->nullable();
@@ -34,6 +35,10 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->string('role')->nullable();
             $table->boolean('policy')->nullable();
+            $table->text('tags')->nullable();
+            $table->text('description_ua')->nullable();
+            $table->text('description_ru')->nullable();
+            $table->text('description_en')->nullable();
         });
     }
 
