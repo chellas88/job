@@ -36,9 +36,7 @@
                                 </div>
                             </td>
                             <td class="text-end">
-                                <a href="#" class="text-decoration-none edit-btn"
-                                   data-bs-target="#editCategoryModal" data-bs-toggle="modal"
-                                >
+                                <a href="{{ route('user.edit', $user['id']) }}" class="text-decoration-none edit-btn">
                                     <i class="icon-edit text-info"></i>
                                 </a>
                                 <a href="#" class="text-decoration-none remove-btn"

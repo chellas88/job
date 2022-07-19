@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\SelectController;
 use App\Http\Requests\UserRequest;
 use App\Models\Category;
 use App\Models\Contact;
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\ImageManagerStatic;
+use Illuminate\Support\Str;
 
 class UsersController extends Controller
 {
@@ -58,7 +60,7 @@ class UsersController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $password = str_shuffle('i@!o28n954n727b8b;&%v7vjvnr');
+        $password = Str::random(8);
         $user_data = $request->except('_token', 'avatar', 'lang_1', 'lang_2', 'lang_3');
         $google = new GoogleController();
         $user_data['coordinates'] = json_encode($google->getCoordinates($request['state'] . ' ' . $request['city'] . ' ' . $request['address']));
@@ -157,8 +159,23 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-
-        return view('admin.users.edit');
+        $countries = SelectController::getCountries();
+        $categories = Category::where('user_type', $user['role'])->orderBy('title_ru', 'asc')->get();
+        $services = Subcategory::where('category_id', $user['category_id'])->orderBy('title_ru', 'asc')->get();
+        $languages = Language::orderBy('title_ru', 'asc')->get();
+        $i = 1;
+        $prof = [];
+        foreach ($user->services as $ser){
+            $prof[$i] = $ser;
+            $i++;
+        }
+        $i = 1;
+        $lang = [];
+        foreach ($user->languages as $lan){
+            $lang[$i] = $lan;
+            $i++;
+        }
+        return view('admin.users.edit', compact('user', 'countries', 'categories', 'services', 'prof', 'languages', 'lang'));
     }
 
     /**
