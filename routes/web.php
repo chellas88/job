@@ -31,13 +31,12 @@ Route::group([
                 'middleware' => ['auth', 'admin'],
                 'prefix' => 'admin'
             ], function () {
-                Route::resource('/', \App\Http\Controllers\Admin\AdminController::class);
+                Route::resource('/', \App\Http\Controllers\Admin\DashboardController::class);
                 Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class);
                 Route::resource('subcategory', \App\Http\Controllers\Admin\SubcategoryController::class);
                 Route::resource('country', \App\Http\Controllers\Admin\CountryController::class);
                 Route::resource('language', \App\Http\Controllers\Admin\LanguageController::class);
                 Route::resource('user', \App\Http\Controllers\Admin\UsersController::class);
-                
             });
         });
 

@@ -42,14 +42,10 @@ export default {
     },
     data() {
         return {
-            role: ''
+            role: (this.old.role) ? this.old.role : '',
         }
     },
-    methods: {
-        changeRole() {
 
-        }
-    }
 }
 </script>
 

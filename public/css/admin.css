@@ -2,6 +2,9 @@
 *{
     font-family: "Poppins", sans-serif;
 }
+body{
+    background: #f1f1f1;
+}
 .sidebar {
     position: fixed;
     top: 0;
@@ -221,4 +224,24 @@ table td {
 table i {
     font-size: 20px;
     margin-right: 12px;
+}
+.dashboard-block {
+    height: 100%;
+}
+.dashboard-block span{
+    color: #726f6f;
+}
+.dashboard-block .count{
+    font-size: 30px;
+    margin-right: 10px;
+    font-weight: 600;
+    color: #6d6767;
+}
+.dashboard-panel {
+    background: #fff;
+    box-shadow: 0 5px 15px #dfdfdf;
+    border-radius: 10px;
+}
+.dashboard-panel .reviews {
+    border-left: 1px solid #e7e4e4;
 }

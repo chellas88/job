@@ -32,8 +32,8 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
-        $countries = Country::orderBy('title_'.App::currentLocale(), 'asc')->get();
-        $categories = Category::orderBy('title_'.App::currentLocale(), 'asc')->get();
+        $countries = Country::orderBy('title_' . App::currentLocale(), 'asc')->get();
+        $categories = Category::orderBy('title_' . App::currentLocale(), 'asc')->get();
         return view('admin.users.index', compact('users', 'countries', 'categories'));
     }
 
@@ -46,16 +46,16 @@ class UsersController extends Controller
     {
         $professions = Category::where('user_type', 'person')->get();
         $services = Category::where('user_type', 'company')->get();
-        $countries = Country::orderBy('title_'.App::currentLocale(), 'asc')->get();
-        $subcategories = Subcategory::orderBy('title_'.App::currentLocale(), 'asc')->get();
-        $langs = Language::orderBy('title_'.App::currentLocale(), 'asc')->get();
+        $countries = Country::orderBy('title_' . App::currentLocale(), 'asc')->get();
+        $subcategories = Subcategory::orderBy('title_' . App::currentLocale(), 'asc')->get();
+        $langs = Language::orderBy('title_' . App::currentLocale(), 'asc')->get();
         return view('admin.users.create', compact('professions', 'services', 'countries', 'subcategories', 'langs'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(UserRequest $request)
@@ -68,7 +68,7 @@ class UsersController extends Controller
         $user_data['password'] = Hash::make($password);
         $user = User::create($user_data);
 
-        if ($request->hasFile('avatar')){
+        if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar');
             $filename = $user['id'] . '.' . $avatar->getClientOriginalExtension();
             $path = "uploads/avatars/";
@@ -79,38 +79,37 @@ class UsersController extends Controller
             $user->avatar = $filename;
             $user->save();
         }
-
-        if ($request['profession_1']){
+        if ($request['profession_1']) {
             SubcategoryUser::create([
                 'user_id' => $user['id'],
                 'subcategory_id' => $request['profession_1']
             ]);
         }
-        if ($request['profession_2']){
+        if ($request['profession_2']) {
             SubcategoryUser::create([
                 'user_id' => $user['id'],
                 'subcategory_id' => $request['profession_2']
             ]);
         }
-        if ($request['profession_3']){
+        if ($request['profession_3']) {
             SubcategoryUser::create([
                 'user_id' => $user['id'],
                 'subcategory_id' => $request['profession_3']
             ]);
         }
-        if ($request['lang_1']){
+        if ($request['lang_1']) {
             LanguageUser::create([
                 'user_id' => $user['id'],
                 'language_id' => $request['lang_1']
             ]);
         }
-        if ($request['lang_2']){
+        if ($request['lang_2']) {
             LanguageUser::create([
                 'user_id' => $user['id'],
                 'language_id' => $request['lang_2']
             ]);
         }
-        if ($request['lang_3']){
+        if ($request['lang_3']) {
             LanguageUser::create([
                 'user_id' => $user['id'],
                 'language_id' => $request['lang_3']
@@ -142,7 +141,7 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -153,7 +152,7 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -165,13 +164,13 @@ class UsersController extends Controller
         $languages = Language::orderBy('title_ru', 'asc')->get();
         $i = 1;
         $prof = [];
-        foreach ($user->services as $ser){
+        foreach ($user->services as $ser) {
             $prof[$i] = $ser;
             $i++;
         }
         $i = 1;
         $lang = [];
-        foreach ($user->languages as $lan){
+        foreach ($user->languages as $lan) {
             $lang[$i] = $lan;
             $i++;
         }
@@ -182,8 +181,8 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -193,41 +192,51 @@ class UsersController extends Controller
         $request['city_coordinates'] = json_encode($google->getCoordinates($request['city']));
         User::where('id', $id)->update($request->except('_token', '_method', 'prof_1', 'prof_2', 'prof_3', 'lang_1', 'lang_2', 'lang_3', 'phone', 'viber', 'telegram', 'skype', 'whatsapp', 'facebook', 'instagram', 'youtube'));
         Contact::where('user_id', $id)->update($request->only('phone', 'viber', 'telegram', 'whatsapp', 'skype', 'facebook', 'instagram', 'youtube'));
-        
-        if ($request['_token']){
+
+        if ($request['_token']) {
+            if ($request->hasFile('avatar')) {
+                $avatar = $request->file('avatar');
+                $filename = $id. '.' . $avatar->getClientOriginalExtension();
+                $path = "uploads/avatars/";
+                if (!file_exists($path)) {
+                    mkdir($path, 0755, true);
+                }
+                ImageManagerStatic::make($avatar)->resize(200, 200)->save(public_path($path) . $filename);
+                User::where('id', $id)->update(['avatar' => $filename]);
+            }
             LanguageUser::where('user_id', $id)->delete();
             SubcategoryUser::where('user_id', $id)->delete();
-            if ($request['prof_1']){
+            if ($request['prof_1']) {
                 SubcategoryUser::create([
                     'user_id' => $id,
                     'subcategory_id' => $request['prof_1']
                 ]);
             }
-            if ($request['prof_2']){
+            if ($request['prof_2']) {
                 SubcategoryUser::create([
                     'user_id' => $id,
                     'subcategory_id' => $request['prof_2']
                 ]);
             }
-            if ($request['prof_3']){
+            if ($request['prof_3']) {
                 SubcategoryUser::create([
                     'user_id' => $id,
                     'subcategory_id' => $request['prof_3']
                 ]);
             }
-            if ($request['lang_1']){
+            if ($request['lang_1']) {
                 LanguageUser::create([
                     'user_id' => $id,
                     'language_id' => $request['lang_1']
                 ]);
             }
-            if ($request['lang_2']){
+            if ($request['lang_2']) {
                 LanguageUser::create([
                     'user_id' => $id,
                     'language_id' => $request['lang_2']
                 ]);
             }
-            if ($request['lang_3']){
+            if ($request['lang_3']) {
                 LanguageUser::create([
                     'user_id' => $id,
                     'language_id' => $request['lang_3']
@@ -243,7 +252,7 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

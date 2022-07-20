@@ -216,6 +216,7 @@ export default {
         },
         loadFile(){
             this.form.avatar = this.$refs.avatar.files[0]
+            console.log(this.form.avatar)
         },
         selectLang(){
             this.selectedLangs = []
