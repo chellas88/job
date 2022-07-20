@@ -175,7 +175,8 @@ class UsersController extends Controller
             $lang[$i] = $lan;
             $i++;
         }
-        return view('admin.users.edit', compact('user', 'countries', 'categories', 'services', 'prof', 'languages', 'lang'));
+        $contacts = $user->contacts;
+        return view('admin.users.edit', compact('user', 'countries', 'categories', 'services', 'prof', 'languages', 'lang', 'contacts'));
     }
 
     /**
@@ -187,11 +188,53 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        User::where('id', $id)->update($request->except('_token', '_method'));
-
+        $google = new GoogleController();
+        $request['coordinates'] = json_encode($google->getCoordinates($request['state'] . ' ' . $request['city'] . ' ' . $request['address']));
+        $request['city_coordinates'] = json_encode($google->getCoordinates($request['city']));
+        User::where('id', $id)->update($request->except('_token', '_method', 'prof_1', 'prof_2', 'prof_3', 'lang_1', 'lang_2', 'lang_3', 'phone', 'viber', 'telegram', 'skype', 'whatsapp', 'facebook', 'instagram', 'youtube'));
+        Contact::where('user_id', $id)->update($request->only('phone', 'viber', 'telegram', 'whatsapp', 'skype', 'facebook', 'instagram', 'youtube'));
+        
         if ($request['_token']){
+            LanguageUser::where('user_id', $id)->delete();
+            SubcategoryUser::where('user_id', $id)->delete();
+            if ($request['prof_1']){
+                SubcategoryUser::create([
+                    'user_id' => $id,
+                    'subcategory_id' => $request['prof_1']
+                ]);
+            }
+            if ($request['prof_2']){
+                SubcategoryUser::create([
+                    'user_id' => $id,
+                    'subcategory_id' => $request['prof_2']
+                ]);
+            }
+            if ($request['prof_3']){
+                SubcategoryUser::create([
+                    'user_id' => $id,
+                    'subcategory_id' => $request['prof_3']
+                ]);
+            }
+            if ($request['lang_1']){
+                LanguageUser::create([
+                    'user_id' => $id,
+                    'language_id' => $request['lang_1']
+                ]);
+            }
+            if ($request['lang_2']){
+                LanguageUser::create([
+                    'user_id' => $id,
+                    'language_id' => $request['lang_2']
+                ]);
+            }
+            if ($request['lang_3']){
+                LanguageUser::create([
+                    'user_id' => $id,
+                    'language_id' => $request['lang_3']
+                ]);
+            }
             $msg = request()->session();
-            $msg->flash('success', 'Категория успешно изменена');
+            $msg->flash('success', 'Сохранено');
             return redirect()->back();
         }
 

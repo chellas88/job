@@ -2,7 +2,8 @@
 
 @section('content')
     <div class="container">
-
+        <form method="POST" action="{{ route('user.update', $user['id']) }}">
+            @csrf
         <div class="card mt-3">
             <div class="card-header">
                 {{ $user['name'].' '. $user['surname'] }}
@@ -116,29 +117,64 @@
                             @endforeach
                         </select>
                     </div>
-
+                    @foreach($lang as $cur_lang)
                     <div class="col-12 mb-3">
-                        <label>Описание</label>
-                        <textarea class="form-control"></textarea>
+                        <label>Описание ({{ $cur_lang['key'] }})</label>
+                        <textarea class="form-control" name="description_{{ $cur_lang['key'] }}">{{ $user['description_'.$cur_lang['key']] }}</textarea>
                     </div>
-
-                    <div class="col-12 mb-3">
-                        <label>Описание</label>
-                        <textarea class="form-control"></textarea>
-                    </div>
-
-                    <div class="col-12 mb-3">
-                        <label>Описание</label>
-                        <textarea class="form-control"></textarea>
-                    </div>
+                    @endforeach
 
                     <hr class="mt-3 mb-3">
                     <h5>Контакты</h5>
+<div class="col-2 mb-3">
+                    <label>Телефон</label>
+                    <input type="text" class="form-control" name="phone" value="{{ $contacts['phone'] }}">
+                </div>
+                <div class="col-2 mb-3">
+                    <label>Whatsapp</label>
+                    <input type="text" class="form-control" name="whatsapp" value="{{ $contacts['whatsapp'] }}">
+                </div>
+                <div class="col-2 mb-3">
+                    <label>Viber</label>
+                    <input type="text" class="form-control" name="viber" value="{{ $contacts['viber'] }}">
+                </div>
+                <div class="col-2 mb-3">
+                    <label>Telegram</label>
+                    <input type="text" class="form-control" name="telegram" value="{{ $contacts['telegram'] }}">
+                </div>
+                <div class="col-2 mb-3">
+                    <label>Skype</label>
+                    <input type="text" class="form-control" name="skype" value="{{ $contacts['skype'] }}">
+                </div>
+                <div class="col-2 mb-3">
+                    <label>Email</label>
+                    <input type="email" class="form-control" name="email" required value="{{ $user['email'] }}">
+                </div>
+                <h5 class="my-3">Социальные сети</h5>
+                <div class="col-4 mb-3">
+                    <label>Facebook</label>
+                    <input type="text" class="form-control" name="facebook" value="{{ $contacts['facebook'] }}">
+                </div>
+                <div class="col-4 mb-3">
+                    <label>Instagram</label>
+                    <input type="text" class="form-control" name="instagram" value="{{ $contacts['instagram'] }}">
+                </div>
+                <div class="col-4 mb-3">
+                    <label>Youtube</label>
+                    <input type="text" class="form-control" name="youtube" value="{{ $contacts['youtube'] }}">
+                </div>
 
+                <div class="col-12 mb-3">
+                    <label>Теги (через запятую)</label>
+                    <input type="text" class="form-control" name="tags" value="{{ $contacts['tags'] }}">
+                </div>
+                <input type="hidden" name="_method" value="PUT">
+                <input type="submit" value="Сохранить" class="btn btn-primary my-3">
                 </div>
             </div>
         </div>
 
+        </form>
     </div>
 
 

@@ -16,11 +16,14 @@ class CreateContactsTable extends Migration
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->json('phones')->nullable();
-            $table->json('emails')->nullable();
+            $table->string('phone')->nullable();
             $table->string('viber')->nullable();
             $table->string('whatsapp')->nullable();
+            $table->string('telegram')->nullable();
+            $table->string('skype')->nullable();
             $table->text('facebook')->nullable();
+            $table->string('instagram', 500)->nullable();
+            $table->string('youtube', 500)->nullable();
             $table->timestamps();
         });
     }

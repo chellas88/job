@@ -37,6 +37,7 @@ Route::group([
                 Route::resource('country', \App\Http\Controllers\Admin\CountryController::class);
                 Route::resource('language', \App\Http\Controllers\Admin\LanguageController::class);
                 Route::resource('user', \App\Http\Controllers\Admin\UsersController::class);
+                
             });
         });
 
