@@ -188,13 +188,18 @@
 
 
     <div class="counter-block container-fluid">
-        <div class="row justify-content-around">
-            <div class="col-6">
+        <div class="row justify-content-around text-center">
+            <div class="col-4 counter-item">
+                <h4>Persons</h4>
                 <div class="counter" data-digits-counter>{{ $personsCount }}</div>
             </div>
-            <div class="col-6">
+            <div class="col-4 counter-item dark">
+                <h4>Companies</h4>
                 <div class="counter" data-digits-counter>{{ $companiesCount }}</div>
-
+            </div>
+            <div class="col-4 counter-item">
+                <h4>Countries</h4>
+                <div class="counter" data-digits-counter>{{ $countriesCount }}</div>
             </div>
         </div>
     </div>
@@ -288,7 +293,7 @@
         }
         function digitsCounterAnimate(digitsCounter){
             let startTimestamp = null
-            const duration = parseInt(digitsCounter.dataset.digitsCounter) ? parseInt(digitsCounter.dataset.digitsCounter) : 1000
+            const duration = parseInt(digitsCounter.dataset.digitsCounter) ? parseInt(digitsCounter.dataset.digitsCounter) : 500
             const startValue = parseInt(digitsCounter.innerHTML)
             console.log(startValue)
             const startPosition = 0
@@ -304,7 +309,7 @@
         }
         // digitsCountersInit()
         let options = {
-            threshold: 1
+            threshold: 0.3
         }
         let observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
@@ -318,7 +323,7 @@
             })
         }, options)
 
-        let sections = document.querySelectorAll('.counter')
+        let sections = document.querySelectorAll('.counter-block')
         if (sections.length){
             sections.forEach(section => {
                 observer.observe(section)

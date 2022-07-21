@@ -509,6 +509,7 @@ a.navbar-brand span{
 }
 .reviews-block{
     transition: all 0.8s ease;
+    margin-bottom: 100px;
 }
 .reviews-block .avatar{
     width: 90px !important;
@@ -580,9 +581,10 @@ a.navbar-brand span{
 }
 
 .counter-block {
-    margin: 20px 0 60px 0;
     background: #a2dc53;
-    padding: 40px;
+    margin-top: 80px;
+    margin-bottom: 180px;
+
 }
 .counter-block .row{
 
@@ -592,6 +594,13 @@ a.navbar-brand span{
 .counter-block .row .counter{
     font-size: 60px;
     font-weight: 600;
+}
+
+.counter-block .row .dark{
+    background: #4f9312;
+}
+.counter-block .row .counter-item {
+    padding: 30px;
 }
 
 

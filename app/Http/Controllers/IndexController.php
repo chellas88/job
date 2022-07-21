@@ -16,6 +16,7 @@ class IndexController extends Controller
         $category = Category::orderBy('title_'.App::getLocale())->get();
         $personsCount = User::where('role', 'person')->count();
         $companiesCount = User::where('role', 'company')->count();
+        $countriesCount = $country->count();
         $reviews_list = Review::where('isActive', true)->latest()->limit(3)->get();
         $recommended = User::recommended();
         $reviews = null;
@@ -27,6 +28,6 @@ class IndexController extends Controller
                 'for_user' => $item->user()
             ];
         }
-        return view('welcome', compact('category', 'country', 'reviews', 'recommended', 'personsCount', 'companiesCount'));
+        return view('welcome', compact('category', 'country', 'reviews', 'recommended', 'personsCount', 'companiesCount', 'countriesCount'));
     }
 }
