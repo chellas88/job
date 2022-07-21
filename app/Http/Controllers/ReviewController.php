@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Review;
-use App\Models\User;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,14 +14,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $persons = User::where('role', 'person')->get();
-        $personsCount = $persons->count();
-        $companies = User::where('role', 'company')->get();
-        $companiesCount = $companies->count();
-        $reviewsCount = Review::where('isActive', true)->count();
-        $reviews = Review::where('isActive', false)->get();
-        $noPolicy = User::where('policy', null)->get();
-        return view('admin.dashboard.index', compact('persons', 'personsCount', 'companies', 'companiesCount', 'reviewsCount', 'noPolicy', 'reviews'));
+        //
     }
 
     /**
@@ -44,7 +35,9 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request['isActive'] = false;
+        Review::create($request->except('_token'));
+        return redirect()->back();
     }
 
     /**
@@ -78,7 +71,8 @@ class DashboardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Review::where('id', $id)->update(['isActive' => true]);
+        return redirect()->back();
     }
 
     /**

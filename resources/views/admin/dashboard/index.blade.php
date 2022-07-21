@@ -64,24 +64,76 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Аккаунт</th>
+                        <th scope="col">Оценка</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
+                    @foreach($reviews as $review)
+                        <tr>
+                            <td>{{ $review->toUser['name'] }}</td>
+                            <td>
+                                @if ($review['rank'] == 1)
+                                    <x-rating.stars_1/>
+                                @elseif ($review['rank'] == 2)
+                                    <x-rating.stars_2/>
+                                @elseif ($review['rank']  == 3)
+                                    <x-rating.stars_3/>
+                                @elseif ($review['rank']  == 4)
+                                    <x-rating.stars_4/>
+                                @elseif ($review['rank']  == 5)
+                                    <x-rating.stars_5/>
+                                @endif
+                            </td>
+                            <td>
+                                <button class="btn btn-primary btn-sm" onclick="showReview({{ $review }})"
+                                        data-bs-toggle="modal" data-bs-target="#review">Показать
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
+
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- new review -->
+    <div class="modal fade" id="review" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form method="post" action="" id="form_publish">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="reviewLabel"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="mb-3" id="review_author"><i>Автор:</i> <span></span></p>
+                        <p class="mb-3" id="review_rank"><i>Оценка:</i> <span></span></p>
+                        <p class="mb-3" id="review_text"><i>Текст:</i> <span></span></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Закрыть</button>
+                        <input type="hidden" name="_method" value="PUT">
+                        <input type="submit" class="btn btn-primary" value="Опубликовать">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 @endsection
 
 
+<script>
+    function showReview(review) {
+        document.getElementById('reviewLabel').innerHTML = 'Отзыв #' + review.id
+        document.querySelector('#review_author span').innerHTML = review.name
+        document.querySelector('#review_rank span').innerHTML = review.rank
+        document.querySelector('#review_text span').innerHTML = review.text
+        document.getElementById('form_publish').setAttribute('action', '/en/review/' + review.id)
+    }
+</script>

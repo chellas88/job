@@ -14,9 +14,14 @@ class Review extends Model
         'name',
         'rank',
         'text',
+        'isActive'
     ];
 
     public function user(){
         return User::find($this->user_id);
+    }
+
+    public function toUser(){
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

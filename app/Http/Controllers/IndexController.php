@@ -14,6 +14,8 @@ class IndexController extends Controller
     public function homePage(){
         $country = Country::orderBy('title_' .App::currentLocale(), 'asc')->get();
         $category = Category::orderBy('title_'.App::getLocale())->get();
+        $personsCount = User::where('role', 'person')->count();
+        $companiesCount = User::where('role', 'company')->count();
         $reviews_list = Review::where('isActive', true)->latest()->limit(3)->get();
         $recommended = User::recommended();
         $reviews = null;
@@ -25,6 +27,6 @@ class IndexController extends Controller
                 'for_user' => $item->user()
             ];
         }
-        return view('welcome', compact('category', 'country', 'reviews', 'recommended'));
+        return view('welcome', compact('category', 'country', 'reviews', 'recommended', 'personsCount', 'companiesCount'));
     }
 }

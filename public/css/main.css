@@ -567,7 +567,32 @@ a.navbar-brand span{
     color: #8d8c8c;
 }
 
+.star {
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    background: #c6c3c3;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    cursor: pointer;
+}
+.star:hover{
+    background: #d7d6d6;
+}
 
+.counter-block {
+    margin: 20px 0 60px 0;
+    background: #a2dc53;
+    padding: 40px;
+}
+.counter-block .row{
+
+    justify-content: space-around;
+    color: #fff;
+}
+.counter-block .row .counter{
+    font-size: 60px;
+    font-weight: 600;
+}
 
 
 @media screen and (min-width: 990px) {

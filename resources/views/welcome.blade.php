@@ -185,6 +185,22 @@
             </div>
         </div>
     </section>
+
+
+    <div class="counter-block container-fluid">
+        <div class="row justify-content-around">
+            <div class="col-6">
+                <div class="counter" data-digits-counter>{{ $personsCount }}</div>
+            </div>
+            <div class="col-6">
+                <div class="counter" data-digits-counter>{{ $companiesCount }}</div>
+
+            </div>
+        </div>
+    </div>
+
+
+
     {{--    REVIEWS--}}
     <div class="container-fluid main-block reviews-block">
         <img class="w-100 bg-top" src="{{ asset('/images/main-block-top.svg') }}">
@@ -213,7 +229,7 @@
                                                 <img src="{{asset('/uploads/avatars/avatar.svg')}}"
                                                      class="d-block w-100 avatar">
                                             @endif
-                                            <div class="review-rank text-center">
+                                            <div class="review-rank text-center mb-2">
                                                 @if ($review['rank'] == 5)
                                                     <x-rating.stars_5/>
                                                 @elseif ($review['rank'] == 4)
@@ -255,22 +271,61 @@
         <img class="w-100 bg-bottom" src="{{ asset('/images/main-block-bottom.svg') }}">
 
     </div>
-    {{--    <section class="my-3">--}}
-    {{--        <div class="container-fluid alert-danger">--}}
-    {{--            <div class="row">--}}
-    {{--                <div class="col-4 text-center py-4">--}}
-    {{--                    alksdfj--}}
-    {{--                </div>--}}
-    {{--                <div class="col-4 text-center py-4">--}}
-    {{--                    alksdfj--}}
-    {{--                </div>--}}
-    {{--                <div class="col-4 text-center py-4">--}}
-    {{--                    alksdfj--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </section>--}}
+
+
 @endsection
+
+<script>
+    window.addEventListener("load", windowLoad)
+    function windowLoad(){
+        function digitsCountersInit(digitsCountersItems){
+            let digitsCounters = digitsCountersItems ? digitsCountersItems : document.querySelectorAll("[data-digits-counter]")
+            if (digitsCounters){
+                digitsCounters.forEach(digitsCounter => {
+                    digitsCounterAnimate(digitsCounter)
+                })
+            }
+        }
+        function digitsCounterAnimate(digitsCounter){
+            let startTimestamp = null
+            const duration = parseInt(digitsCounter.dataset.digitsCounter) ? parseInt(digitsCounter.dataset.digitsCounter) : 1000
+            const startValue = parseInt(digitsCounter.innerHTML)
+            console.log(startValue)
+            const startPosition = 0
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1)
+                digitsCounter.innerHTML = Math.floor(progress * (startPosition + startValue))
+                if (progress < 1){
+                    window.requestAnimationFrame(step)
+                }
+            }
+            window.requestAnimationFrame(step)
+        }
+        // digitsCountersInit()
+        let options = {
+            threshold: 1
+        }
+        let observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting){
+                    const targetElement = entry.target
+                    const digitsCountersItems = targetElement.querySelectorAll("[data-digits-counter]")
+                    if (digitsCountersItems.length){
+                        digitsCountersInit(digitsCountersItems)
+                    }
+                }
+            })
+        }, options)
+
+        let sections = document.querySelectorAll('.counter')
+        if (sections.length){
+            sections.forEach(section => {
+                observer.observe(section)
+            })
+        }
+    }
+</script>
 
 
 <script>

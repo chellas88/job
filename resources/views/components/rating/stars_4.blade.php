@@ -13,7 +13,7 @@
     </svg>
 </div>
 
-<p class="star-rating" aria-label="4.5 stars out of 5">
+<p class="star-rating m-0" aria-label="4.5 stars out of 5">
     <svg class="c-star active" width="32" height="32" viewBox="0 0 32 32">
         <use xlink:href="#star"></use>
     </svg>

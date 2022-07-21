@@ -10,6 +10,7 @@ Route::group([
         Route::get('/', [\App\Http\Controllers\IndexController::class, 'homePage']);
         Route::get('new_user/{link}', [\App\Http\Controllers\UserController::class, 'privacy']);
         Route::post('new_user/accept', [\App\Http\Controllers\UserController::class, 'accept'])->name('accept_policy');
+        Route::resource('/review', \App\Http\Controllers\ReviewController::class);
 //        Route::get('/setLocale/{lang}', [\App\Http\Controllers\setLocaleController::class, 'setLocale'])->name('setLocale');
         Auth::routes();
 

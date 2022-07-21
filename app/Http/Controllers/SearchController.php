@@ -45,7 +45,9 @@ class SearchController extends Controller
                 'geo' => json_decode($user->coordinates, true),
                 'contacts' => $user['email'],
                 'name' => $user['name'],
-                'category' => $user->category
+                'surname' => $user['surname'],
+                'category' => $user->category,
+                'id' => $user['id']
             ];
         }
         return view('search', ['data' => $data]);
