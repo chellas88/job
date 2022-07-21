@@ -76,7 +76,7 @@
                                 @endif
                             </div>
                             <div class="align-items-center">
-                                {{$rec['name']}}
+                                <a href="{{ \Illuminate\Support\Facades\App::currentLocale() }}/profile/{{$rec['id']}}">{{$rec['name']}}</a>
                                 <p>{{$rec['category']['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}</p>
                                 @if ($rec['rating'] > 0 && $rec['rating'] < 2)
                                     <x-rating.stars_05/>
@@ -234,6 +234,7 @@
                                                 <img src="{{asset('/uploads/avatars/avatar.svg')}}"
                                                      class="d-block w-100 avatar">
                                             @endif
+                                            <h5 class="text-center">{{ $review['for_user']['name'] }} {{ $review['for_user']['surname'] }}</h5>
                                             <div class="review-rank text-center mb-2">
                                                 @if ($review['rank'] == 5)
                                                     <x-rating.stars_5/>

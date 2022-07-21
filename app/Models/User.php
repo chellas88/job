@@ -71,7 +71,7 @@ class User extends Authenticatable
     }
 
     public function getRating(){
-        $reviews = Review::where('user_id', $this->id)->get();
+        $reviews = Review::where('user_id', $this->id)->where('isActive', true)->get();
         $rank = 0;
         $count = 0;
         if (!$reviews->isEmpty()) {

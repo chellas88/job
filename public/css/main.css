@@ -303,6 +303,11 @@ a.navbar-brand span{
     padding: 0;
     box-shadow: 0 5px 10px rgba(0,0,0, 0.1);
 }
+.recommended-companies a{
+    color: #0559d5;
+    text-decoration: none;
+    font-size: 16px;
+}
 .recommended-companies .title {
     background: #8dc539;
     color: #fff;
