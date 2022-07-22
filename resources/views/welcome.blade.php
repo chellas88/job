@@ -296,7 +296,6 @@
             let startTimestamp = null
             const duration = parseInt(digitsCounter.dataset.digitsCounter) ? parseInt(digitsCounter.dataset.digitsCounter) : 500
             const startValue = parseInt(digitsCounter.innerHTML)
-            console.log(startValue)
             const startPosition = 0
             const step = (timestamp) => {
                 if (!startTimestamp) startTimestamp = timestamp
