@@ -40,6 +40,7 @@
     <x-contactbar></x-contactbar>
     <x-navbar></x-navbar>
 
+    <div class="preloader"><img src="{{ asset('images/preloader.gif') }}"></div>
     <main>
         @yield('content')
     </main>
@@ -51,7 +52,12 @@
 
 </html>
 
-
+<script>
+    window.addEventListener('load', () => {
+        document.querySelector('div.preloader').style.display = 'none'
+        document.querySelector('main').style.display = 'block'
+    })
+</script>
 {{--<script>--}}
 {{--    const sidebarBodyScroll = new PerfectScrollbar('body');--}}
 {{--</script>--}}

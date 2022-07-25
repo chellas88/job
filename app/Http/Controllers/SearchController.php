@@ -65,7 +65,14 @@ class SearchController extends Controller
         if ($request['category_id']) {
             $filter['category_id'] = intval($request['category_id']);
         }
-        $users = User::where($filter)->paginate(10);
+        if ($request['lang']){
+            $this->lang = $request['lang'];
+            $users = User::whereHas('languages', function ($query){
+                $query->where('language_id', $this->lang);
+            })->paginate(10);
+
+        }
+        else $users = User::where($filter)->paginate(10);
         return $users;
     }
 

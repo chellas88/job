@@ -57,7 +57,7 @@
                                 </select>
                             </div>
                             <div class="mb-2">
-                                <input type="submit" value="Search" class="form-control">
+                                <input type="submit" value="{{ __('main.search') }}" class="form-control">
                             </div>
                         </div>
                     </form>
@@ -73,7 +73,7 @@
                         <div class="card user-card mb-3">
                             <div class="card-body">
                                 <div class="user-card-mini justify-content-between">
-                                    <div class="avatar">
+                                    <div class="">
                                         @if(!$item['avatar'])
                                             <img class="avatar" src="/uploads/avatars/avatar.svg">
                                         @else
@@ -81,8 +81,12 @@
                                         @endif
                                     </div>
                                     <div class="user-info w-100">
-                                        <p><b>{{$item['name']}}</b></p>
-                                        <p>{{$item['category']['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}</p>
+                                        <p class="title"><b>{{$item['name']}} {{ $item['surname'] }}</b>&nbsp;
+                                            @foreach($item->languages as $lang)
+                                                <img class="user-language" src="{{ asset('/images/flags/' . $lang['key'] .'.svg') }}" title="{{ $lang['title_' . \Illuminate\Support\Facades\App::currentLocale()]}}">
+                                            @endforeach
+                                        </p>
+                                        <p class="category">{{$item['category']['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}</p>
                                         @if ($item->getRating() > 0 && $item->getRating() < 2)
                                             <x-rating.stars_05/>
                                         @elseif ($item->getRating() == 1)

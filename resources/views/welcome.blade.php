@@ -49,6 +49,9 @@
 {{--                    <label for="lang">Language</label>--}}
                     <select type="text" class="form-control" id="lang" name="lang">
                         <option value="0">{{ __('main.select_language') }}</option>
+                        @foreach($languages as $language)
+                            <option value="{{ $language['id'] }}">{{ $language['title_' . \Illuminate\Support\Facades\App::currentLocale()] }}</option>
+                        @endforeach
                     </select>
                 </div>
 
