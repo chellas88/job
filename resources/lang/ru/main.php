@@ -2,6 +2,8 @@
 
 return [
     'name' => 'Имя',
+    'surname' => 'Фамилия',
+    'company_name' => 'Название компании',
     'email' => 'Email',
     'hide' => 'Скрыть',
     'show' => 'Показать',
@@ -11,6 +13,12 @@ return [
     'select_category' => 'Выберите категорию',
     'all_category' => 'Все категории',
     'popular_category' => 'Популярные категории',
+    'password' => 'Пароль',
+    'confirm_password' => 'Подтверждение пароля',
+    'register' => 'Зарегистрироваться',
+    'account_type' => 'Тип аккаунта',
+    'person' => 'Персональный',
+    'company' => 'Компания',
 
     'countries' => 'Все страны',
     'country' => 'Страна',
@@ -56,6 +64,9 @@ return [
 
     'user_card' => 'Карточка пользователя',
     'user' => 'Пользователь',
-    'accept_policy' => 'Я принимаю правила и условия',
+    'accept_policy' => 'Я принимаю',
+    'policy' => 'условия',
+    'and' => 'и',
+    'rules' => 'правила',
     'accept' => 'Принять'
 ];

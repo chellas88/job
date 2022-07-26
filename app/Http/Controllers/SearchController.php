@@ -73,6 +73,7 @@ class SearchController extends Controller
 
         }
         else $users = User::where($filter)->paginate(10);
+        dd($users);
         return $users;
     }
 

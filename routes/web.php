@@ -8,7 +8,7 @@ Route::group([
 ],
     function() {
         Route::get('/', [\App\Http\Controllers\IndexController::class, 'homePage']);
-        Route::get('/policy', [\App\Http\Controllers\IndexController::class, 'policyPage']);
+        Route::get('/policy', [\App\Http\Controllers\IndexController::class, 'policyPage'])->name('policy');
         Route::get('/rules', [\App\Http\Controllers\IndexController::class, 'rulesPage']);
 
         Route::get('new_user/{link}', [\App\Http\Controllers\UserController::class, 'privacy']);

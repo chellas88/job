@@ -19,13 +19,14 @@ class GoogleController extends Controller
         $url = "https://maps.googleapis.com/maps/api/geocode/json?address=" . $address . "&key=" . config('google.key');
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
+//        curl_setopt($ch, CURLOPT_PROXY, '10.2.120.21:3131');
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, TRUE);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         $output = curl_exec($ch);
         curl_close($ch);
         $res = json_decode($output, true);
-        if ($res['status'] == 'OK') {
+        if (($res['status'] == 'OK') && ($res != null)) {
             return $res['results'][0]['geometry']['location'];
         }
         return false;

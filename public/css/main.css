@@ -71,8 +71,12 @@ footer {
     width: 35px;
     margin-right: 4px;
 }
+
+.surname-block {
+    /*display: none;*/
+}
 .person, .company {
-    background: #8dc539;
+    background: #b2c29a;
     padding: 8px;
     width: 120px;
     text-align: center;
@@ -638,7 +642,7 @@ a.navbar-brand span{
 
 @media screen and (min-width: 990px) {
     .auth-block {
-        margin-top: -10%;
+        margin-top: -15%;
     }
 
 }
