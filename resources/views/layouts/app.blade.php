@@ -41,7 +41,7 @@
     <x-navbar></x-navbar>
 
     <div class="preloader"><img src="{{ asset('images/preloader.gif') }}"></div>
-    <main>
+    <main class="mb-4">
         @yield('content')
     </main>
 

@@ -1,4 +1,4 @@
-<footer class="footer p-4">
+<footer class="footer p-4 mt-4">
     <div class="container">
     <div class="vc_empty_space  visible-lg" style="height: 80px"><span class="vc_empty_space_inner"></span></div>
     <div class="row justify-content-between mb-4">
