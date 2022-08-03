@@ -40,14 +40,13 @@ class SearchController extends Controller
             $changeLang = Language::where('id', $request['lang'])->first();
             App::setLocale($changeLang['key']);
             $this->lang = $request['lang'];
-            $users = User::where($filter)->where('role', '!=', 'admin')->whereHas('languages', function ($query){
+            $users = User::where($filter)->where('role', '!=', 'admin')->where('coordinates', '!=', null)->whereHas('languages', function ($query){
                 $query->where('language_id', $this->lang);
             })->get();
         }
         else {
-            $users = User::where($filter)->where('role', '!=', 'admin')->get();
+            $users = User::where($filter)->where('role', '!=', 'admin')->where('coordinates', '!=', null)->get();
         }
-//        dd($users);
         if ($users->isEmpty()) {
             $data['users'] = [];
         }
