@@ -254,12 +254,14 @@
         });
         map.addListener('bounds_changed', () => {
             var bounds = map.getBounds();
+            console.log(bounds)
             let max_lat = bounds.vb.hi
             let min_lat = bounds.vb.lo
             let max_lng = bounds.Sa.hi
             let min_lng = bounds.Sa.lo
             var userList = []
             users.forEach(user => {
+                console.log(user)
                 lat = +user.geo.lat
                 lng = +user.geo.lng
                 if (lat > min_lat && lat < max_lat && lng > min_lng && lng < max_lng) {
