@@ -22,31 +22,31 @@ if (showHideSearch) {
 }
 
 //add lang
-function addLang(id, lang){
+function addLang(id, lang) {
     let parent = document.getElementById('newlang_' + id)
     $.ajax({
         type: 'post',
         url: '/en/languser',
-        data: {'id' : id},
-        success: function (response){
+        data: {'id': id},
+        success: function (response) {
             let span = document.createElement('span')
             span.setAttribute('id', 'lang_' + id)
             span.innerHTML = `${response['title_' + lang]}<i onclick="removeLang(${id}, '${lang}')" class="remove_lang">X</i>`
             document.getElementById('lang-list').appendChild(span)
             parent.remove()
         },
-        error: function (error){
+        error: function (error) {
             console.log(error)
         }
     })
 }
 
-function removeLang(id, lang){
+function removeLang(id, lang) {
     let parent = document.getElementById('lang_' + id)
     $.ajax({
         type: 'delete',
         url: '/en/languser/' + id,
-        success: function (response){
+        success: function (response) {
             let li = document.createElement('li')
             li.setAttribute('id', 'newlang_' + id)
             li.innerHTML = `<a  onclick="addLang(${id}, '${lang}')" class="dropdown-item add_lang" href="#">${response['title_' + lang]}</a>`
@@ -56,14 +56,14 @@ function removeLang(id, lang){
     })
 }
 
-function addService(id, lang){
+function addService(id, lang) {
     event.preventDefault()
     let parent = document.getElementById('newservice_' + id)
     $.ajax({
         type: 'post',
         url: '/en/service',
         data: {'id': id},
-        success: function(res){
+        success: function (res) {
             let span = document.createElement('span')
             span.setAttribute('id', 'serv_' + id)
             span.innerHTML = `${res['title_' + lang]}<i onclick="removeService(${id}, '${lang}')">X</i>`
@@ -73,13 +73,13 @@ function addService(id, lang){
     })
 }
 
-function removeService(id, lang){
+function removeService(id, lang) {
     event.preventDefault()
     let parent = document.getElementById('serv_' + id)
     $.ajax({
         type: 'delete',
         url: '/en/service/' + id,
-        success: function (response){
+        success: function (response) {
             let li = document.createElement('li')
             li.setAttribute('id', 'newservice_' + id)
             li.innerHTML = `<a  onclick="addService(${id}, '${lang}')" class="dropdown-item" href="#">${response['title_' + lang]}</a>`
@@ -88,3 +88,5 @@ function removeService(id, lang){
         }
     })
 }
+
+

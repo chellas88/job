@@ -136,11 +136,13 @@
         if (val === 'person'){
             block.style.display = 'flex'
             document.querySelector('.company-name').innerHTML = "{{ __('main.name') }}"
+            document.getElementById('surname').setAttribute('required', 'true')
         }
         else {
             block.style.display = 'none'
             document.getElementById('surname').value = ''
             document.querySelector('.company-name').innerHTML = "{{ __('main.company_name') }}"
+            document.getElementById('surname').removeAttribute('required')
         }
     }
 </script>

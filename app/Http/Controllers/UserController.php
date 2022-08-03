@@ -7,6 +7,7 @@ use App\Models\Contact;
 use App\Models\Language;
 use App\Models\LanguageUser;
 use App\Models\NewUserLink;
+use App\Models\SubcategoryUser;
 use App\Models\User;
 use http\Client\Response;
 use Illuminate\Http\Request;
@@ -118,5 +119,98 @@ class UserController extends Controller
             return redirect()->route('home');
         }
         return redirect()->back();
+    }
+
+    public function Step2(Request $request){
+        $user_id = Auth::user()->id;
+        $services = [];
+        if ($request['category_id']){
+            User::where('id', $user_id)->update(['category_id' => $request['category_id']]);
+            if ($request['subcategory_1']){
+//                array_push($services, [
+//                    'user_id' => $user_id,
+//                    'subcategory_id' => $request['subcategory_1']
+//                ]);
+                SubcategoryUser::create([
+                    'user_id' => $user_id,
+                    'subcategory_id' => $request['subcategory_1']
+                ]);
+            }
+            if ($request['subcategory_2']){
+//                array_push($services, [
+//                    'user_id' => $user_id,
+//                    'subcategory_id' => $request['subcategory_2']
+//                ]);
+                SubcategoryUser::create([
+                    'user_id' => $user_id,
+                    'subcategory_id' => $request['subcategory_2']
+                ]);
+            }
+            if ($request['subcategory_3']){
+//                array_push($services, [
+//                    'user_id' => $user_id,
+//                    'subcategory_id' => $request['subcategory_3']
+//                ]);
+                SubcategoryUser::create([
+                    'user_id' => $user_id,
+                    'subcategory_id' => $request['subcategory_3']
+                ]);
+            }
+        }
+        return redirect(route('home'));
+    }
+
+    public function Step3(Request $request){
+        $google = new GoogleController();
+        $request['coordinates'] = json_encode($google->getCoordinates($request['country'] . ' ' . $request['state'] . ' ' . $request['city'] . ' ' . $request['address']));
+        $request['city_coordinates'] = json_encode($google->getCoordinates($request['country'] . ' ' . $request['state'] . ' ' . $request['city']));
+        User::where('id', Auth::user()->id)->update($request->except('_token'));
+        return redirect(route('home'));
+    }
+
+    public function Step4(Request $request){
+        $request['user_id'] = Auth::user()->id;
+        if($request['phone']){
+            Contact::create($request->except('_token'));
+        }
+        return redirect(route('home'));
+    }
+
+    public function Step5(Request $request){
+        $user_id = Auth::user()->id;
+        if ($request['lang_1']){
+            $keylang_id = $request['keylang_1'];
+            User::where('id', $user_id)->update([
+                'title_' . $keylang_id => $request['profile_title_1'],
+                'description_' . $keylang_id => $request['description_1']
+            ]);
+            LanguageUser::create([
+                'user_id' => $user_id,
+                'language_id' => $request['lang_1']
+            ]);
+        }
+        if ($request['lang_2']){
+            $keylang_id = $request['keylang_2'];
+            User::where('id', $user_id)->update([
+                'title_' . $keylang_id => $request['profile_title_2'],
+                'description_' . $keylang_id => $request['description_2']
+            ]);
+            LanguageUser::create([
+                'user_id' => $user_id,
+                'language_id' => $request['lang_2']
+            ]);
+        }
+        if ($request['lang_3']){
+            $keylang_id = $request['keylang_3'];
+            User::where('id', $user_id)->update([
+                'title_' . $keylang_id => $request['profile_title_3'],
+                'description_' . $keylang_id => $request['description_3']
+            ]);
+            LanguageUser::create([
+                'user_id' => $user_id,
+                'language_id' => $request['lang_3']
+            ]);
+        }
+        return redirect(route('home'));
     }
 }

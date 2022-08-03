@@ -59,6 +59,8 @@ return [
     'facebook' => 'Facebook',
     'instagram' => 'Instagram',
     'services' => 'Услуги',
+    'skype' => 'Skype',
+    'youtube' => 'Youtube',
     'add_service' => 'Добавить услугу',
     'speaking' => 'Разговорные языки',
 
@@ -68,5 +70,19 @@ return [
     'policy' => 'условия',
     'and' => 'и',
     'rules' => 'правила',
-    'accept' => 'Принять'
+    'accept' => 'Принять',
+    'profession' => 'Профессия',
+    'service' => 'Услуга',
+    'select_service' => 'Выберите услугу',
+    'select_profession' => 'Выберите профессию',
+    'registration_step_2' => 'ШАГ 2 - Категория и услуги',
+    'registration_step_3' => 'ШАГ 3 - Местоположение',
+    'registration_step_4' => 'ШАГ 4 - Контактные данные',
+    'registration_step_5' => 'ШАГ 5 - Настройка профиля',
+    'next' => 'Далее',
+    'finish_registration' => 'Завершить регистрацию',
+    'input_location' => 'Укажите Ваше местонахождение',
+    'select_languages_text' => 'Выберите языки, на которых Вы разговариваете',
+    'profile_title' => 'Заголовок профиля',
+    'description' => 'Описание'
 ];

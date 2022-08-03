@@ -24,8 +24,7 @@ class SearchRequest extends FormRequest
     public function rules()
     {
         return [
-            'city' => 'required',
-            'country_id' => 'required'
+            'location' => 'required',
         ];
     }
 }

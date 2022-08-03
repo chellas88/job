@@ -12,7 +12,7 @@
             <form id="search-form" method="GET" action="{{route('search')}}">
                 @csrf
                 <div class="mb-3">
-{{--                    <label for="category_id">{{ __('main.categories') }}</label>--}}
+                    {{--                    <label for="category_id">{{ __('main.categories') }}</label>--}}
                     <select type="text" class="form-control" id="category_id" name="category_id">
                         <option value="" selected>{{ __('main.all_category') }}</option>
                         @if(!$category->isEmpty())
@@ -24,33 +24,22 @@
                     </select>
                 </div>
                 <div class="mb-3">
-{{--                    <label for="country_id">Country</label>--}}
-                    <select type="text" class="form-control" id="country_id" name="country_id" required>
-                        <option value="" selected disabled>{{ __('main.select_country') }}</option>
-                        @foreach($country as $item)
-                            <option value="{{ $item['id'] }}" {{ old('country_id') == $item['id'] ? "selected" : ''}}>
-                                {{$item['title_' . \Illuminate\Support\Facades\App::currentLocale()]}}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="mb-3">
-{{--                    <label for="city">{{ __('main.city') }}</label>--}}
-                    <input type="text" class="form-control @error('city') is-invalid @enderror"
-                           placeholder="{{ __('main.city') }}" id="city"
-                           name="city" value="{{ old('city') }}" required>
-                    @error('city')
+                    <input type="text" class="form-control @error('location') is-invalid @enderror"
+                               placeholder="{{ __('main.input_location') }}" id="location"
+                           name="location" value="{{ old('location') }}" required>
+                    @error('location')
                     <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                     @enderror
                 </div>
                 <div class="mb-3">
-{{--                    <label for="lang">Language</label>--}}
+                    {{--                    <label for="lang">Language</label>--}}
                     <select type="text" class="form-control" id="lang" name="lang">
                         <option value="0">{{ __('main.select_language') }}</option>
                         @foreach($languages as $language)
-                            <option value="{{ $language['id'] }}">{{ $language['title_' . \Illuminate\Support\Facades\App::currentLocale()] }}</option>
+                            <option
+                                value="{{ $language['id'] }}">{{ $language['title_' . \Illuminate\Support\Facades\App::currentLocale()] }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -286,16 +275,18 @@
 
 <script>
     window.addEventListener("load", windowLoad)
-    function windowLoad(){
-        function digitsCountersInit(digitsCountersItems){
+
+    function windowLoad() {
+        function digitsCountersInit(digitsCountersItems) {
             let digitsCounters = digitsCountersItems ? digitsCountersItems : document.querySelectorAll("[data-digits-counter]")
-            if (digitsCounters){
+            if (digitsCounters) {
                 digitsCounters.forEach(digitsCounter => {
                     digitsCounterAnimate(digitsCounter)
                 })
             }
         }
-        function digitsCounterAnimate(digitsCounter){
+
+        function digitsCounterAnimate(digitsCounter) {
             let startTimestamp = null
             const duration = parseInt(digitsCounter.dataset.digitsCounter) ? parseInt(digitsCounter.dataset.digitsCounter) : 500
             const startValue = parseInt(digitsCounter.innerHTML)
@@ -304,22 +295,23 @@
                 if (!startTimestamp) startTimestamp = timestamp
                 const progress = Math.min((timestamp - startTimestamp) / duration, 1)
                 digitsCounter.innerHTML = Math.floor(progress * (startPosition + startValue))
-                if (progress < 1){
+                if (progress < 1) {
                     window.requestAnimationFrame(step)
                 }
             }
             window.requestAnimationFrame(step)
         }
+
         // digitsCountersInit()
         let options = {
             threshold: 0.3
         }
         let observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting){
+                if (entry.isIntersecting) {
                     const targetElement = entry.target
                     const digitsCountersItems = targetElement.querySelectorAll("[data-digits-counter]")
-                    if (digitsCountersItems.length){
+                    if (digitsCountersItems.length) {
                         digitsCountersInit(digitsCountersItems)
                     }
                 }
@@ -327,9 +319,29 @@
         }, options)
 
         let sections = document.querySelectorAll('.counter-block')
-        if (sections.length){
+        if (sections.length) {
             sections.forEach(section => {
                 observer.observe(section)
+            })
+        }
+
+
+        var location_input = document.getElementById("location");
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+
+        function showPosition(position){
+            console.log(position)
+            $.ajax({
+                method: 'post',
+                url: '/en/getLocation',
+                data: {lng: position.coords.longitude, lat: position.coords.latitude},
+                success: function (response){
+                    location_input.value = response
+                }
             })
         }
     }

@@ -14,7 +14,6 @@ class GoogleController extends Controller
 {
     public function getCoordinates($address)
     {
-        Log::debug('getlocation');
         $address = str_replace(' ', '+', $address);
         $url = "https://maps.googleapis.com/maps/api/geocode/json?address=" . $address . "&key=" . config('google.key');
         $ch = curl_init();
@@ -65,5 +64,19 @@ class GoogleController extends Controller
         } catch (Exception $exception){
             dd($exception->getMessage());
         }
+    }
+
+    public function getLocation(Request $request){
+
+        $url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" . $request['lat'] . "," . $request['lng'] . "&key=" . config('google.key');
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+//        curl_setopt($ch, CURLOPT_PROXY, '10.2.120.21:3131');
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, TRUE);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        $output = curl_exec($ch);
+        curl_close($ch);
+        return json_decode($output, true)['results'][0]['formatted_address'];
     }
 }

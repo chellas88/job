@@ -89,4 +89,6 @@ class ServiceController extends Controller
         SubcategoryUser::where('subcategory_id', $id)->where('user_id', Auth::user()->id)->delete();
         return Subcategory::find($id);
     }
+
+
 }
