@@ -16,10 +16,7 @@
                 <div class="col-8"></div>
                 <div class="col-4 mb-3">
                     <label for="country">Страна</label>
-                    <select id="country" class="form-control" v-model="form.country_id" name="country_id" required>
-                        <option value="">Выберите страну</option>
-                        <option v-for="country in countries" :id="country.id" :value="country.id">{{ country.title_ru }}</option>
-                    </select>
+                    <input type="text" id="country" class="form-control" v-model="form.country" name="country" required>
                 </div>
                 <div class="col-4">
                     <label for="city">Город</label>
@@ -162,7 +159,7 @@ export default {
             form: {
                 role: (this.old.role) ? this.old.role : this.$parent.role,
                 name: (this.old.name) ? this.old.name : '',
-                country_id: (this.old.country_id) ? this.old.country_id : '',
+                country: (this.old.country) ? this.old.country : '',
                 city: (this.old.city) ? this.old.city : '',
                 address: (this.old.address) ? this.old.address : '',
                 category_id: (this.old.category_id) ? this.old.category_id : '',

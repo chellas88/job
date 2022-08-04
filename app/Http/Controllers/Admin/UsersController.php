@@ -64,7 +64,7 @@ class UsersController extends Controller
         $user_data = $request->except('_token', 'avatar', 'lang_1', 'lang_2', 'lang_3');
         $google = new GoogleController();
         $user_data['coordinates'] = json_encode($google->getCoordinates($request['state'] . ' ' . $request['city'] . ' ' . $request['address']));
-        $user_data['city_coordinates'] = json_encode($google->getCoordinates($request['city']));
+//        $user_data['city_coordinates'] = json_encode($google->getCoordinates($request['city']));
         $user_data['password'] = Hash::make($password);
         $user = User::create($user_data);
 
@@ -189,7 +189,7 @@ class UsersController extends Controller
     {
         $google = new GoogleController();
         $request['coordinates'] = json_encode($google->getCoordinates($request['state'] . ' ' . $request['city'] . ' ' . $request['address']));
-        $request['city_coordinates'] = json_encode($google->getCoordinates($request['city']));
+//        $request['city_coordinates'] = json_encode($google->getCoordinates($request['city']));
         User::where('id', $id)->update($request->except('_token', '_method', 'prof_1', 'prof_2', 'prof_3', 'lang_1', 'lang_2', 'lang_3', 'phone', 'viber', 'telegram', 'skype', 'whatsapp', 'facebook', 'instagram', 'youtube'));
         Contact::where('user_id', $id)->update($request->only('phone', 'viber', 'telegram', 'whatsapp', 'skype', 'facebook', 'instagram', 'youtube'));
 

@@ -42,14 +42,7 @@
                         <div class="col-4"></div>
                         <div class="col-4 mb-3">
                             <label for="country">Страна</label>
-                            <select id="country" class="form-control" name="country_id" required>
-                                <option value="" disabled>Выберите страну</option>
-                                @foreach($countries as $country)
-                                    <option
-                                        value="{{ $country['id'] }}" {{ ($country['id'] == $user['country_id']) ? 'selected' : '' }}>{{ $country['title_ru'] }}</option>
-
-                                @endforeach
-                            </select>
+                            <input type="text" id="country" class="form-control" name="country" required value="{{ $user['country'] }}">
                         </div>
                         <div class="col-4">
                             <label for="city">Город</label>

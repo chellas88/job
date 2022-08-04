@@ -174,13 +174,8 @@
                                 @csrf
                                 <div class="mb-3">
                                     <label for="country">{{ __('main.country') }}</label>
-                                    <select id="country" name="country_id" class="form-control" required>
-                                        <option value="" disabled>{{ __('main.select_country') }}</option>
-                                        @foreach($data['countries'] as $country)
-                                            <option
-                                                value="{{$country['id']}}" {{ $country['id'] == $data['user']['country_id'] ? 'selected' : '' }}>{{$country['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text" id="country" name="country" class="form-control" required value="{{ $data['user']->country }}">
+
                                 </div>
                                 <div class="mb-3">
                                     <label for="state">{{ __('main.state') }}</label>

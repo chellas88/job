@@ -255,10 +255,10 @@
         map.addListener('bounds_changed', () => {
             var bounds = map.getBounds();
             console.log(bounds)
-            let max_lat = bounds.vb.hi
-            let min_lat = bounds.vb.lo
-            let max_lng = bounds.Sa.hi
-            let min_lng = bounds.Sa.lo
+            let max_lat = bounds.ub.hi
+            let min_lat = bounds.ub.lo
+            let max_lng = bounds.Ra.hi
+            let min_lng = bounds.Ra.lo
             var userList = []
             users.forEach(user => {
                 console.log(user)

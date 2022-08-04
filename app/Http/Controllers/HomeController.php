@@ -52,6 +52,7 @@ class HomeController extends Controller
         $select = new SelectController();
         $data['categories'] = Category::where('user_type', $user->role)->orderBy('title_'.App::currentLocale(), 'asc')->get();
         $services = Subcategory::where('category_id', $data['category']->id)->orderBy('title_'.App::currentLocale(), 'asc')->get();
+        $data['services'] = [];
         foreach ($services as $serv){
             $is = false;
             foreach ($data['my_services'] as $myserv){
@@ -63,7 +64,6 @@ class HomeController extends Controller
                 $data['services'][] = $serv;
             }
         }
-        $data['countries'] = $select->getCountries();
         $data['languages'] = [];
         $languages = Language::orderBy('title_'. App::currentLocale(), 'asc')->get();
         foreach ($languages as $lang){
@@ -77,6 +77,7 @@ class HomeController extends Controller
                 $data['languages'][] = $lang;
             }
         }
+//        dd($data);
         return view('home' , ['data' => $data]);
     }
 }

@@ -53,13 +53,13 @@ class UserController extends Controller
     {
         $google = new GoogleController();
         $coordinates = json_encode($google->getCoordinates($request['state'] . ' ' . $request['city'] . ' ' . $request['address']));
-        $city_coordinates = json_encode($google->getCoordinates($request['city']));
+//        $city_coordinates = json_encode($google->getCoordinates($request['city']));
         $user = Auth::user();
         $user->country_id = $request['country_id'];
         $user->city = $request['city'];
         $user->state = $request['state'];
         $user->coordinates = $coordinates;
-        $user->city_coordinates = $city_coordinates;
+//        $user->city_coordinates = $city_coordinates;
         $user->address = $request['address'];
         $user->save();
         $msg = request()->session();
@@ -163,7 +163,7 @@ class UserController extends Controller
     public function Step3(Request $request){
         $google = new GoogleController();
         $request['coordinates'] = json_encode($google->getCoordinates($request['country'] . ' ' . $request['state'] . ' ' . $request['city'] . ' ' . $request['address']));
-        $request['city_coordinates'] = json_encode($google->getCoordinates($request['country'] . ' ' . $request['state'] . ' ' . $request['city']));
+//        $request['city_coordinates'] = json_encode($google->getCoordinates($request['country'] . ' ' . $request['state'] . ' ' . $request['city']));
         User::where('id', Auth::user()->id)->update($request->except('_token'));
         return redirect(route('home'));
     }
