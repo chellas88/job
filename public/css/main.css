@@ -500,6 +500,83 @@ a.navbar-brand span{
     padding: 20px;
     border-radius: 20px;
 }
+
+.btn-phone {
+    background: #0a58ca;
+    color: #fff;
+    font-size: 18px;
+}
+.btn-phone:hover{
+    background: #0d6efd;
+    color: #e3e2e2;
+}
+.btn-phone a{
+    color: #fff;
+    text-decoration: none;
+    display: block;
+}
+
+.btn-email {
+    background: #9c9ea1;
+    color: #fff;
+    font-size: 18px;
+}
+.btn-email:hover{
+    background: #a2a4a7;
+    color: #e3e2e2;
+}
+.btn-email a{
+    color: #fff;
+    text-decoration: none;
+    display: block;
+}
+
+.btn-viber {
+    background: #59267c;
+    color: #fff;
+    font-size: 18px;
+}
+.btn-viber:hover{
+    background: #7f41aa;
+    color: #e3e2e2;
+}
+.btn-viber a{
+    color: #fff;
+    text-decoration: none;
+    display: block;
+}
+
+.btn-whatsapp {
+    background: #28D146;
+    color: #fff;
+    font-size: 18px;
+}
+.btn-whatsapp:hover{
+    background: #34e753;
+    color: #e3e2e2;
+}
+.btn-whatsapp a{
+    color: #fff;
+    text-decoration: none;
+    display: block;
+}
+
+.btn-telegram {
+    background: #229ED9;
+    color: #fff;
+    font-size: 18px;
+}
+.btn-telegram:hover{
+    background: #38a8de;
+    color: #e3e2e2;
+}
+.btn-telegram a{
+    color: #fff;
+    text-decoration: none;
+    display: block;
+}
+
+
 .profile-social {
     position: absolute;
     right: 10px;

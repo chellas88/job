@@ -311,8 +311,41 @@
                 }
                 document.getElementById('user-info-' + user.id).innerHTML = `<p class="title">${(user.surname !== null) ? user.name +' '+ user.surname : user.name}<span id="languages-${user.id}"</p>  `
                 document.getElementById('user-info-' + user.id).innerHTML += `<p class="category">${user.category.title_{{\Illuminate\Support\Facades\App::currentLocale()}}}</p>`
+                document.getElementById('user-info-' + user.id).innerHTML += `<p class="subcategory">`
+                    user.subcategory.forEach(service => {
+                        document.getElementById('user-info-' + user.id).innerHTML += service.title_{{ \Illuminate\Support\Facades\App::currentLocale() }} + ', '
+                    })
+                document.getElementById('user-info-' + user.id).innerHTML += `</p>`
+
                 if ((user.rating > 0) && (user.rating < 1)){
                     document.getElementById('user-info-' + user.id).innerHTML += `<x-rating.stars_05/>`
+                }
+                else if (user.rating === 1){
+                    document.getElementById('user-info-' + user.id).innerHTML += `<x-rating.stars_1/>`
+                }
+                else if ((user.rating > 1) && (user.rating < 2)){
+                    document.getElementById('user-info-' + user.id).innerHTML += `<x-rating.stars_15/>`
+                }
+                else if (user.rating === 2){
+                    document.getElementById('user-info-' + user.id).innerHTML += `<x-rating.stars_2/>`
+                }
+                else if ((user.rating > 2) && (user.rating < 3)){
+                    document.getElementById('user-info-' + user.id).innerHTML += `<x-rating.stars_25/>`
+                }
+                else if (user.rating === 3){
+                    document.getElementById('user-info-' + user.id).innerHTML += `<x-rating.stars_3/>`
+                }
+                else if ((user.rating > 3) && (user.rating < 4)){
+                    document.getElementById('user-info-' + user.id).innerHTML += `<x-rating.stars_35/>`
+                }
+                else if (user.rating === 4){
+                    document.getElementById('user-info-' + user.id).innerHTML += `<x-rating.stars_4/>`
+                }
+                else if ((user.rating > 4) && (user.rating < 5)){
+                    document.getElementById('user-info-' + user.id).innerHTML += `<x-rating.stars_45/>`
+                }
+                else if (user.rating === 5){
+                    document.getElementById('user-info-' + user.id).innerHTML += `<x-rating.stars_5/>`
                 }
                 document.getElementById('languages-' + user.id).innerHTML = ''
                 user.languages.forEach(lang => {

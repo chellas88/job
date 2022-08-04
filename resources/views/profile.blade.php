@@ -22,28 +22,45 @@
                             <img class="avatar" src="/uploads/avatars/{{$data['user']['avatar']}}">
                         @endif
                     </div>
-                    <div class="profile-social">
-                        <i class='bx bxs-phone-call'></i>
-                        <i class='bx bxs-envelope' ></i>
-                        <i class='bx bxl-whatsapp'></i>
-                        <i class='bx bxl-telegram'></i>
-                        <i class='bx bxl-facebook-circle'></i>
-                        <i class='bx bxl-instagram-alt' ></i>
+                    <div class="profile-content row">
+                        <div class="col-8">
+                            <h4>{{$data['user']['name']}} {{ $data['user']['surname'] }}</h4>
+                            <p>
+                                <span>{{$data['category']['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}</span>
+                            </p>
+                            <p><b>{{ __('main.services') }}: </b>
+                                @foreach($data['services'] as $service)
+                                    {{$service['title_'.\Illuminate\Support\Facades\App::currentLocale()]}},
+                                @endforeach
+                            </p>
+                            <p><b>{{ __('main.speaking') }}: </b>
+                                @foreach($data['languages'] as $lang)
+                                    {{$lang['title_'.\Illuminate\Support\Facades\App::currentLocale()]}},
+                                @endforeach
+                            </p>
+                        </div>
+                        <div class="profile-contacts col-4">
+                            <h5> {{ __('main.contacts') }}</h5>
+                            <div class="btn btn-phone w-100 mb-2" id="phone"
+                                    onclick="getContact('phone')">{{ __('main.show_phone') }}</div>
+                            <div class="btn btn-email w-100 mb-2" id="email"
+                                    onclick="getContact('email')">{{ __('main.show_email') }}</div>
+                            @if ($data['user']->contacts->viber)
+                                <div class="btn btn-viber w-100 mb-2" id="viber"
+                                        onclick="getContact('viber')">{{ __('main.show_viber') }}</div>
+                            @endif
+                            @if ($data['user']->contacts->whatsapp)
+                                <div class="btn btn-whatsapp w-100 mb-2" id="whatsapp"
+                                     onclick="getContact('whatsapp')">{{ __('main.show_whatsapp') }}</div>
+                            @endif
+                            @if ($data['user']->contacts->telegram)
+                                <div class="btn btn-telegram w-100 mb-2" id="telegram"
+                                     onclick="getContact('telegram')">{{ __('main.show_telegram') }}</div>
+                            @endif
+                        </div>
                     </div>
-                    <div class="profile-content">
-                        <h4>{{$data['user']['name']}}</h4>
-                        <p><span>{{$data['category']['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}</span></p>
-                        <p> <b>{{ __('main.services') }}: </b>
-                            @foreach($data['services'] as $service)
-                                {{$service['title_'.\Illuminate\Support\Facades\App::currentLocale()]}},
-                            @endforeach
-                        </p>
-                        <p> <b>{{ __('main.speaking') }}: </b>
-                            @foreach($data['languages'] as $lang)
-                                {{$lang['title_'.\Illuminate\Support\Facades\App::currentLocale()]}},
-                            @endforeach
-                        </p>
-                    </div>
+
+
                 </div>
 
 
@@ -78,4 +95,25 @@
     }
 
     window.initMap = initMap;
+</script>
+
+<script>
+    function getContact(type) {
+        let user = @json($data['user']);
+        $.ajax({
+            method: 'post',
+            url: '/{{ \Illuminate\Support\Facades\App::currentLocale() }}/getContact',
+            data: {
+                'type': type,
+                '_token': document.head.querySelector('meta[name="csrf-token"]').content,
+                'user_id': user.id
+            },
+            success: function (response) {
+                console.log(response)
+                document.getElementById(type).innerHTML = response.val
+
+
+            }
+        })
+    }
 </script>

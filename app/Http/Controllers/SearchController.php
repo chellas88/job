@@ -60,7 +60,8 @@ class SearchController extends Controller
                 'id' => $user['id'],
                 'avatar' => $user['avatar'],
                 'languages' => $user->languages,
-                'rating' => $user->getRating()
+                'rating' => $user->getRating(),
+                'subcategory' => $user->services
             ];
         }
 //        dd($data);

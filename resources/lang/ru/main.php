@@ -84,5 +84,9 @@ return [
     'input_location' => 'Укажите Ваше местонахождение',
     'select_languages_text' => 'Выберите языки, на которых Вы разговариваете',
     'profile_title' => 'Заголовок профиля',
-    'description' => 'Описание'
+    'description' => 'Описание',
+    'show_phone' => 'Показать номер',
+    'show_email' => 'Показать Email',
+    'write_to_telegram' => 'Написать в Telegram',
+    'write_to_whatsapp' => 'Написать в Whatsapp',
 ];

@@ -12,6 +12,7 @@ use App\Models\User;
 use http\Client\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Lang;
 use Intervention\Image\ImageManagerStatic;
 
 class UserController extends Controller
@@ -212,5 +213,38 @@ class UserController extends Controller
             ]);
         }
         return redirect(route('home'));
+    }
+
+
+    public function getContact(Request $request){
+        $user = User::find($request['user_id']);
+        $val = null;
+        if ($request['type'] == 'email'){
+            $email = $user->email;
+            $val = "<a href='mailto:". $email ."'> ". $email ." </a>";
+        }
+        if ($request['type'] == 'phone'){
+            $phone = $user->contacts->phone;
+            $val = "<a href='tel:+496170961709'>$phone</a>";
+        }
+        if ($request['type'] == 'viber'){
+            $number = str_replace('+', '', $user->contacts->viber);
+            $val = "<a href='viber://add?number=". $number."'>Viber</a>";
+        }
+        if ($request['type'] == 'whatsapp'){
+            $whatsapp = $user->contacts->whatsapp;
+            $val = "<a href='https://wa.me/". $whatsapp ."'> ". __('main.write_to_whatsapp') ."</a>";
+        }
+        if ($request['type'] == 'telegram'){
+            $telegram = $user->contacts->telegram;
+            $val = "<a href='tg://resolve?domain=chellas88'>". __('main.write_to_telegram')."</a>";
+        }
+        $data = [
+            'type' => $request['type'],
+            'val' => $val
+        ];
+        return $data;
+
+
     }
 }

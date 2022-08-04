@@ -41,6 +41,8 @@ Route::group([
             Route::get('/register/step_5', [\App\Http\Controllers\FullRegisterController::class, 'step_5'])->name('step_5');
             Route::post('/register/step_5', [\App\Http\Controllers\UserController::class, 'Step5'])->name('step_5_save');
 
+            Route::post('/getContact', [\App\Http\Controllers\UserController::class, 'getContact']);
+
             Route::group([
                 'middleware' => ['auth', 'admin'],
                 'prefix' => 'admin'

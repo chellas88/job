@@ -80,4 +80,6 @@ class HomeController extends Controller
 //        dd($data);
         return view('home' , ['data' => $data]);
     }
+
+
 }
