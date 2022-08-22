@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Language;
 use App\Models\LanguageUser;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,11 +38,12 @@ class LanguageUserController extends Controller
      */
     public function store(Request $request)
     {
-        LanguageUser::create([
+        LanguageUser::updateOrInsert([
             'language_id' => $request['id'],
             'user_id' => Auth::user()->id
         ]);
-        return Language::find($request['id']);
+        $myLangs = Auth::user()->languages;
+        return $myLangs;
     }
 
     /**
@@ -87,6 +89,7 @@ class LanguageUserController extends Controller
     public function destroy($id)
     {
         LanguageUser::where('language_id', $id)->where('user_id', Auth::user()->id)->delete();
-        return Language::find($id);
+        $myLangs = Auth::user()->languages;
+        return $myLangs;
     }
 }

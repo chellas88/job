@@ -13,6 +13,7 @@ if (showHideSearch) {
         if (!add) {
             showHideSearch.innerHTML = "<i class='icon-chevron-right'></i>"
             searchForm.style.left = '-' + searchFormWidth
+            showCategories()
         } else {
             showHideSearch.innerHTML = "<i class='icon-chevron-left' ></i>"
             searchForm.style.left = '0'
@@ -21,40 +22,10 @@ if (showHideSearch) {
     })
 }
 
-//add lang
-function addLang(id, lang) {
-    let parent = document.getElementById('newlang_' + id)
-    $.ajax({
-        type: 'post',
-        url: '/en/languser',
-        data: {'id': id},
-        success: function (response) {
-            let span = document.createElement('span')
-            span.setAttribute('id', 'lang_' + id)
-            span.innerHTML = `${response['title_' + lang]}<i onclick="removeLang(${id}, '${lang}')" class="remove_lang">X</i>`
-            document.getElementById('lang-list').appendChild(span)
-            parent.remove()
-        },
-        error: function (error) {
-            console.log(error)
-        }
-    })
+function changeLang(){
+    window.localStorage.setItem('lang', document.getElementById('lang').value)
 }
 
-function removeLang(id, lang) {
-    let parent = document.getElementById('lang_' + id)
-    $.ajax({
-        type: 'delete',
-        url: '/en/languser/' + id,
-        success: function (response) {
-            let li = document.createElement('li')
-            li.setAttribute('id', 'newlang_' + id)
-            li.innerHTML = `<a  onclick="addLang(${id}, '${lang}')" class="dropdown-item add_lang" href="#">${response['title_' + lang]}</a>`
-            document.getElementById('lang-menu').appendChild(li)
-            parent.remove()
-        }
-    })
-}
 
 function addService(id, lang) {
     event.preventDefault()
@@ -90,3 +61,63 @@ function removeService(id, lang) {
 }
 
 
+//Show category on search form
+function showCategories(){
+    hideSubcategory()
+    let categoryList = document.querySelector('.category-list')
+    categoryList.classList.toggle('show')
+}
+
+function selectCategory(id, elem) {
+    hideSubcategory()
+    let categoryInput = document.getElementById('category_id')
+    document.getElementById('subcategory_id').value = ''
+    categoryInput.value = id
+    if (id !== ''){
+        let subcategoryList = document.getElementById('subcategories_' + id)
+        subcategoryList.classList.toggle('show')
+    }
+    else showCategories()
+    document.getElementById('show-categories').innerHTML = elem.getAttribute('category')
+}
+
+function selectSubcategory(id, elem = null) {
+    let subcategoryInput = document.getElementById('subcategory_id')
+    subcategoryInput.value = id
+    let text = elem.getAttribute('subcategory')
+    if (text === null){
+        document.getElementById('show-categories').innerHTML = elem.getAttribute('category')
+    }
+    else document.getElementById('show-categories').innerHTML = text
+    showCategories()
+}
+
+function hideSubcategory(){
+    let blocks = $('.subcategory-list')
+    Array.prototype.forEach.call(blocks, function(block){
+        block.classList.remove('show')
+    })
+}
+
+//location click
+
+var location_input = document.getElementById("location");
+function checkPosition(){
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        // x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    console.log(position)
+    $.ajax({
+        method: 'post',
+        url: '/en/getLocation',
+        data: {lng: position.coords.longitude, lat: position.coords.latitude},
+        success: function (response) {
+            location_input.value = response
+        }
+    })
+}

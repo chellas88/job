@@ -64,20 +64,21 @@ class HomeController extends Controller
                 $data['services'][] = $serv;
             }
         }
-        $data['languages'] = [];
-        $languages = Language::orderBy('title_'. App::currentLocale(), 'asc')->get();
-        foreach ($languages as $lang){
-            $is = false;
-            foreach ($data['my_languages'] as $mylang){
-                if ($lang['id'] == $mylang['id']){
-                    $is = true;
-                }
-            }
-            if (!$is){
-                $data['languages'][] = $lang;
-            }
-        }
+//        $data['languages'] = [];
+        $data['languages'] = Language::orderBy('title_'. App::currentLocale(), 'asc')->get();
+//        foreach ($languages as $lang){
+//            $is = false;
+//            foreach ($data['my_languages'] as $mylang){
+//                if ($lang['id'] == $mylang['id']){
+//                    $is = true;
+//                }
+//            }
+//            if (!$is){
+//                $data['languages'][] = $lang;
+//            }
+//        }
 //        dd($data);
+        $data['translate'] = __('main');
         return view('home' , ['data' => $data]);
     }
 

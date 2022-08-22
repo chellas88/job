@@ -391,14 +391,15 @@ a.navbar-brand span{
 /*}*/
 
 .user-header{
-    position: absolute;
     background: rgba(255, 255, 255, 0.8);
     bottom: 5%;
     left: 5%;
+    display: flex;
     border-radius: 40px;
     text-align: center;
-    padding: 26px 80px;
+    padding: 26px 20px;
     color: #282626;
+    align-items: center;
 }
 .user-header .avatar{
     width: 80px;
@@ -447,6 +448,23 @@ a.navbar-brand span{
     background: #a2dc53;
     color: #fff;
 }
+
+#location {
+    padding-right: 35px;
+}
+.location-icon {
+    position: absolute;
+    color: #807e7e;
+    z-index: 99;
+    top: 0;
+    font-size: 24px;
+    right: 0;
+    padding: 5px;
+    cursor: pointer;
+}
+.location-icon:href {
+    color: #000;
+}
 .user-card-mini{
     display: flex;
     align-items: center;
@@ -488,7 +506,7 @@ a.navbar-brand span{
     width: 90px;
 }
 .profile-content{
-    transform: translateY(-20%);
+    transform: translateY(-10%);
 }
 .profile-card {
     border: 1px solid #8dc5394a;
@@ -716,6 +734,42 @@ a.navbar-brand span{
 }
 .counter-block .row .counter-item {
     padding: 30px;
+}
+
+.category-list {
+    display: none;
+    max-height: 600px;
+    overflow: auto;
+    position: absolute;
+    background: #fff;
+    transform: translate(387px, -48px);
+    border: 1px solid #dddada;
+    z-index: 100;
+
+}
+.category-list.show {
+    display: block;
+}
+.category-item {
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.subcategory-list {
+    display: none;
+    color: #046404;
+    background: #ebffef;
+    padding: 10px 0;
+}
+.subcategory-list.show {
+    display: block;
+}
+.subcategory-list a {
+    display: block;
+    padding: 10px;
+}
+.subcategory-list a:hover {
+    background: #c7f1cf;
 }
 
 

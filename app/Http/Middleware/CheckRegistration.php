@@ -18,6 +18,7 @@ class CheckRegistration
     public function handle(Request $request, Closure $next)
     {
         if (!Auth::user()->category_id){
+//            return redirect(route('home', '#filter'));
             return redirect(route('step_2'));
         }
         if (!Auth::user()->country){

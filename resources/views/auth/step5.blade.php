@@ -11,77 +11,80 @@
                 <div class="card shadow">
                     <div class="card-header">{{ __('main.registration_step_5') }}</div>
 
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('step_5_save') }}">
-                            @csrf
-                            <div class="row px-3">
-                                <div class="col mb-3">
-                                    <p>{{ __('main.select_languages_text') }}</p>
-                                    <select name="lang_1" class="p-1" onchange="selectLanguage(this)">
-                                        <option value="">{{ __('main.select_language') }}</option>
-                                        @foreach($languages as $language)
-                                            <option key="{{ $language['key'] }}"
-                                                    value="{{ $language['id'] }}">{{ $language['title_'.\Illuminate\Support\Facades\App::currentLocale()] }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="block_1 mb-3">
-                                    <div class="mb-3" id="profile_title_1">{{ __('main.profile_title') }} <span></span>
-                                        <input class="form-control" type="text" name="profile_title_1">
-                                    </div>
-                                    <label id="profile_text_1">{{ __('main.description') }} <span></span></label>
-                                    <textarea name="description_1" class="form-control"></textarea>
-                                    <input type="hidden" name="keylang_1">
-                                </div>
-                            </div>
-                            <div class="row px-3">
-                                <div class="col mb-3">
-                                    <select name="lang_2" class="p-1" onchange="selectLanguage(this)">
-                                        <option value="">{{ __('main.select_language') }}</option>
-                                        @foreach($languages as $language)
-                                            <option key="{{ $language['key'] }}"
-                                                    value="{{ $language['id'] }}">{{ $language['title_'.\Illuminate\Support\Facades\App::currentLocale()] }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="block_2 mb-3">
-                                    <div class="mb-3" id="profile_title_2">{{ __('main.profile_title') }} <span></span>
-                                        <input class="form-control" type="text" name="profile_title_2">
-                                    </div>
-                                    <label id="profile_text_2">{{ __('main.description') }} <span></span></label>
-                                    <textarea name="description_2" class="form-control"></textarea>
-                                    <input type="hidden" name="keylang_2">
-                                </div>
-                            </div>
-                            <div class="row px-3">
-                                <div class="col mb-3">
-                                    <select name="lang_3" class="p-1" onchange="selectLanguage(this)">
-                                        <option value="">{{ __('main.select_language') }}</option>
-                                        @foreach($languages as $language)
-                                            <option key="{{ $language['key'] }}"
-                                                    value="{{ $language['id'] }}">{{ $language['title_'.\Illuminate\Support\Facades\App::currentLocale()] }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="block_3 mb-3">
-                                    <div class="mb-3" id="profile_title_3">{{ __('main.profile_title') }} <span></span>
-                                        <input class="form-control" type="text" name="profile_title_3">
-                                    </div>
-                                    <label id="profile_text_3">{{ __('main.description') }} <span></span></label>
-                                    <textarea name="description_3" class="form-control"></textarea>
-                                    <input type="hidden" name="keylang_3">
-                                </div>
-                            </div>
+                    <div class="card-body languages lang-list">
+                        {{ __('main.select_languages_text') }}
+                        <languages :languages="{{ json_encode($languages, true) }}" :my-languages="{{ json_encode($myLanguages, true) }}"
+                                   :translate="{{ json_encode($translate, true) }}" locale="{{ \Illuminate\Support\Facades\App::currentLocale() }}"
+                        >
+
+                        </languages>
+{{--                            <div class="row px-3">--}}
+{{--                                <div class="col mb-3">--}}
+{{--                                    <p>{{ __('main.select_languages_text') }}</p>--}}
+{{--                                    <select name="lang_1" class="p-1" onchange="selectLanguage(this)">--}}
+{{--                                        <option value="">{{ __('main.select_language') }}</option>--}}
+{{--                                        @foreach($languages as $language)--}}
+{{--                                            <option key="{{ $language['key'] }}"--}}
+{{--                                                    value="{{ $language['id'] }}">{{ $language['title_'.\Illuminate\Support\Facades\App::currentLocale()] }}</option>--}}
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                                <div class="block_1 mb-3">--}}
+{{--                                    <div class="mb-3" id="profile_title_1">{{ __('main.profile_title') }} <span></span>--}}
+{{--                                        <input class="form-control" type="text" name="profile_title_1">--}}
+{{--                                    </div>--}}
+{{--                                    <label id="profile_text_1">{{ __('main.description') }} <span></span></label>--}}
+{{--                                    <textarea name="description_1" class="form-control"></textarea>--}}
+{{--                                    <input type="hidden" name="keylang_1">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="row px-3">--}}
+{{--                                <div class="col mb-3">--}}
+{{--                                    <select name="lang_2" class="p-1" onchange="selectLanguage(this)">--}}
+{{--                                        <option value="">{{ __('main.select_language') }}</option>--}}
+{{--                                        @foreach($languages as $language)--}}
+{{--                                            <option key="{{ $language['key'] }}"--}}
+{{--                                                    value="{{ $language['id'] }}">{{ $language['title_'.\Illuminate\Support\Facades\App::currentLocale()] }}</option>--}}
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                                <div class="block_2 mb-3">--}}
+{{--                                    <div class="mb-3" id="profile_title_2">{{ __('main.profile_title') }} <span></span>--}}
+{{--                                        <input class="form-control" type="text" name="profile_title_2">--}}
+{{--                                    </div>--}}
+{{--                                    <label id="profile_text_2">{{ __('main.description') }} <span></span></label>--}}
+{{--                                    <textarea name="description_2" class="form-control"></textarea>--}}
+{{--                                    <input type="hidden" name="keylang_2">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="row px-3">--}}
+{{--                                <div class="col mb-3">--}}
+{{--                                    <select name="lang_3" class="p-1" onchange="selectLanguage(this)">--}}
+{{--                                        <option value="">{{ __('main.select_language') }}</option>--}}
+{{--                                        @foreach($languages as $language)--}}
+{{--                                            <option key="{{ $language['key'] }}"--}}
+{{--                                                    value="{{ $language['id'] }}">{{ $language['title_'.\Illuminate\Support\Facades\App::currentLocale()] }}</option>--}}
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                                <div class="block_3 mb-3">--}}
+{{--                                    <div class="mb-3" id="profile_title_3">{{ __('main.profile_title') }} <span></span>--}}
+{{--                                        <input class="form-control" type="text" name="profile_title_3">--}}
+{{--                                    </div>--}}
+{{--                                    <label id="profile_text_3">{{ __('main.description') }} <span></span></label>--}}
+{{--                                    <textarea name="description_3" class="form-control"></textarea>--}}
+{{--                                    <input type="hidden" name="keylang_3">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
 
                             <div class="row mb-0">
                                 <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-secondary">
+                                    <a href="{{ route('home') }}"><button class="btn btn-secondary">
                                         {{ __('main.finish_registration') }}
-                                    </button>
+                                        </button></a>
                                 </div>
                             </div>
-                        </form>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,53 @@
+{
+    "name": "vxm/laravel-async",
+    "description": "Provide an easy way to run code asynchronously for Laravel",
+    "keywords": [
+        "vxm",
+        "laravel-async"
+    ],
+    "homepage": "https://github.com/vuongxuongminh/laravel-async",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vuong Xuong Minh",
+            "email": "vuongxuongminh@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2 || ^8.0",
+        "illuminate/support": "^5.8 || ^6.0 || ^7.0 || ^8.0 || ^9.0",
+        "spatie/async": "~1.5.3"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^3.8 || ^4.0 || ^5.0 || ^6.0 || ^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "VXM\\Async\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "VXM\\Async\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.x-dev"
+        },
+        "laravel": {
+            "aliases": {
+                "Async": "VXM\\Async\\AsyncFacade"
+            },
+            "providers": [
+                "VXM\\Async\\AsyncServiceProvider"
+            ]
+        }
+	}
+}

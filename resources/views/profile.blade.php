@@ -23,7 +23,7 @@
                         @endif
                     </div>
                     <div class="profile-content row">
-                        <div class="col-8">
+                        <div class="col-9">
                             <h4>{{$data['user']['name']}} {{ $data['user']['surname'] }}</h4>
                             <p>
                                 <span>{{$data['category']['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}</span>
@@ -38,8 +38,13 @@
                                     {{$lang['title_'.\Illuminate\Support\Facades\App::currentLocale()]}},
                                 @endforeach
                             </p>
+
+                            <div class="profile-description">
+                                <hr>
+                                {!! $data['user']['description_' . \Illuminate\Support\Facades\App::currentLocale()] !!}
+                            </div>
                         </div>
-                        <div class="profile-contacts col-4">
+                        <div class="profile-contacts col-3">
                             <h5> {{ __('main.contacts') }}</h5>
                             <div class="btn btn-phone w-100 mb-2" id="phone"
                                     onclick="getContact('phone')">{{ __('main.show_phone') }}</div>

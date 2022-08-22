@@ -12,36 +12,52 @@
             <form id="search-form" method="GET" action="{{route('search')}}">
                 @csrf
                 <div class="mb-3">
-                    {{--                    <label for="category_id">{{ __('main.categories') }}</label>--}}
-                    <select type="text" class="form-control" id="category_id" name="category_id">
-                        <option value="" selected>{{ __('main.all_category') }}</option>
-                        @if(!$category->isEmpty())
-                            @foreach($category as $item)
-                                <option
-                                    value="{{ $item['id'] }}" {{ old('category_id') == $item['id'] ? "selected" : ''}}>{{$item['title_' . \Illuminate\Support\Facades\App::currentLocale()]}}</option>
+                    <input type="hidden" value="" name="category_id" id="category_id">
+                    <input type="hidden" value="" name="subcategory_id" id="subcategory_id">
+                        <button type="button" class="btn btn-secondary form-control text-start" id="show-categories" onclick="showCategories()">
+                            {{ __('main.all_category') }}
+                        </button>
+                        <div class="category-list">
+                            <a class="dropdown-item category-item" href="#" category="{{ __('main.all_category') }}"
+                               onclick="selectCategory('', this)">
+                                {{ __('main.all_category') }}
+                            </a>
+                            @foreach($category as $item_category)
+                                    <a class="dropdown-item category-item" href="#" category="{{ $item_category['title_'.\Illuminate\Support\Facades\App::currentLocale()] }}"
+                                       onclick="selectCategory({{ $item_category['id'] }}, this)">
+                                        {{ $item_category['title_'.\Illuminate\Support\Facades\App::currentLocale()] }}
+                                    </a>
+                                    <div class="subcategory-list" id="subcategories_{{ $item_category['id'] }}">
+                                        <a class="" onclick="selectSubcategory('', this)" category="{{ $item_category['title_'.\Illuminate\Support\Facades\App::currentLocale()] }}">
+                                            {{ __('main.all_category') }}
+                                        </a>
+                                        @foreach($subcategory as $item_subcategory)
+                                            @if($item_subcategory['category_id'] == $item_category['id'])
+                                                    <a class="" onclick="selectSubcategory({{ $item_subcategory['id'] }}, this)" subcategory="{{ $item_subcategory['title_'.\Illuminate\Support\Facades\App::currentLocale()] }}">
+                                                        {{ $item_subcategory['title_'.\Illuminate\Support\Facades\App::currentLocale()] }}
+                                                    </a>
+                                            @endif
+                                        @endforeach
+                                    </div>
                             @endforeach
-                        @endif
-                    </select>
+                        </div>
                 </div>
-                <div class="mb-3">
-                    <input type="text" class="form-control @error('location') is-invalid @enderror"
-                               placeholder="{{ __('main.input_location') }}" id="location"
-                           name="location" value="{{ old('location') }}" required>
-                    @error('location')
-                    <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                    @enderror
+                <div class="mb-3 position-relative">
+                    <input type="text" class="form-control"
+                           placeholder="{{ __('main.input_location') }}" id="location"
+                           name="location" value="{{ old('location') }}">
+                    <i class='bx bx-current-location location-icon' onclick="checkPosition()"></i>
                 </div>
                 <div class="mb-3">
                     {{--                    <label for="lang">Language</label>--}}
-                    <select type="text" class="form-control" id="lang" name="lang">
+                    <select type="text" class="form-control" id="lang" name="lang" onchange="changeLang()">
                         <option value="0">{{ __('main.select_language') }}</option>
                         @foreach($languages as $language)
                             <option
                                 value="{{ $language['id'] }}">{{ $language['title_' . \Illuminate\Support\Facades\App::currentLocale()] }}</option>
                         @endforeach
                     </select>
+                    <i class='bx bx-current-location'></i>
                 </div>
 
                 <input type="submit" value="{{ __('main.search') }}" class="btn">
@@ -274,6 +290,29 @@
 @endsection
 
 <script>
+    window.localStorage.setItem('lang' , 0)
+    let center_lat = 50.450001;
+    let center_lng = 30.523333;
+
+    function initMap() {
+        // The location of Uluru
+        const center = {lat: center_lat, lng: center_lng};
+        // The map, centered at Uluru
+        const map = new google.maps.Map(document.getElementById("main_map"), {
+            zoom: 15,
+            center: center,
+            fullscreenControl: false,
+            mapTypeControl: false,
+            streetViewControl: false
+
+        });
+        // The marker, positioned at Uluru
+
+
+    }
+
+    window.initMap = initMap;
+
     window.addEventListener("load", windowLoad)
 
     function windowLoad() {
@@ -326,48 +365,16 @@
         }
 
 
-        var location_input = document.getElementById("location");
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            x.innerHTML = "Geolocation is not supported by this browser.";
-        }
+        // var location_input = document.getElementById("location");
+        // if (navigator.geolocation) {
+        //     navigator.geolocation.getCurrentPosition(showPosition);
+        // } else {
+        //     x.innerHTML = "Geolocation is not supported by this browser.";
+        // }
 
-        function showPosition(position){
-            console.log(position)
-            $.ajax({
-                method: 'post',
-                url: '/en/getLocation',
-                data: {lng: position.coords.longitude, lat: position.coords.latitude},
-                success: function (response){
-                    location_input.value = response
-                }
-            })
-        }
-    }
-</script>
-
-
-<script>
-    let center_lat = 50.450001;
-    let center_lng = 30.523333;
-
-    function initMap() {
-        // The location of Uluru
-        const center = {lat: center_lat, lng: center_lng};
-        // The map, centered at Uluru
-        const map = new google.maps.Map(document.getElementById("main_map"), {
-            zoom: 15,
-            center: center,
-            fullscreenControl: false,
-            mapTypeControl: false,
-            streetViewControl: false
-
-        });
-        // The marker, positioned at Uluru
-
-
+        checkPosition()
     }
 
-    window.initMap = initMap;
+
+
 </script>

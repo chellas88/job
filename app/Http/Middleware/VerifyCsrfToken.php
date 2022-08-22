@@ -17,6 +17,7 @@ class VerifyCsrfToken extends Middleware
         'en/admin/user/*',
         'en/service',
         'en/service/*',
-        'en/getLocation'
+        'en/getLocation',
+        'en/saveDescriptions'
     ];
 }

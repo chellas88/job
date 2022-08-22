@@ -6,6 +6,7 @@ use App\Http\Requests\SearchRequest;
 use App\Models\Category;
 use App\Models\Country;
 use App\Models\Language;
+use App\Models\Subcategory;
 use App\Models\User;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -15,14 +16,15 @@ class SearchController extends Controller
 {
     public function index(SearchRequest $request)
     {
-        $categories = Category::orderBy('title_'.App::currentLocale(), 'asc')->get();
 //        $countries = Country::orderBy('title_'.App::currentLocale(), 'asc')->get();
         $data = null;
-        $data['categories'] = $categories;
+        $data['categories'] = Category::orderBy('title_'.App::currentLocale())->get();
+        $data['subcategories'] = Subcategory::orderBy('title_'.App::currentLocale())->get();
         $data['languages'] = Language::orderBy('title_' . App::currentLocale(), 'asc')->get();
 //        $data['countries'] = $countries;
         $data['location'] = $request['location'];
         $data['current_category'] = $request['category_id'];
+        $data['current_subcategory'] = $request['subcategory_id'];
         $data['current_language'] = $request['lang'];
         $google = new GoogleController();
         $myPosition = $google->getCoordinates($data['location']);

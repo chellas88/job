@@ -89,4 +89,10 @@ return [
     'show_email' => 'Показать Email',
     'write_to_telegram' => 'Написать в Telegram',
     'write_to_whatsapp' => 'Написать в Whatsapp',
+    'show_whatsapp' => 'Показать Whatsapp',
+    'show_telegram' => 'Показать Telegram',
+    'show_viber' => 'Показать Viber',
+
+    'data_saved_success' => 'Данные успешно сохранены',
+
 ];

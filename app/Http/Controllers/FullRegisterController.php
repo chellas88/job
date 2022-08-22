@@ -40,6 +40,8 @@ class FullRegisterController extends Controller
 
     public function step_5(Request $request){
         $languages = Language::orderBy('title_'.App::currentLocale(), 'asc')->get();
-        return view('auth.step5', compact('languages'));
+        $myLanguages = Auth::user()->languages;
+        $translate = __('main');
+        return view('auth.step5', compact('languages', 'myLanguages', 'translate'));
     }
 }

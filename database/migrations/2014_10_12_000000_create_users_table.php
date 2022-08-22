@@ -24,7 +24,6 @@ class CreateUsersTable extends Migration
             $table->string('state')->nullable();
             $table->text('address')->nullable();
             $table->string('city')->nullable();
-//            $table->json('city_coordinates')->nullable();
             $table->json('coordinates')->nullable();
             $table->string('lang')->nullable();
             $table->text('avatar')->nullable();

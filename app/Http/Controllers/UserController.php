@@ -21,8 +21,10 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $user->name = $request['name'];
+        if ($request['surname']){
+            $user->surname = $request['surname'];
+        }
         $user->email = $request['email'];
-        $user->category_id = $request['category_id'];
         $user->save();
         $langs = Language::all();
         $msg = request()->session();
@@ -84,11 +86,18 @@ class UserController extends Controller
         $data['contacts'] = $user->contacts;
         $data['services'] = $user->services;
         $data['languages'] = $user->languages;
+//        dd($data);
         return view('profile', ['data' => $data]);
     }
 
     public function removeLanguage(Request $request){
 
+    }
+
+    public function saveDescriptions(Request $request){
+        $user_id = Auth::user()->id;
+        User::where('id', $user_id)->update($request->all());
+        return true;
     }
 
     public function saveContacts(Request $request){

@@ -125,7 +125,7 @@
                         @foreach($lang as $cur_lang)
                             <div class="col-12 mb-3">
                                 <label>Описание ({{ $cur_lang['key'] }})</label>
-                                <textarea class="form-control"
+                                <textarea class="form-control" id="description_{{ $cur_lang['key'] }}"
                                           name="description_{{ $cur_lang['key'] }}">{{ $user['description_'.$cur_lang['key']] }}</textarea>
                             </div>
                         @endforeach
@@ -193,3 +193,14 @@
 @endsection
 
 
+<script>
+    window.addEventListener('load', () => {
+        let languages = @json($languages);
+        languages.forEach(lang => {
+            if (document.getElementById('description_'+lang.key)){
+                CKEDITOR.replace('description_' + lang.key)
+            }
+
+        })
+    })
+</script>

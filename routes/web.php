@@ -11,6 +11,8 @@ Route::group([
         Route::get('/policy', [\App\Http\Controllers\IndexController::class, 'policyPage'])->name('policy');
         Route::get('/rules', [\App\Http\Controllers\IndexController::class, 'rulesPage']);
         Route::post('/getLocation', [\App\Http\Controllers\GoogleController::class, 'getLocation']);
+        Route::post('/getContact', [\App\Http\Controllers\UserController::class, 'getContact']);
+
 
         Route::get('new_user/{link}', [\App\Http\Controllers\UserController::class, 'privacy']);
         Route::post('new_user/accept', [\App\Http\Controllers\UserController::class, 'accept'])->name('accept_policy');
@@ -20,11 +22,12 @@ Route::group([
 
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('reg');
         Route::get('/search', [\App\Http\Controllers\SearchController::class, 'index'])->name('search');
-        Route::get('/profile/{id}', [\App\Http\Controllers\UserController::class, 'profile']);
+        Route::get('/profile/{id}', [\App\Http\Controllers\UserController::class, 'profile'])->name('profile');
         Route::get('/auth/google', [\App\Http\Controllers\GoogleController::class, 'googleRedirect'])->name('auth.google');
         Route::get('/auth/google/callback', [\App\Http\Controllers\GoogleController::class, 'loginWithGoogle']);
 
         Route::middleware(['auth'])->group(function () {
+            Route::post('/saveDescriptions', [\App\Http\Controllers\UserController::class, 'saveDescriptions']);
             Route::post('/saveUser', [\App\Http\Controllers\UserController::class, 'saveUser'])->name('save-user');
             Route::post('/uploadAvatar', [\App\Http\Controllers\UserController::class, 'uploadAvatar'])->name('upload-avatar');
             Route::post('/saveAddress', [\App\Http\Controllers\UserController::class, 'saveAddress'])->name('save-address');
@@ -41,7 +44,6 @@ Route::group([
             Route::get('/register/step_5', [\App\Http\Controllers\FullRegisterController::class, 'step_5'])->name('step_5');
             Route::post('/register/step_5', [\App\Http\Controllers\UserController::class, 'Step5'])->name('step_5_save');
 
-            Route::post('/getContact', [\App\Http\Controllers\UserController::class, 'getContact']);
 
             Route::group([
                 'middleware' => ['auth', 'admin'],
