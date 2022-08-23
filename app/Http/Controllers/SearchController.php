@@ -14,14 +14,16 @@ use Illuminate\Support\Facades\App;
 
 class SearchController extends Controller
 {
-    public function index(SearchRequest $request)
+    public function index(Request $request)
     {
 //        $countries = Country::orderBy('title_'.App::currentLocale(), 'asc')->get();
         $data = null;
         $data['categories'] = Category::orderBy('title_'.App::currentLocale())->get();
         $data['subcategories'] = Subcategory::orderBy('title_'.App::currentLocale())->get();
         $data['languages'] = Language::orderBy('title_' . App::currentLocale(), 'asc')->get();
-//        $data['countries'] = $countries;
+        if (!$request['location']){
+            $request['location'] = 'Spain';
+        }
         $data['location'] = $request['location'];
         $data['current_category'] = $request['category_id'];
         $data['current_subcategory'] = $request['subcategory_id'];

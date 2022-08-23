@@ -849,7 +849,20 @@ a.navbar-brand span{
         margin-top: -45%;
     }
     .most-popular .popular-item .popular-icon {
-        width: 70px;
-        height: 70px;
+        width: 55px;
+        height: 55px;
+    }
+    .most-popular .popular-item span {
+        font-size: 14px;
+    }
+    .category-list.show {
+        transform: translate(-19px, 12px);
+    }
+    .counter-block {
+        margin-top: 11px;
+        margin-bottom: 129px;
+    }
+    .counter-block h4 {
+        font-size: 16px;
     }
 }
