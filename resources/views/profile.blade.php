@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('head')
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxEmjg-EGbt0m8Dr_cCWgO7IvcqA89fEU&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxEmjg-EGbt0m8Dr_cCWgO7IvcqA89fEU"
             async defer></script>
 @endsection
 @section('content')
@@ -39,7 +39,7 @@
                                 @endforeach
                             </p>
                             <button class="btn btn-secondary show-description my-2" data-bs-toggle="modal" data-bs-target="#descriptionModal">
-                                show
+                                {{ __('main.show_information') }}
                             </button>
                             <div class="profile-description">
                                 <hr>
@@ -121,10 +121,6 @@
 
     }
 
-    window.initMap = initMap;
-</script>
-
-<script>
     function getContact(type) {
         let user = @json($data['user']);
         $.ajax({
@@ -143,4 +139,8 @@
             }
         })
     }
+
+    window.addEventListener('load', () => {
+        initMap()
+    })
 </script>

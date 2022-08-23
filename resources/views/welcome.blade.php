@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('head')
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxEmjg-EGbt0m8Dr_cCWgO7IvcqA89fEU&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxEmjg-EGbt0m8Dr_cCWgO7IvcqA89fEU"
             async defer></script>
 @endsection
 
@@ -311,11 +311,12 @@
 
     }
 
-    window.initMap = initMap;
+
 
     window.addEventListener("load", windowLoad)
 
     function windowLoad() {
+        initMap()
         function digitsCountersInit(digitsCountersItems) {
             let digitsCounters = digitsCountersItems ? digitsCountersItems : document.querySelectorAll("[data-digits-counter]")
             if (digitsCounters) {

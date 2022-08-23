@@ -94,5 +94,8 @@ return [
     'show_viber' => 'Показать Viber',
 
     'data_saved_success' => 'Данные успешно сохранены',
+    'show_information' => 'Показать информацию',
+    'close' => 'Закрыть',
+    'found_amount' => 'Всего найдено',
 
 ];

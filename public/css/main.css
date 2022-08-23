@@ -775,6 +775,9 @@ a.navbar-brand span{
     display: none;
 }
 
+.founds {
+    color: #484646;
+}
 
 @media screen and (min-width: 990px) {
     .auth-block {
@@ -782,8 +785,15 @@ a.navbar-brand span{
     }
 
 }
-
+@media screen and (max-width: 1360px) {
+    .category-list{
+        transform: translate(300px, -48px);
+    }
+}
 @media screen and (max-width: 990px) {
+    .category-list{
+        transform: translate(245px, -48px);
+    }
     .auth-block {
         margin-top: -32%;
     }
@@ -834,6 +844,15 @@ a.navbar-brand span{
     }
     .profile-description {
         display: none;
+    }
+    .user-card .card-body {
+        text-align: center;
+    }
+    .user-card .card-body .user-card-mini {
+        display: contents;
+    }
+    .user-card .card-body a{
+        margin-top: 10px;
     }
 }
 

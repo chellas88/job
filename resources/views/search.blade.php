@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('head')
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxEmjg-EGbt0m8Dr_cCWgO7IvcqA89fEU&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxEmjg-EGbt0m8Dr_cCWgO7IvcqA89fEU"
             async defer></script>
 @endsection
 
@@ -81,114 +81,9 @@
     </div>
     <div class="container my-3">
         <div class="row">
-            {{--            <div class="col-sm-3">--}}
-            {{--                <div class="search-card">--}}
-            {{--                    <form id="search-form" method="GET" action="/search">--}}
-            {{--                        @csrf--}}
-            {{--                        <div class="search-card-header">--}}
-            {{--                            Search--}}
-            {{--                        </div>--}}
-            {{--                        <div class="search-card-body">--}}
-            {{--                            <div class="mb-2">--}}
-            {{--                                <label for="category">Category</label>--}}
-            {{--                                <select name="category_id" id="category" class="form-control">--}}
-            {{--                                    <option value="">All categories</option>--}}
-            {{--                                    @foreach($data['categories'] as $category)--}}
-            {{--                                        <option--}}
-            {{--                                            value="{{$category['id']}}" {{ $data['current_category'] == $category['id'] ? 'selected' : '' }}>--}}
-            {{--                                            {{$category['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}--}}
-            {{--                                        </option>--}}
-            {{--                                    @endforeach--}}
-            {{--                                </select>--}}
-            {{--                            </div>--}}
-            {{--                            <div class="mb-2">--}}
-            {{--                                <label for="country">Country</label>--}}
-            {{--                                <select name="country_id" id="country" class="form-control">--}}
-            {{--                                    @foreach($data['countries'] as $country)--}}
-            {{--                                        <option--}}
-            {{--                                            value="{{$country['id']}}" {{ $data['current_country'] == $country['id'] ? 'selected' : '' }}>--}}
-            {{--                                            {{$country['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}--}}
-            {{--                                        </option>--}}
-            {{--                                    @endforeach--}}
-            {{--                                </select>--}}
-            {{--                            </div>--}}
-            {{--                            <div class="mb-2">--}}
-            {{--                                <label for="city">City</label>--}}
-            {{--                                <input type="text" name="city" id="city" class="form-control"--}}
-            {{--                                       value="{{$data['location']}}">--}}
-            {{--                            </div>--}}
-            {{--                            <div class="mb-2">--}}
-            {{--                                <label for="lang">Language</label>--}}
-            {{--                                <select name="lang" id="lang" class="form-control">--}}
-            {{--                                    <option>Select Language</option>--}}
-            {{--                                </select>--}}
-            {{--                            </div>--}}
-            {{--                            <div class="mb-2">--}}
-            {{--                                <input type="submit" value="{{ __('main.search') }}" class="form-control">--}}
-            {{--                            </div>--}}
-            {{--                        </div>--}}
-            {{--                    </form>--}}
-            {{--                </div>--}}
-            {{--            </div>--}}
+            <h4 class="founds">{{ __('main.found_amount') }}: <span></span></h4>
             <div class="col-sm-12" id="user-list">
-                {{--                @if ($data['list']->isEmpty())--}}
-                {{--                    <div class="card p-4">--}}
-                {{--                        Nothing not found--}}
-                {{--                    </div>--}}
-                {{--                @else--}}
-                {{--                    @foreach($data['list'] as $item)--}}
-                {{--                        <div class="card user-card mb-3">--}}
-                {{--                            <div class="card-body">--}}
-                {{--                                <div class="user-card-mini justify-content-between">--}}
-                {{--                                    <div class="">--}}
-                {{--                                        @if(!$item['avatar'])--}}
-                {{--                                            <img class="avatar" src="/uploads/avatars/avatar.svg">--}}
-                {{--                                        @else--}}
-                {{--                                            <img class="avatar" src="/uploads/avatars/{{$item['avatar']}}">--}}
-                {{--                                        @endif--}}
-                {{--                                    </div>--}}
-                {{--                                    <div class="user-info w-100">--}}
-                {{--                                        <p class="title"><b>{{$item['name']}} {{ $item['surname'] }}</b>&nbsp;--}}
-                {{--                                            @foreach($item->languages as $lang)--}}
-                {{--                                                <img class="user-language" src="{{ asset('/images/flags/' . $lang['key'] .'.svg') }}" title="{{ $lang['title_' . \Illuminate\Support\Facades\App::currentLocale()]}}">--}}
-                {{--                                            @endforeach--}}
-                {{--                                        </p>--}}
-                {{--                                        <p class="category">{{$item['category']['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}</p>--}}
-                {{--                                        @if ($item->getRating() > 0 && $item->getRating() < 2)--}}
-                {{--                                            <x-rating.stars_05/>--}}
-                {{--                                        @elseif ($item->getRating() == 1)--}}
-                {{--                                            <x-rating.stars_1/>--}}
-                {{--                                        @elseif ($item->getRating() > 1 && $item->getRating() < 2)--}}
-                {{--                                            <x-rating.stars_15/>--}}
-                {{--                                        @elseif ($item->getRating() == 2)--}}
-                {{--                                            <x-rating.stars_2/>--}}
-                {{--                                        @elseif ($item->getRating() > 2 && $item->getRating() < 3)--}}
-                {{--                                            <x-rating.stars_25/>--}}
-                {{--                                        @elseif ($item->getRating() == 3)--}}
-                {{--                                            <x-rating.stars_3/>--}}
-                {{--                                        @elseif ($item->getRating() > 3 && $item->getRating() < 4)--}}
-                {{--                                            <x-rating.stars_35/>--}}
-                {{--                                        @elseif ($item->getRating() == 4)--}}
-                {{--                                            <x-rating.stars_4/>--}}
-                {{--                                        @elseif ($item->getRating() > 4 && $item->getRating() < 5)--}}
-                {{--                                            <x-rating.stars_45/>--}}
-                {{--                                        @elseif ($item->getRating() == 5)--}}
-                {{--                                            <x-rating.stars_5/>--}}
-                {{--                                        @endif--}}
-                {{--                                    </div>--}}
-                {{--                                    <div class="open-profile text-end">--}}
-                {{--                                        <a href="#" class="mb-2" data-bs-toggle="modal" data-bs-target="#newReview"--}}
-                {{--                                           onclick="openReviewModal({{$item['id']}})">{{ __('main.add_review') }}</a>--}}
-                {{--                                        <a href="/profile/{{$item['id']}}"--}}
-                {{--                                           class="btn btn-secondary">{{ __('main.profile') }}</a>--}}
-                {{--                                    </div>--}}
-                {{--                                </div>--}}
-                {{--                            </div>--}}
-                {{--                        </div>--}}
-                {{--                    @endforeach--}}
-                {{--                @endif--}}
-                {{--                    {{ $data['list']->appends(request()->query())->links() }}--}}
-                {{--                @endif--}}
+
             </div>
         </div>
     </div>
@@ -255,6 +150,7 @@
             streetViewControl: false
 
         });
+        console.log(map)
         map.addListener('bounds_changed', () => {
             var bounds = map.getBounds();
             console.log(bounds)
@@ -264,7 +160,6 @@
             let min_lng = bounds.Ra.lo
             var userList = []
             users.forEach(user => {
-                console.log(user)
                 lat = +user.geo.lat
                 lng = +user.geo.lng
                 if (lat > min_lat && lat < max_lat && lng > min_lng && lng < max_lng) {
@@ -284,7 +179,9 @@
                     })
                 }
             })
+            document.querySelector('.founds span').innerHTML = users.length
             showUsers(userList)
+
 
         })
 
@@ -292,6 +189,7 @@
 
 
     function showUsers(list) {
+        console.log(list)
         let listBlock = document.getElementById('user-list')
         listBlock.innerHTML = ''
         listBlock.style.display = 'none'
@@ -360,7 +258,6 @@
 
     }
 
-
     function openReviewModal(user_id) {
         let users = @json($data['users']);
         let user = users.filter(us => us.id === user_id)[0]
@@ -383,6 +280,7 @@
 
 
     window.addEventListener('load', () => {
+        initMap()
         let locale = "{{ \Illuminate\Support\Facades\App::currentLocale() }}"
         let categories = @json($data['categories']);
         let subcategories = @json($data['subcategories']);
