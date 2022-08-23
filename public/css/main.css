@@ -830,21 +830,52 @@ a.navbar-brand span{
         display: table;
     }
     .contactbar ul {
-        margin-bottom: 15px;
+        margin-bottom: 0px;
         text-align: center;
+    }
+    .contactbar .contacts {
+        display: none;
+        width: 100%;
+        padding: 0;
     }
     .contactbar .lang {
         position: absolute;
-        right:0;
-        top: 10px;
+        right: 0;
+        top: 9px;
     }
     .contactbar .auth {
         margin-bottom: 0;
+        padding: 0;
+    }
 
+    .main-menu {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .main-menu li {
+        margin-bottom: 5px;
+    }
+
+    .main-menu li a {
+        color: #68a114;
+        margin-right: 10px;
+        text-decoration: none;
+        font-weight: 400;
+        transition: all 0.3s ease;
+        font-size: 16px;
+    }
+
+    .user-card .card-body {
+        text-align: center;
+    }
+    .user-card .card-body .user-card-mini {
+        display: contents;
     }
 }
 
 @media screen and (max-width: 500px) {
+
     .auth-block {
         margin-top: -45%;
     }

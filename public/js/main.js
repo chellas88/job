@@ -10,10 +10,10 @@ if (showHideSearch) {
     showHideSearch.addEventListener('click', () => {
         const searchFormWidth = searchForm.clientWidth
         let add = searchForm.classList.toggle('active')
+        document.querySelector('.category-list').classList.remove('show')
         if (!add) {
             showHideSearch.innerHTML = "<i class='icon-chevron-right'></i>"
             searchForm.style.left = '-' + searchFormWidth
-            showCategories()
         } else {
             showHideSearch.innerHTML = "<i class='icon-chevron-left' ></i>"
             searchForm.style.left = '0'
