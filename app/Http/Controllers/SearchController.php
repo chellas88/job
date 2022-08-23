@@ -18,10 +18,10 @@ class SearchController extends Controller
     {
 //        $countries = Country::orderBy('title_'.App::currentLocale(), 'asc')->get();
         $data = null;
-        $data['categories'] = Category::orderBy('title_'.App::currentLocale())->get();
-        $data['subcategories'] = Subcategory::orderBy('title_'.App::currentLocale())->get();
+        $data['categories'] = Category::orderBy('title_' . App::currentLocale())->get();
+        $data['subcategories'] = Subcategory::orderBy('title_' . App::currentLocale())->get();
         $data['languages'] = Language::orderBy('title_' . App::currentLocale(), 'asc')->get();
-        if (!$request['location']){
+        if (!$request['location']) {
             $request['location'] = 'Spain';
         }
         $data['location'] = $request['location'];
@@ -40,15 +40,27 @@ class SearchController extends Controller
         if ($request['category_id']) {
             $filter['category_id'] = $request['category_id'];
         }
-        if ($request['lang']){
+        if ($request['lang']) {
             $changeLang = Language::where('id', $request['lang'])->first();
             App::setLocale($changeLang['key']);
             $this->lang = $request['lang'];
-            $users = User::where($filter)->where('role', '!=', 'admin')->whereHas('languages', function ($query){
+            $this->subcategory_id = $request['subcategory_id'];
+            $users = User::where($filter)->where('role', '!=', 'admin')->whereHas('languages', function ($query) {
                 $query->where('language_id', $this->lang);
             })->get();
-        }
-        else {
+            if ($request['subcategory_id']) {
+                $users = User::where($filter)->where('role', '!=', 'admin')->whereHas('languages', function ($query) {
+                    $query->where('language_id', $this->lang);
+                })->whereHas('services', function ($query) {
+                    $query->where('subcategory_id', $this->subcategory_id);
+                })->get();
+            }
+        } else if ($request['subcategory_id']) {
+            $this->subcategory_id = $request['subcategory_id'];
+            $users = User::where($filter)->where('role', '!=', 'admin')->whereHas('services', function ($query) {
+                $query->where('subcategory_id', $this->subcategory_id);
+            })->get();
+        } else {
             $users = User::where($filter)->where('role', '!=', 'admin')->get();
         }
         if ($users->isEmpty()) {
@@ -81,13 +93,12 @@ class SearchController extends Controller
         if ($request['category_id']) {
             $filter['category_id'] = intval($request['category_id']);
         }
-        if ($request['lang']){
+        if ($request['lang']) {
             $this->lang = $request['lang'];
-            $users = User::whereHas('languages', function ($query){
+            $users = User::whereHas('languages', function ($query) {
                 $query->where('language_id', $this->lang);
             })->paginate(10);
-        }
-        else $users = User::paginate(10);
+        } else $users = User::paginate(10);
         return $users;
     }
 
