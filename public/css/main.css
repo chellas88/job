@@ -872,6 +872,16 @@ a.navbar-brand span{
     .user-card .card-body .user-card-mini {
         display: contents;
     }
+    .user-card .card-body a{
+        margin-top: 10px;
+    }
+
+    .profile-contacts h5 {
+        display: none;
+    }
+    .profile-card {
+        margin-top: -5px;
+    }
 }
 
 @media screen and (max-width: 500px) {
