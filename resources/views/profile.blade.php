@@ -23,7 +23,7 @@
                         @endif
                     </div>
                     <div class="profile-content row">
-                        <div class="col-12 col-md-9">
+                        <div class="col-12 col-lg-9">
                             <h4>{{$data['user']['name']}} {{ $data['user']['surname'] }}</h4>
                             <p>
                                 <span>{{$data['category']['title_'.\Illuminate\Support\Facades\App::currentLocale()]}}</span>
@@ -38,13 +38,15 @@
                                     {{$lang['title_'.\Illuminate\Support\Facades\App::currentLocale()]}},
                                 @endforeach
                             </p>
-
+                            <button class="btn btn-secondary show-description my-2" data-bs-toggle="modal" data-bs-target="#descriptionModal">
+                                show
+                            </button>
                             <div class="profile-description">
                                 <hr>
                                 {!! $data['user']['description_' . \Illuminate\Support\Facades\App::currentLocale()] !!}
                             </div>
                         </div>
-                        <div class="profile-contacts col-12 col-md-3">
+                        <div class="profile-contacts col-12 col-lg-3">
                             <h5> {{ __('main.contacts') }}</h5>
                             <div class="btn btn-phone w-100 mb-2" id="phone"
                                     onclick="getContact('phone')">{{ __('main.show_phone') }}</div>
@@ -69,6 +71,26 @@
                 </div>
 
 
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="descriptionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-fullscreen-xl-down">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{ $data['user']['name'] }} {{ $data['user']['surname'] }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {!! $data['user']['description_' . \Illuminate\Support\Facades\App::currentLocale()] !!}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">{{ __('main.close') }}</button>
+                </div>
             </div>
         </div>
     </div>

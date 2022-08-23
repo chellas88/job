@@ -511,7 +511,7 @@ a.navbar-brand span{
 .profile-card {
     border: 1px solid #8dc5394a;
     margin-top: -80px;
-    z-index: 9999;
+    z-index: 9;
     position: relative;
     background: #fff;
     width: 100%;
@@ -771,6 +771,9 @@ a.navbar-brand span{
 .subcategory-list a:hover {
     background: #c7f1cf;
 }
+.show-description {
+    display: none;
+}
 
 
 @media screen and (min-width: 990px) {
@@ -818,6 +821,19 @@ a.navbar-brand span{
     }
     .recommended-companies ul li p{
         margin: 0;
+    }
+
+    .profile-contacts h5 {
+        display: none;
+    }
+    .profile-card {
+        margin-top: -5px;
+    }
+    .show-description {
+        display: block;
+    }
+    .profile-description {
+        display: none;
     }
 }
 
@@ -881,6 +897,12 @@ a.navbar-brand span{
     }
     .profile-card {
         margin-top: -5px;
+    }
+    .show-description {
+        display: block;
+    }
+    .profile-description {
+        display: none;
     }
 }
 
