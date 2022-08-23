@@ -785,7 +785,7 @@ a.navbar-brand span{
 
 @media screen and (max-width: 990px) {
     .auth-block {
-        margin-top: -22%;
+        margin-top: -32%;
     }
     .recommended-companies {
         transform: translateY(-20%);
@@ -840,7 +840,7 @@ a.navbar-brand span{
 
 @media screen and (max-width: 690px) {
     .auth-block {
-        margin-top: -30%;
+        margin-top: -40%;
     }
     .contactbar {
         display: table;
@@ -909,7 +909,7 @@ a.navbar-brand span{
 @media screen and (max-width: 500px) {
 
     .auth-block {
-        margin-top: -45%;
+        margin-top: -55%;
     }
     .most-popular .popular-item .popular-icon {
         width: 55px;

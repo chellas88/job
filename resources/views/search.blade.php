@@ -350,7 +350,7 @@
                     cur_lang = ''
                 }
                 document.getElementById('user-card-' + user.id).innerHTML += '<div>'
-                document.getElementById('user-card-' + user.id).innerHTML += `<a href="#" class="mx-2 m-0 text-nowrap btn btn-light" data-bs-toggle="modal" data-bs-target="#newReview" onclick="openReviewModal(${user.id})">{{ __('main.add_review') }}</a>`
+                document.getElementById('user-card-' + user.id).innerHTML += `<a href="#" class="mx-2 text-nowrap btn btn-light" data-bs-toggle="modal" data-bs-target="#newReview" onclick="openReviewModal(${user.id})">{{ __('main.add_review') }}</a>`
                 let profileLink = `/profile/${user.id}?lang=${cur_lang}`
                 document.getElementById('user-card-' + user.id).innerHTML += `<a href="${profileLink}" class="btn btn-secondary">{{ __('main.profile') }}</a>`
                 document.getElementById('user-card-' + user.id).innerHTML += '</div>'
