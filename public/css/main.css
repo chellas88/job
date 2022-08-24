@@ -1,6 +1,7 @@
-body {
+body, main {
     overflow-x: hidden;
 }
+
 .preloader {
     position: fixed;
     width: 100%;
@@ -779,9 +780,9 @@ a.navbar-brand span{
     color: #484646;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 1600px) {
     .auth-block {
-        margin-top: -15%;
+        margin-top: -10%;
     }
 
 }
@@ -789,13 +790,16 @@ a.navbar-brand span{
     .category-list{
         transform: translate(300px, -48px);
     }
+    .auth-block {
+        margin-top: -20%;
+    }
 }
 @media screen and (max-width: 990px) {
     .category-list{
         transform: translate(245px, -48px);
     }
     .auth-block {
-        margin-top: -32%;
+        margin-top: -25%;
     }
     .recommended-companies {
         transform: translateY(-20%);
@@ -858,6 +862,9 @@ a.navbar-brand span{
 
 
 @media screen and (max-width: 690px) {
+    a.navbar-brand{
+        font-size: 1.5em;
+    }
     .auth-block {
         margin-top: -40%;
     }

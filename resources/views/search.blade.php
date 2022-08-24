@@ -150,7 +150,6 @@
             streetViewControl: false
 
         });
-        console.log(map)
         map.addListener('bounds_changed', () => {
             var bounds = map.getBounds();
             console.log(bounds)
@@ -179,7 +178,7 @@
                     })
                 }
             })
-            document.querySelector('.founds span').innerHTML = users.length
+            document.querySelector('.founds span').innerHTML = userList.length
             showUsers(userList)
 
 
@@ -189,7 +188,6 @@
 
 
     function showUsers(list) {
-        console.log(list)
         let listBlock = document.getElementById('user-list')
         listBlock.innerHTML = ''
         listBlock.style.display = 'none'

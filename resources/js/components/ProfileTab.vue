@@ -4,6 +4,7 @@
         <input type="text" :value="userCategory['title_' + locale]" class="form-control" disabled>
 
 
+        <p class="mt-3">{{ translate.profile_description }}</p>
         <select class="my-2" v-model="currentLanguage">
             <option v-for="lang in userLanguages" :id="lang.id" :value="lang.key">{{ lang['title_' + locale] }}</option>
         </select>

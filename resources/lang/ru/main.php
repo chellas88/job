@@ -78,7 +78,7 @@ return [
     'registration_step_2' => 'ШАГ 2 - Категория и услуги',
     'registration_step_3' => 'ШАГ 3 - Местоположение',
     'registration_step_4' => 'ШАГ 4 - Контактные данные',
-    'registration_step_5' => 'ШАГ 5 - Настройка профиля',
+    'registration_step_5' => 'ШАГ 5 - Локализация',
     'next' => 'Далее',
     'finish_registration' => 'Завершить регистрацию',
     'input_location' => 'Укажите Ваше местонахождение',
@@ -97,5 +97,8 @@ return [
     'show_information' => 'Показать информацию',
     'close' => 'Закрыть',
     'found_amount' => 'Всего найдено',
+    'social_networks' => 'Социальные сети',
+    'profile_description' => 'Добавьте описания профиля на разных языках, чтобы пользователи могли более подробно узнать Вас',
+    'about_me' => 'Обо мне',
 
 ];

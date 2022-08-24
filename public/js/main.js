@@ -116,6 +116,23 @@ function showPosition(position) {
         data: {lng: position.coords.longitude, lat: position.coords.latitude},
         success: function (response) {
             location_input.value = response
+            if(document.getElementById('main_map')){
+                showOnMap('main_map', position.coords.latitude, position.coords.longitude)
+            }
+            else showOnMap('map', position.coords.latitude, position.coords.longitude)
+
         }
     })
+}
+
+function showOnMap(map_id, lat, lng){
+    const center = {lat: lat, lng: lng};
+    const map = new google.maps.Map(document.getElementById(map_id), {
+        zoom: 15,
+        center: center,
+        fullscreenControl: false,
+        mapTypeControl: false,
+        streetViewControl: false
+
+    });
 }

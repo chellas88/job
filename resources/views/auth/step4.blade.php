@@ -15,7 +15,8 @@
                         <form method="POST" action="{{ route('step_4_save') }}">
                             @csrf
                             <div class="row p-3">
-                                <div class="col-5">
+                                <div class="col-md-5 mb-3">
+                                    <h5>{{ __('main.contacts') }}</h5>
                                     <div class="row mb-3">
                                         <label for="phone">{{ __('main.phone') }}</label>
                                         <input type="text" id="phone" name="phone" class="form-control" required>
@@ -38,7 +39,8 @@
                                     </div>
                                 </div>
                                 <div class="col-2"></div>
-                                <div class="col-5">
+                                <div class="col-md-5">
+                                    <h5>{{ __('main.social_networks') }}</h5>
                                     <div class="row mb-3">
                                         <label for="facebook">{{ __('main.facebook') }}</label>
                                         <input type="text" id="facebook" name="facebook" class="form-control">

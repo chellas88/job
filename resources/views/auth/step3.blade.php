@@ -7,7 +7,7 @@
     </div>
     <div class="container auth-block">
         <div class="row justify-content-center">
-            <div class="col-md-7">
+            <div class="col-md-10">
                 <div class="card shadow">
                     <div class="card-header">{{ __('main.registration_step_3') }}</div>
 

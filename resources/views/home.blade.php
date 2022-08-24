@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('head')
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxEmjg-EGbt0m8Dr_cCWgO7IvcqA89fEU&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxEmjg-EGbt0m8Dr_cCWgO7IvcqA89fEU"
             async defer></script>
 @endsection
 @section('content')
@@ -333,13 +333,13 @@
 
         }
 
-        window.initMap = initMap;
     </script>
 @endif
 
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        initMap()
         const mainBtn = document.getElementById('user-line-tab')
         const contactsBtn = document.getElementById('contacts-line-tab')
         const addrBtn = document.getElementById('address-line-tab')

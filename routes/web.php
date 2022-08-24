@@ -12,6 +12,7 @@ Route::group([
         Route::get('/rules', [\App\Http\Controllers\IndexController::class, 'rulesPage']);
         Route::post('/getLocation', [\App\Http\Controllers\GoogleController::class, 'getLocation']);
         Route::post('/getContact', [\App\Http\Controllers\UserController::class, 'getContact']);
+        Route::post('/getCoordinates', [\App\Http\Controllers\GoogleController::class, 'getCoordinates']);
 
 
         Route::get('new_user/{link}', [\App\Http\Controllers\UserController::class, 'privacy']);

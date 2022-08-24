@@ -41,8 +41,9 @@
                             <button class="btn btn-secondary show-description my-2" data-bs-toggle="modal" data-bs-target="#descriptionModal">
                                 {{ __('main.show_information') }}
                             </button>
+                            <hr>
                             <div class="profile-description">
-                                <hr>
+                                <h5>{{ __('main.about_me') }}</h5>
                                 {!! $data['user']['description_' . \Illuminate\Support\Facades\App::currentLocale()] !!}
                             </div>
                         </div>
